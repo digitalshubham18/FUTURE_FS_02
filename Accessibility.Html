@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopKart - Accessibility Statement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        
+        header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 15px 5%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-icons i {
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .header-icons i:hover {
+            color: #ffd700;
+        }
+
+        
+        .accessibility-bar {
+            background: #f1f5f9;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .accessibility-button {
+            background: transparent;
+            border: 1px solid #8e2de2;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            color: #8e2de2;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .accessibility-button:hover {
+            background: #8e2de2;
+            color: white;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-title i {
+            color: #8e2de2;
+        }
+
+        
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: #4a00e0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            font-size: 20px;
+        }
+
+        .section-content p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+      
+        .commitment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .commitment-item {
+            background: #f9f9ff;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #8e2de2;
+        }
+
+        .commitment-item h3 {
+            font-size: 18px;
+            color: #4a00e0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .commitment-item p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        
+        .feature-list {
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .feature-icon {
+            background: #e9dfff;
+            color: #4a00e0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-content h3 {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        .feature-content p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        
+        .feedback-form {
+            background: #f9f9ff;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #8e2de2;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(142, 45, 226, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #8e2de2;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #4a00e0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+       
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 5% 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .high-contrast {
+            background: #000 !important;
+            color: #fff !important;
+        }
+        
+        .high-contrast .content-section {
+            background: #222 !important;
+            color: #fff !important;
+        }
+        
+        .high-contrast .commitment-item,
+        .high-contrast .feature-list .feature-item {
+            background: #333 !important;
+            color: #fff !important;
+        }
+        
+        .high-contrast .section-title {
+            color: #ffd700 !important;
+        }
+
+        
+        .text-normal {
+            font-size: 16px;
+        }
+        
+        .text-large {
+            font-size: 18px;
+        }
+        
+        .text-xlarge {
+            font-size: 20px;
+        }
+
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .accessibility-bar {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .commitment-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-item {
+                flex-direction: column;
+            }
+            
+            .feature-icon {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 24px;
+            }
+            
+            .accessibility-button {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body class="text-normal">
+    
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-shopping-cart"></i>
+                <span>ShopKart</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="Home.Html">Home</a></li>
+                    <li><a href="categories.Html">Categories</a></li>
+                    <li><a href="Deals&Offer.Html">Deals</a></li>
+                    <li><a href="About us.Html">About</a></li>
+                    <li><a href="Contact Us.Html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="accessibility-bar">
+        <button class="accessibility-button" id="increaseText">
+            <i class="fas fa-text-height"></i> Increase Text Size
+        </button>
+        <button class="accessibility-button" id="decreaseText">
+            <i class="fas fa-text-width"></i> Decrease Text Size
+        </button>
+        <button class="accessibility-button" id="highContrastToggle">
+            <i class="fas fa-adjust"></i> High Contrast
+        </button>
+        <button class="accessibility-button" id="readPage">
+            <i class="fas fa-volume-up"></i> Read Page
+        </button>
+    </div>
+
+ 
+    <div class="container">
+        <h1 class="page-title">
+            <i class="fas fa-universal-access"></i>
+            Accessibility Statement
+        </h1>
+        
+        
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-info-circle"></i>
+                Our Commitment
+            </h2>
+            <div class="section-content">
+                <p>At ShopKart, we believe in creating an inclusive shopping experience for all our customers. We are committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.</p>
+                <p>Our goal is to make ShopKart.com perceivable, operable, understandable, and robust for all users, regardless of ability.</p>
+            </div>
+        </div>
+        
+        
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-check-circle"></i>
+                Accessibility Guidelines
+            </h2>
+            <div class="section-content">
+                <p>ShopKart strives to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA. These guidelines explain how to make web content more accessible for people with disabilities, and user-friendly for everyone.</p>
+                
+                <div class="commitment-grid">
+                    <div class="commitment-item">
+                        <h3><i class="fas fa-eye"></i> Perceivable</h3>
+                        <p>Provide text alternatives for non-text content, create content that can be presented in different ways, and make it easier for users to see and hear content.</p>
+                    </div>
+                    <div class="commitment-item">
+                        <h3><i class="fas fa-mouse-pointer"></i> Operable</h3>
+                        <p>Make all functionality available from a keyboard, give users enough time to read and use content, and help users navigate and find content.</p>
+                    </div>
+                    <div class="commitment-item">
+                        <h3><i class="fas fa-brain"></i> Understandable</h3>
+                        <p>Make text readable and understandable, make content appear and operate in predictable ways, and help users avoid and correct mistakes.</p>
+                    </div>
+                    <div class="commitment-item">
+                        <h3><i class="fas fa-cogs"></i> Robust</h3>
+                        <p>Maximize compatibility with current and future user tools, including assistive technologies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+       
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i>
+                Accessibility Features
+            </h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Keyboard Navigation</h3>
+                        <p>Our website can be navigated using only a keyboard. Use Tab to move forward, Shift+Tab to move backward, and Enter to activate elements.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-text-height"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Text Resizing</h3>
+                        <p>Use the text size controls at the top of the page to increase or decrease text size for better readability.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-adjust"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>High Contrast Mode</h3>
+                        <p>Toggle high contrast mode for better visibility if you have low vision or sensitivity to bright colors.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Alternative Text</h3>
+                        <p>All meaningful images on our site include alternative text descriptions for screen reader users.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-heading"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Clear Structure</h3>
+                        <p>We use proper heading structure and semantic HTML to ensure our content is well-organized and easy to navigate.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-comments"></i>
+                We Value Your Feedback
+            </h2>
+            <div class="section-content">
+                <p>We are continuously working to improve the accessibility of our website. If you encounter any barriers while using ShopKart.com, or have suggestions for how we might improve accessibility, please contact us.</p>
+                
+                <div class="feedback-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="issue-type">Issue Type</label>
+                        <select id="issue-type">
+                            <option value="">Select an issue type</option>
+                            <option value="visual">Visual Impairment</option>
+                            <option value="hearing">Hearing Impairment</option>
+                            <option value="mobility">Mobility Issue</option>
+                            <option value="cognitive">Cognitive Disability</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Please describe the accessibility issue you encountered"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit Feedback</button>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-hands-helping"></i>
+                Need Assistance?
+            </h2>
+            <div class="section-content">
+                <p>If you need assistance with your ShopKart account or with making a purchase, our customer service team is here to help.</p>
+                <p>Please contact us at:</p>
+                <ul style="margin-left: 20px; margin-bottom: 15px;">
+                    <li>Phone: 1-800-SHOPKART (1-800-746-7527)</li>
+                    <li>Email: accessibility@shopkart.com</li>
+                    <li>Live Chat: Available on our website during business hours</li>
+                </ul>
+                <p>Our customer service representatives are trained to assist customers with disabilities and will be happy to help you.</p>
+            </div>
+        </div>
+    </div>
+
+   
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ShopKart</h3>
+                <ul>
+                    <li><a href="About us.Html">About Us</a></li>
+                    <li><a href="carrer.Html">Careers</a></li>
+                    <li><a href="press.Html">Press</a></li>
+                    <li><a href="Blog.Html">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="Contact Us.Html">Contact Us</a></li>
+                    <li><a href="FAQ.Html">Help & FAQ</a></li>
+                    <li><a href="Return&Exchange.Html">Returns & Exchanges</a></li>
+                    <li><a href="Shipping.Html">Shipping Information</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Terms & Policies</h3>
+                <ul>
+                    <li><a href="Terms.Html">Terms of Service</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="Cookies.Html">Cookies Policy</a></li>
+                    <li><a href="#" style="color: #ffd700;">Accessibility Statement</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 ShopKart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+       
+        document.addEventListener('DOMContentLoaded', function() {
+            const increaseBtn = document.getElementById('increaseText');
+            const decreaseBtn = document.getElementById('decreaseText');
+            const contrastBtn = document.getElementById('highContrastToggle');
+            const readBtn = document.getElementById('readPage');
+            const body = document.body;
+            
+            let textSize = 0; 
+            
+            
+            increaseBtn.addEventListener('click', function() {
+                if (textSize < 2) {
+                    textSize++;
+                    updateTextSize();
+                }
+            });
+            
+            
+            decreaseBtn.addEventListener('click', function() {
+                if (textSize > 0) {
+                    textSize--;
+                    updateTextSize();
+                }
+            });
+            
+            function updateTextSize() {
+                body.classList.remove('text-normal', 'text-large', 'text-xlarge');
+                
+                if (textSize === 0) {
+                    body.classList.add('text-normal');
+                } else if (textSize === 1) {
+                    body.classList.add('text-large');
+                } else {
+                    body.classList.add('text-xlarge');
+                }
+            }
+            
+           
+            contrastBtn.addEventListener('click', function() {
+                body.classList.toggle('high-contrast');
+                if (body.classList.contains('high-contrast')) {
+                    contrastBtn.innerHTML = '<i class="fas fa-adjust"></i> Standard Contrast';
+                } else {
+                    contrastBtn.innerHTML = '<i class="fas fa-adjust"></i> High Contrast';
+                }
+            });
+            
+            readBtn.addEventListener('click', function() {
+                alert('This feature would activate screen reader functionality or text-to-speech in a production environment.');
+            });
+            
+           
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Thank you for your feedback! We will review your accessibility concerns and respond soon.');
+                document.querySelector('.feedback-form').reset();
+            });
+        });
+    </script>
+</body>
+</html>
