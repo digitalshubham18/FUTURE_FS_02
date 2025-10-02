@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopKart API Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+        }
+        
+        .logo h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        
+        .api-info {
+            text-align: right;
+        }
+        
+        .api-info p {
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+        
+        .api-key {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-family: monospace;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--light-gray);
+            padding: 8px 15px;
+            border-radius: 4px;
+            width: 300px;
+        }
+        
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            padding-left: 10px;
+        }
+        
+        main {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .sidebar {
+            flex: 0 0 250px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+        
+        .sidebar h3 {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light-gray);
+            color: var(--secondary);
+        }
+        
+        .sidebar ul {
+            list-style: none;
+        }
+        
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar a {
+            text-decoration: none;
+            color: var(--gray);
+            display: block;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .sidebar a:hover, .sidebar a.active {
+            background: var(--light);
+            color: var(--primary);
+        }
+        
+        .content {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            scroll-margin-top: 90px;
+        }
+        
+        .section h2 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .section p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        .endpoint {
+            background: var(--light);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .method {
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .get { background: var(--success); }
+        .post { background: var(--primary); }
+        .put { background: var(--warning); }
+        .delete { background: var(--danger); }
+        
+        .endpoint-url {
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+        
+        .endpoint-desc {
+            margin-bottom: 15px;
+        }
+        
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .params-table th, .params-table td {
+            padding: 10px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .params-table th {
+            background: var(--light);
+            font-weight: 600;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        .response-block {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border-left: 4px solid var(--success);
+        }
+        
+        .tab-container {
+            margin: 20px 0;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-section {
+            flex: 1;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                position: static;
+                flex: 1;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .api-info {
+                text-align: center;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h1>ShopKart API</h1>
+                </div>
+                <div class="api-info">
+                    <p>Base URL: <code>https://api.shopkart.com/v1</code></p>
+                    <p>Current Version: v1.2.3</p>
+                    <div class="api-key">
+                        Your API Key: <strong>sk_**********</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <div class="nav-links">
+                <a href="#authentication">Authentication</a>
+                <a href="#products">Products</a>
+                <a href="#orders">Orders</a>
+                <a href="#users">Users</a>
+                <a href="#payments">Payments</a>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search endpoints...">
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <main>
+            <aside class="sidebar">
+                <h3>API Reference</h3>
+                <ul>
+                    <li><a href="#getting-started" class="active">Getting Started</a></li>
+                    <li><a href="#authentication">Authentication</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#orders">Orders</a></li>
+                    <li><a href="#users">Users</a></li>
+                    <li><a href="#carts">Shopping Carts</a></li>
+                    <li><a href="#payments">Payments</a></li>
+                    <li><a href="#webhooks">Webhooks</a></li>
+                    <li><a href="#errors">Error Handling</a></li>
+                    <li><a href="#rate-limiting">Rate Limiting</a></li>
+                </ul>
+            </aside>
+            
+            <div class="content">
+                <section id="getting-started" class="section">
+                    <h2>Getting Started</h2>
+                    <p>Welcome to the ShopKart API documentation. Our API follows RESTful principles and returns JSON responses. To get started, you'll need an API key which you can obtain from your developer dashboard.</p>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <span class="endpoint-url">/status</span>
+                        </div>
+                        <div class="endpoint-desc">
+                            <p>Check API status and version information.</p>
+                        </div>
+                        
+                        <div class="tab-container">
+                            <div class="tabs">
+                                <div class="tab active" data-tab="request">Request</div>
+                                <div class="tab" data-tab="response">Response</div>
+                            </div>
+                            
+                            <div class="tab-content active" id="request">
+                                <div class="code-block">
+curl -X GET https://api.shopkart.com/v1/status \
+  -H "Authorization: Bearer YOUR_API_KEY"
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="response">
+                                <div class="code-block">
+{
+  "status": "ok",
+  "version": "1.2.3",
+  "timestamp": "2023-06-15T10:30:00Z"
+}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="authentication" class="section">
+                    <h2>Authentication</h2>
+                    <p>All API requests require authentication using your API key. Include the key in the Authorization header of your requests.</p>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method post">POST</span>
+                            <span class="endpoint-url">/auth/login</span>
+                        </div>
+                        <div class="endpoint-desc">
+                            <p>Authenticate a user and receive an access token.</p>
+                        </div>
+                        
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>email</td>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>User's email address</td>
+                                </tr>
+                                <tr>
+                                    <td>password</td>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>User's password</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="tab-container">
+                            <div class="tabs">
+                                <div class="tab active" data-tab="auth-request">Request</div>
+                                <div class="tab" data-tab="auth-response">Response</div>
+                            </div>
+                            
+                            <div class="tab-content active" id="auth-request">
+                                <div class="code-block">
+curl -X POST https://api.shopkart.com/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "user@example.com",
+    "password": "password123"
+  }'
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="auth-response">
+                                <div class="code-block">
+{
+  "success": true,
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
+  "user": {
+    "id": 12345,
+    "email": "user@example.com",
+    "name": "John Doe"
+  }
+}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="products" class="section">
+                    <h2>Products</h2>
+                    <p>Retrieve and manage product information in the ShopKart catalog.</p>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <span class="endpoint-url">/products</span>
+                        </div>
+                        <div class="endpoint-desc">
+                            <p>Retrieve a list of products with optional filtering and pagination.</p>
+                        </div>
+                        
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>page</td>
+                                    <td>integer</td>
+                                    <td>No</td>
+                                    <td>Page number for pagination (default: 1)</td>
+                                </tr>
+                                <tr>
+                                    <td>limit</td>
+                                    <td>integer</td>
+                                    <td>No</td>
+                                    <td>Number of products per page (default: 20, max: 100)</td>
+                                </tr>
+                                <tr>
+                                    <td>category</td>
+                                    <td>string</td>
+                                    <td>No</td>
+                                    <td>Filter by category ID</td>
+                                </tr>
+                                <tr>
+                                    <td>search</td>
+                                    <td>string</td>
+                                    <td>No</td>
+                                    <td>Search term to filter products</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="tab-container">
+                            <div class="tabs">
+                                <div class="tab active" data-tab="products-request">Request</div>
+                                <div class="tab" data-tab="products-response">Response</div>
+                            </div>
+                            
+                            <div class="tab-content active" id="products-request">
+                                <div class="code-block">
+curl -X GET "https://api.shopkart.com/v1/products?page=1&limit=10&category=electronics" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="products-response">
+                                <div class="code-block">
+{
+  "products": [
+    {
+      "id": 101,
+      "name": "Smartphone X",
+      "description": "Latest smartphone with advanced features",
+      "price": 699.99,
+      "category": "electronics",
+      "stock": 50,
+      "images": ["https://..."]
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 10,
+    "totalPages": 5,
+    "totalProducts": 48
+  }
+}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="categories" class="section">
+                    <h2>Categories</h2>
+                    <p>Manage product categories for organizing your catalog.</p>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <span class="endpoint-url">/categories</span>
+                        </div>
+                        <div class="endpoint-desc">
+                            <p>Retrieve all product categories.</p>
+                        </div>
+                        
+                        <div class="response-block">
+                            <strong>Response:</strong> Returns an array of category objects with id, name, and description.
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="orders" class="section">
+                    <h2>Orders</h2>
+                    <p>Create and manage customer orders.</p>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method post">POST</span>
+                            <span class="endpoint-url">/orders</span>
+                        </div>
+                        <div class="endpoint-desc">
+                            <p>Create a new order.</p>
+                        </div>
+                        
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>items</td>
+                                    <td>array</td>
+                                    <td>Yes</td>
+                                    <td>Array of product items with productId and quantity</td>
+                                </tr>
+                                <tr>
+                                    <td>shippingAddress</td>
+                                    <td>object</td>
+                                    <td>Yes</td>
+                                    <td>Shipping address details</td>
+                                </tr>
+                                <tr>
+                                    <td>paymentMethod</td>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Payment method (credit_card, paypal, etc.)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="response-block">
+                            <strong>Response:</strong> Returns the created order object with order ID and status.
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="users" class="section">
+                    <h2>Users</h2>
+                    <p>Manage user accounts and profiles.</p>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <span class="endpoint-url">/users/{id}</span>
+                        </div>
+                        <div class="endpoint-desc">
+                            <p>Retrieve a specific user's information by ID.</p>
+                        </div>
+                        
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>integer</td>
+                                    <td>Yes</td>
+                                    <td>User ID in the URL path</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="response-block">
+                            <strong>Response:</strong> Returns user object with id, name, email, and profile information.
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="carts" class="section">
+                    <h2>Shopping Carts</h2>
+                    <p>Manage user shopping carts and cart items.</p>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <span class="endpoint-url">/carts/{userId}</span>
+                        </div>
+                        <div class="endpoint-desc">
+                            <p>Retrieve a user's shopping cart.</p>
+                        </div>
+                        
+                        <div class="response-block">
+                            <strong>Response:</strong> Returns cart object with items, quantities, and total price.
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="payments" class="section">
+                    <h2>Payments</h2>
+                    <p>Process payments and manage payment information.</p>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method post">POST</span>
+                            <span class="endpoint-url">/payments</span>
+                        </div>
+                        <div class="endpoint-desc">
+                            <p>Process a payment for an order.</p>
+                        </div>
+                        
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>orderId</td>
+                                    <td>integer</td>
+                                    <td>Yes</td>
+                                    <td>ID of the order to be paid</td>
+                                </tr>
+                                <tr>
+                                    <td>paymentMethod</td>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Payment method (credit_card, paypal, etc.)</td>
+                                </tr>
+                                <tr>
+                                    <td>paymentDetails</td>
+                                    <td>object</td>
+                                    <td>Yes</td>
+                                    <td>Payment method-specific details</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="response-block">
+                            <strong>Response:</strong> Returns payment confirmation with transaction ID and status.
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="webhooks" class="section">
+                    <h2>Webhooks</h2>
+                    <p>Set up and manage webhooks for real-time notifications.</p>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method post">POST</span>
+                            <span class="endpoint-url">/webhooks</span>
+                        </div>
+                        <div class="endpoint-desc">
+                            <p>Register a new webhook endpoint.</p>
+                        </div>
+                        
+                        <div class="response-block">
+                            <strong>Response:</strong> Returns webhook configuration with ID and status.
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="errors" class="section">
+                    <h2>Error Handling</h2>
+                    <p>Understand API error responses and status codes.</p>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-desc">
+                            <p>The API uses conventional HTTP response codes to indicate success or failure.</p>
+                        </div>
+                        
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>200</td>
+                                    <td>Success</td>
+                                </tr>
+                                <tr>
+                                    <td>400</td>
+                                    <td>Bad Request - Invalid parameters</td>
+                                </tr>
+                                <tr>
+                                    <td>401</td>
+                                    <td>Unauthorized - Invalid API key</td>
+                                </tr>
+                                <tr>
+                                    <td>404</td>
+                                    <td>Not Found - Resource doesn't exist</td>
+                                </tr>
+                                <tr>
+                                    <td>429</td>
+                                    <td>Too Many Requests - Rate limit exceeded</td>
+                                </tr>
+                                <tr>
+                                    <td>500</td>
+                                    <td>Internal Server Error</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <section id="rate-limiting" class="section">
+                    <h2>Rate Limiting</h2>
+                    <p>Understand API usage limits and quotas.</p>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-desc">
+                            <p>The API is rate limited to 1000 requests per hour per API key. Additional limits may apply to specific endpoints.</p>
+                        </div>
+                        
+                        <div class="response-block">
+                            <strong>Headers:</strong> Rate limit information is included in response headers (X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset).
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopKart</h3>
+                    <p>Your one-stop destination for all shopping needs. Quality products, great prices, and excellent service.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="API doc.Html">API Documentation</a></li>
+                        <li><a href="#">Developer Portal</a></li>
+                        <li><a href="support.Html">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> api-support@shopkart.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Commerce St, City, State 12345</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ShopKart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+       
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabContainer = tab.closest('.tab-container');
+                const tabId = tab.getAttribute('data-tab');
+                
+                
+                tabContainer.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tabContainer.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                
+                tab.classList.add('active');
+                tabContainer.querySelector(`#${tabId}`).classList.add('active');
+            });
+        });
+        
+       
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 90,
+                        behavior: 'smooth'
+                    });
+                    
+                    
+                    document.querySelectorAll('.sidebar a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    document.querySelector(`.sidebar a[href="${targetId}"]`).classList.add('active');
+                }
+            });
+        });
+        
+       
+        const searchInput = document.querySelector('.search-box input');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            document.querySelectorAll('.section').forEach(section => {
+                const sectionText = section.textContent.toLowerCase();
+                if (sectionText.includes(searchTerm)) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+        
+        
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.sidebar a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
