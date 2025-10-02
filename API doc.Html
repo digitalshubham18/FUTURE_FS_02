@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopKart API Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a00e0;
+            --secondary: #8e2de2;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --gray: #718096;
+            --border: #e2e8f0;
+            --code-bg: #1a202c;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --error: #f56565;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid var(--border);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 20px 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-section {
+            margin-bottom: 25px;
+        }
+        
+        .nav-title {
+            padding: 10px 20px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-title i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .nav-links {
+            list-style: none;
+        }
+        
+        .nav-links li a {
+            display: block;
+            padding: 8px 20px 8px 40px;
+            text-decoration: none;
+            color: var(--gray);
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-links li a:hover, .nav-links li a.active {
+            color: var(--primary);
+            background-color: rgba(74, 0, 224, 0.05);
+            border-left-color: var(--primary);
+        }
+        
+        
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 40px;
+        }
+        
+        .page-header {
+            margin-bottom: 30px;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .page-description {
+            color: var(--gray);
+            font-size: 18px;
+            max-width: 800px;
+        }
+        
+        .api-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .api-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .api-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .api-method {
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .get { background: var(--success); }
+        .post { background: var(--warning); }
+        .put { background: #4299e1; }
+        .delete { background: var(--error); }
+        
+        .api-content {
+            padding: 20px;
+            display: none;
+        }
+        
+        .api-content.active {
+            display: block;
+        }
+        
+        .api-description {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        .endpoint {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-family: monospace;
+            font-size: 16px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .parameters, .responses {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        th {
+            background-color: rgba(0, 0, 0, 0.02);
+            font-weight: 600;
+        }
+        
+        .code-block {
+            background: var(--code-bg);
+            color: #cbd5e0;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .code-key { color: #63b3ed; }
+        .code-string { color: #68d391; }
+        .code-number { color: #fbb6ce; }
+        .code-boolean { color: #f6ad55; }
+        
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+        
+        
+        @media (max-width: 968px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px;
+            }
+            
+            .api-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .api-method {
+                margin-top: 10px;
+            }
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .badge-new {
+            background: var(--success);
+            color: white;
+        }
+        
+        .badge-updated {
+            background: var(--warning);
+            color: white;
+        }
+        
+        .try-it {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .try-it i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       
+        <div class="sidebar">
+            <div class="logo">
+                <h1>Shop<span>Kart</span> API</h1>
+                <p>Version 2.1</p>
+            </div>
+            
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search API documentation...">
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title"><i class="fas fa-home"></i> Introduction</div>
+                <ul class="nav-links">
+                    <li><a href="#overview" class="active">Overview</a></li>
+                    <li><a href="#authentication">Authentication</a></li>
+                    <li><a href="#rate-limiting">Rate Limiting</a></li>
+                    <li><a href="#errors">Errors</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title"><i class="fas fa-shopping-cart"></i> Products</div>
+                <ul class="nav-links">
+                    <li><a href="#list-products">List Products</a></li>
+                    <li><a href="#get-product">Get Product</a></li>
+                    <li><a href="#create-product">Create Product</a></li>
+                    <li><a href="#update-product">Update Product</a></li>
+                    <li><a href="#delete-product">Delete Product</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title"><i class="fas fa-users"></i> Users</div>
+                <ul class="nav-links">
+                    <li><a href="#list-users">List Users</a></li>
+                    <li><a href="#get-user">Get User</a></li>
+                    <li><a href="#create-user">Create User</a></li>
+                    <li><a href="#update-user">Update User</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title"><i class="fas fa-shopping-bag"></i> Orders</div>
+                <ul class="nav-links">
+                    <li><a href="#list-orders">List Orders</a></li>
+                    <li><a href="#get-order">Get Order</a></li>
+                    <li><a href="#create-order">Create Order</a></li>
+                    <li><a href="#update-order">Update Order</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title"><i class="fas fa-code"></i> Examples</div>
+                <ul class="nav-links">
+                    <li><a href="#curl-examples">cURL Examples</a></li>
+                    <li><a href="#javascript-examples">JavaScript Examples</a></li>
+                    <li><a href="#python-examples">Python Examples</a></li>
+                </ul>
+            </div>
+        </div>
+             <div class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">ShopKart API Documentation</h1>
+                <p class="page-description">Welcome to the ShopKart API documentation. This API allows you to interact with ShopKart programmatically to manage products, users, orders, and more.</p>
+            </div>
+            
+            
+            <div class="api-section" id="overview">
+                <div class="api-header">
+                    <h2 class="api-title">API Overview</h2>
+                </div>
+                <div class="api-content active">
+                    <p class="api-description">The ShopKart API is a RESTful API that uses JSON for requests and responses. All API access is over HTTPS, and the base URL for all requests is:</p>
+                    <div class="endpoint">https://api.shopkart.com/v2</div>
+                    
+                    <p>The API uses standard HTTP response codes to indicate success or failure of requests. Authentication is required for most endpoints, which can be done using API keys.</p>
+                    
+                    <h3 class="section-title">Base URL</h3>
+                    <p>All URLs referenced in the documentation have the following base:</p>
+                    <div class="code-block">
+                        https://api.shopkart.com/v2
+                    </div>
+                    
+                    <h3 class="section-title">Response Format</h3>
+                    <p>All API responses are returned in JSON format, including errors. Successful responses will have a structure similar to:</p>
+                    <div class="code-block">
+                        {<br>
+                        &nbsp;&nbsp;"<span class="code-key">status</span>": <span class="code-string">"success"</span>,<br>
+                        &nbsp;&nbsp;"<span class="code-key">data</span>": {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// Response data here</span><br>
+                        &nbsp;&nbsp;},<br>
+                        &nbsp;&nbsp;"<span class="code-key">message</span>": <span class="code-string">"Operation completed successfully"</span><br>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+          
+            <div class="api-section" id="authentication">
+                <div class="api-header">
+                    <h2 class="api-title">Authentication</h2>
+                    <span class="api-method get">GET</span>
+                </div>
+                <div class="api-content">
+                    <p class="api-description">Most ShopKart API endpoints require authentication using API keys. You can generate API keys from your ShopKart dashboard.</p>
+                    
+                    <h3 class="section-title">Using API Keys</h3>
+                    <p>Include your API key in the request header as follows:</p>
+                    <div class="code-block">
+                        <span class="code-key">Authorization</span>: Bearer YOUR_API_KEY
+                    </div>
+                    
+                    <h3 class="section-title">Example Request</h3>
+                    <div class="tabs">
+                        <div class="tab active" data-tab="curl-auth">cURL</div>
+                        <div class="tab" data-tab="js-auth">JavaScript</div>
+                        <div class="tab" data-tab="python-auth">Python</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="curl-auth">
+                        <div class="code-block">
+                            curl -X GET \<br>
+                            &nbsp;&nbsp;-H "<span class="code-key">Authorization</span>: Bearer sk_test_123456789" \<br>
+                            &nbsp;&nbsp;"<span class="code-string">https://api.shopkart.com/v2/products</span>"
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="js-auth">
+                        <div class="code-block">
+                            <span class="code-key">const</span> response = <span class="code-key">await</span> fetch(<span class="code-string">'https://api.shopkart.com/v2/products'</span>, {<br>
+                            &nbsp;&nbsp;headers: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">'Authorization'</span>: <span class="code-string">'Bearer sk_test_123456789'</span><br>
+                            &nbsp;&nbsp;}<br>
+                            });
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="python-auth">
+                        <div class="code-block">
+                            <span class="code-key">import</span> requests<br><br>
+                            
+                            headers = {<br>
+                            &nbsp;&nbsp;<span class="code-string">'Authorization'</span>: <span class="code-string">'Bearer sk_test_123456789'</span><br>
+                            }<br><br>
+                            
+                            response = requests.get(<span class="code-string">'https://api.shopkart.com/v2/products'</span>, <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;headers=headers)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="api-section" id="list-products">
+                <div class="api-header">
+                    <h2 class="api-title">List Products <span class="badge badge-new">NEW</span></h2>
+                    <span class="api-method get">GET</span>
+                </div>
+                <div class="api-content">
+                    <p class="api-description">Retrieve a list of products from your ShopKart store. The products are returned sorted by creation date, with the most recent products appearing first.</p>
+                    
+                    <h3 class="section-title">Endpoint</h3>
+                    <div class="endpoint">GET /products</div>
+                    
+                    <h3 class="section-title">Parameters</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>limit</td>
+                                <td>integer</td>
+                                <td>Number of products to return (default: 20, max: 100)</td>
+                            </tr>
+                            <tr>
+                                <td>offset</td>
+                                <td>integer</td>
+                                <td>Number of products to skip (for pagination)</td>
+                            </tr>
+                            <tr>
+                                <td>category</td>
+                                <td>string</td>
+                                <td>Filter products by category ID</td>
+                            </tr>
+                            <tr>
+                                <td>in_stock</td>
+                                <td>boolean</td>
+                                <td>Filter products by availability</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3 class="section-title">Example Request</h3>
+                    <div class="code-block">
+                        curl -X GET \<br>
+                        &nbsp;&nbsp;-H "<span class="code-key">Authorization</span>: Bearer sk_test_123456789" \<br>
+                        &nbsp;&nbsp;"<span class="code-string">https://api.shopkart.com/v2/products?limit=10&in_stock=true</span>"
+                    </div>
+                    
+                    <h3 class="section-title">Example Response</h3>
+                    <div class="code-block">
+                        {<br>
+                        &nbsp;&nbsp;"<span class="code-key">status</span>": <span class="code-string">"success"</span>,<br>
+                        &nbsp;&nbsp;"<span class="code-key">data</span>": {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">products</span>": [<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">id</span>": <span class="code-string">"prod_123"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">name</span>": <span class="code-string">"Premium Headphones"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">price</span>": <span class="code-number">199.99</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">in_stock</span>: <span class="code-boolean">true</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// ... more products</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;],<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">total</span>": <span class="code-number">150</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">has_more</span>": <span class="code-boolean">true</span><br>
+                        &nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                    
+                    <button class="try-it"><i class="fas fa-play"></i> Try it</button>
+                </div>
+            </div>
+            
+          
+            <div class="api-section" id="create-product">
+                <div class="api-header">
+                    <h2 class="api-title">Create Product <span class="badge badge-updated">UPDATED</span></h2>
+                    <span class="api-method post">POST</span>
+                </div>
+                <div class="api-content">
+                    <p class="api-description">Create a new product in your ShopKart store. All required fields must be provided in the request body.</p>
+                    
+                    <h3 class="section-title">Endpoint</h3>
+                    <div class="endpoint">POST /products</div>
+                    
+                    <h3 class="section-title">Request Body</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>name</td>
+                                <td>string</td>
+                                <td><strong>Required.</strong> The product's name</td>
+                            </tr>
+                            <tr>
+                                <td>price</td>
+                                <td>number</td>
+                                <td><strong>Required.</strong> The product's price</td>
+                            </tr>
+                            <tr>
+                                <td>description</td>
+                                <td>string</td>
+                                <td>The product's description</td>
+                            </tr>
+                            <tr>
+                                <td>category_id</td>
+                                <td>string</td>
+                                <td>ID of the product's category</td>
+                            </tr>
+                            <tr>
+                                <td>in_stock</td>
+                                <td>boolean</td>
+                                <td>Whether the product is in stock (default: true)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3 class="section-title">Example Request</h3>
+                    <div class="code-block">
+                        curl -X POST \<br>
+                        &nbsp;&nbsp;-H "<span class="code-key">Authorization</span>: Bearer sk_test_123456789" \<br>
+                        &nbsp;&nbsp;-H "<span class="code-key">Content-Type</span>: application/json" \<br>
+                        &nbsp;&nbsp;-d '<span class="code-string">{<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"name": "New Product",<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"price": 49.99,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"description": "A great new product",<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"category_id": "cat_123",<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"in_stock": true<br>
+                        &nbsp;&nbsp;}</span>' \<br>
+                        &nbsp;&nbsp;"<span class="code-string">https://api.shopkart.com/v2/products</span>"
+                    </div>
+                    
+                    <h3 class="section-title">Example Response</h3>
+                    <div class="code-block">
+                        {<br>
+                        &nbsp;&nbsp;"<span class="code-key">status</span>": <span class="code-string">"success"</span>,<br>
+                        &nbsp;&nbsp;"<span class="code-key">data</span>": {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">product</span>": {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">id</span>": <span class="code-string">"prod_456"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">name</span>": <span class="code-string">"New Product"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">price</span>": <span class="code-number">49.99</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">description</span>": <span class="code-string">"A great new product"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">category_id</span>": <span class="code-string">"cat_123"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">in_stock</span>": <span class="code-boolean">true</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="code-key">created_at</span>": <span class="code-string">"2023-07-15T10:30:00Z"</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        &nbsp;&nbsp;},<br>
+                        &nbsp;&nbsp;"<span class="code-key">message</span>": <span class="code-string">"Product created successfully"</span><br>
+                        }
+                    </div>
+                    
+                    <button class="try-it"><i class="fas fa-play"></i> Try it</button>
+                </div>
+            </div>
+            
+            
+            
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const apiHeaders = document.querySelectorAll('.api-header');
+            
+            apiHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const isActive = content.classList.contains('active');
+                    
+                    document.querySelectorAll('.api-content').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                   
+                    if (!isActive) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+            
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    
+                    document.querySelectorAll('.tab').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    
+                    document.querySelectorAll('.tab-content').forEach(c => {
+                        c.classList.remove('active');
+                    });
+                    
+                   
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    
+                    this.classList.add('active');
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        document.querySelectorAll('.api-content').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        
+                        
+                        const targetContent = targetSection.querySelector('.api-content');
+                        if (targetContent) {
+                            targetContent.classList.add('active');
+                        }
+                        
+                        
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            
+            const tryItButtons = document.querySelectorAll('.try-it');
+            
+            tryItButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('This is a demo. In a real implementation, this would open an API testing interface.');
+                });
+            });
+            
+            
+            const searchInput = document.querySelector('.search-box input');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                if (searchTerm.length > 2) {
+                    
+                    const sections = document.querySelectorAll('.api-section');
+                    let found = false;
+                    
+                    sections.forEach(section => {
+                        const text = section.textContent.toLowerCase();
+                        if (text.includes(searchTerm)) {
+                            section.style.display = 'block';
+                            found = true;
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
+                    
+                    if (!found) {
+                        document.querySelector('.page-header').innerHTML = 
+                            '<h1 class="page-title">No results found</h1>' +
+                            '<p class="page-description">Try different search terms</p>';
+                    }
+                } else {
+                   
+                    document.querySelectorAll('.api-section').forEach(section => {
+                        section.style.display = 'block';
+                    });
+                    
+                    if (document.querySelector('.page-header').innerHTML.includes('No results found')) {
+                        document.querySelector('.page-header').innerHTML = 
+                            '<h1 class="page-title">ShopKart API Documentation</h1>' +
+                            '<p class="page-description">Welcome to the ShopKart API documentation. This API allows you to interact with ShopKart programmatically.</p>';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
