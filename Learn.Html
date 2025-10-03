@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn More - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #e9437a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #d32f6c;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #e9437a;
+            color: #e9437a;
+        }
+        
+        .btn-outline:hover {
+            background: #e9437a;
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #e9437a;
+            margin: 10px auto;
+        }
+        
+        
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #e9437a;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #333;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #e9437a;
+        }
+        
+        .header-icons a {
+            margin-left: 20px;
+            color: #333;
+            transition: color 0.3s;
+        }
+        
+        .header-icons a:hover {
+            color: #e9437a;
+        }
+        
+        .learn-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+        
+        .learn-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .learn-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .learn-hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        
+        .about {
+            padding: 80px 0;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        
+        .values {
+            padding: 80px 0;
+            background: #fff;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .value-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            font-size: 40px;
+            color: #e9437a;
+            margin-bottom: 20px;
+        }
+        
+        .value-card h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+       
+        .features {
+            padding: 80px 0;
+        }
+        
+        .feature-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .feature-tab {
+            padding: 15px 25px;
+            background: #f1f1f1;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .feature-tab.active {
+            background: #e9437a;
+            color: white;
+        }
+        
+        .feature-content {
+            display: none;
+        }
+        
+        .feature-content.active {
+            display: block;
+        }
+        
+        .feature-content-inner {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .feature-text {
+            flex: 1;
+        }
+        
+        .feature-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+       
+        .testimonials {
+            padding: 80px 0;
+            background: #fff;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .testimonial-text:before {
+            
+            font-size: 60px;
+            color: #e9437a;
+            position: absolute;
+            left: 0;
+            top: -20px;
+            opacity: 0.2;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            background: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-answer {
+            background: #f8f9fa;
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.open {
+            max-height: 200px;
+            padding: 20px;
+        }
+        
+        
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: #e9437a;
+            margin-top: 10px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e9437a;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #e9437a;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+        }
+        
+        
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .feature-content-inner {
+                flex-direction: column;
+            }
+            
+            .about-image, .feature-image {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .header-icons {
+                margin-top: 20px;
+            }
+            
+            .learn-hero h1 {
+                font-size: 36px;
+            }
+            
+            .learn-hero p {
+                font-size: 18px;
+            }
+            
+            .feature-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+  
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Cart<span>ify</span></a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="shop.Html">Shop</a></li>
+                        <li><a href="About us.Html">About</a></li>
+                        <li><a href="Blog.Html">Blog</a></li>
+                        <li><a href="Contact Us.Html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+  
+    <section class="learn-hero">
+        <div class="container">
+            <div class="learn-hero-content">
+                <h1>Learn More About Cartify</h1>
+                <p>Discover our story, values, and commitment to bringing you the best shopping experience</p>
+                <a href="#about" class="btn">Explore Our Story</a>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>From Small Beginning to Fashion Destination</h3>
+                    <p>Cartify was founded in 2015 with a simple mission: to make fashion accessible to everyone. What started as a small boutique has grown into a premier online destination for men's and women's fashion.</p>
+                    <p>Our journey began when our founder, Sarah Johnson, noticed a gap in the market for high-quality, affordable fashion that could be accessed from anywhere. She started with just a handful of products and a passion for style.</p>
+                    <p>Today, we offer thousands of products from hundreds of brands, serving customers across the country. Despite our growth, we've stayed true to our original values of quality, affordability, and exceptional customer service.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1560472355-536de3962603?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cartify Store">
+                </div>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cartify Team">
+                </div>
+                <div class="about-text">
+                    <h3>Our Mission & Vision</h3>
+                    <p>At Cartify, our mission is to empower individuals to express themselves through fashion. We believe that what you wear is an extension of who you are, and everyone deserves to feel confident and stylish.</p>
+                    <p>Our vision is to become the most customer-centric fashion brand in the world, where people can find everything they need to express their personal style.</p>
+                    <p>We're committed to sustainability and ethical practices. As we grow, we're working to reduce our environmental impact and ensure fair working conditions throughout our supply chain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="values">
+        <div class="container">
+            <h2 class="section-title">Our Values</h2>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Customer First</h3>
+                    <p>Our customers are at the heart of everything we do. We listen to your feedback and continuously improve our products and services.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>We're committed to reducing our environmental impact through sustainable practices and responsible sourcing.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Quality</h3>
+                    <p>We carefully curate our collection to ensure every product meets our high standards for quality and style.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Community</h3>
+                    <p>We believe in giving back to our community and supporting causes that matter to our customers and team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Cartify</h2>
+            
+            <div class="feature-tabs">
+                <button class="feature-tab active" data-tab="tab1">Free Shipping</button>
+                <button class="feature-tab" data-tab="tab2">Easy Returns</button>
+                <button class="feature-tab" data-tab="tab3">Secure Payment</button>
+                <button class="feature-tab" data-tab="tab4">24/7 Support</button>
+            </div>
+            
+            <div class="feature-content active" id="tab1">
+                <div class="feature-content-inner">
+                    <div class="feature-text">
+                        <h3>Free Shipping on All Orders</h3>
+                        <p>We offer free shipping on all orders over $50, with no hidden fees or charges. Our efficient logistics network ensures your order arrives quickly and in perfect condition.</p>
+                        <p>For orders under $50, we charge a flat rate of $4.99 for shipping. We also offer express shipping options for those who need their items sooner.</p>
+                        <p>All orders are processed within 24 hours and shipped from our distribution centers located across the country to minimize delivery times.</p>
+                    </div>
+                    <div class="feature-image">
+                        <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Free Shipping">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-content" id="tab2">
+                <div class="feature-content-inner">
+                    <div class="feature-text">
+                        <h3>Hassle-Free Returns</h3>
+                        <p>Not happy with your purchase? We offer a 30-day return policy for all items in their original condition. Returns are free and easy.</p>
+                        <p>Simply initiate a return through your account page, print the prepaid shipping label, and drop off the package at any shipping location.</p>
+                        <p>Once we receive your return, we'll process your refund within 3-5 business days. For exchanges, we'll ship your new item immediately.</p>
+                    </div>
+                    <div class="feature-image">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Easy Returns">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-content" id="tab3">
+                <div class="feature-content-inner">
+                    <div class="feature-text">
+                        <h3>Secure Payment Options</h3>
+                        <p>Your security is our priority. We use industry-standard encryption to protect your personal and payment information.</p>
+                        <p>We accept all major credit cards, PayPal, Apple Pay, and Google Pay. All transactions are processed securely through trusted payment gateways.</p>
+                        <p>Your payment information is never stored on our servers, ensuring complete security and peace of mind with every purchase.</p>
+                    </div>
+                    <div class="feature-image">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Secure Payment">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-content" id="tab4">
+                <div class="feature-content-inner">
+                    <div class="feature-text">
+                        <h3>24/7 Customer Support</h3>
+                        <p>Our customer support team is available around the clock to assist you with any questions or concerns.</p>
+                        <p>Reach us via live chat, email, or phone. Our average response time is under 5 minutes for live chat and within 2 hours for email inquiries.</p>
+                        <p>We also have an extensive FAQ section and helpful buying guides to assist you in making the right purchase decisions.</p>
+                    </div>
+                    <div class="feature-image">
+                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Customer Support">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "I've been shopping with Cartify for over two years now, and I'm always impressed with their quality and customer service. The clothes are always exactly as described and the shipping is incredibly fast."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Jessica Miller">
+                        <div class="author-info">
+                            <h4>Jessica Miller</h4>
+                            <p>Loyal Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "The return process was so easy when I needed to exchange a dress for a different size. The customer service team was helpful and the new item arrived within two days. Will definitely shop here again!"
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Sophia Williams">
+                        <div class="author-info">
+                            <h4>Sophia Williams</h4>
+                            <p>Fashion Blogger</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "As a busy professional, I appreciate how easy it is to find what I need on Cartify. The filtering options are great, and I always find stylish work-appropriate clothing that fits well and lasts."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Michael Chen">
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Business Executive</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How long does shipping take? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Standard shipping typically takes 3-5 business days within the continental US. Express shipping options are available at checkout for delivery within 1-2 business days. International shipping times vary by destination.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What is your return policy? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer a 30-day return policy for all items in their original condition with tags attached. Returns are free for US customers. Simply initiate a return through your account page and use the prepaid shipping label provided.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I know what size to order? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We provide detailed size charts for each product to help you find the perfect fit. You can also check customer reviews for insights on sizing. If you're between sizes, we recommend sizing up for a more comfortable fit.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do you offer international shipping? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we ship to over 50 countries worldwide. International shipping rates and delivery times vary by destination. Please note that customers are responsible for any customs duties or import taxes that may apply.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How can I track my order? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Once your order ships, you'll receive a confirmation email with a tracking number. You can also view your order status and tracking information by logging into your account and visiting the order history page.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Start Shopping?</h2>
+            <p>Join thousands of satisfied customers who have discovered their perfect style with Cartify</p>
+            <a href="shop.Html" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify</h3>
+                    <p>Your destination for fashion that inspires confidence and expresses your unique style.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="shop.Html">Shop</a></li>
+                        <li><a href="About us.Html">About Us</a></li>
+                        <li><a href="Blog.Html">Blog</a></li>
+                        <li><a href="Contact Us.Html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="Fashion.Html">FAQs</a></li>
+                        <li><a href="Shipping.Html">Shipping & Returns</a></li>
+                        <li><a href="Size.Html">Size Guide</a></li>
+                        <li><a href="Track.Html">Track Order</a></li>
+                        <li><a href="Contact Us.Html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                    <p>Subscribe to our newsletter for updates</p>
+                    <form>
+                        <input type="email" placeholder="Your email" style="padding: 10px; border-radius: 20px; border: none; margin-top: 10px; width: 100%;">
+                        <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2015 Cartify. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        const featureTabs = document.querySelectorAll('.feature-tab');
+        const featureContents = document.querySelectorAll('.feature-content');
+        
+        featureTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                
+                featureTabs.forEach(t => t.classList.remove('active'));
+                featureContents.forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+       
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isOpen = answer.classList.contains('open');
+                
+                
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('open');
+                });
+                
+                
+                if (!isOpen) {
+                    answer.classList.add('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
