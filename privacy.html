@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 40px 0;
+            color: #4a00e0;
+            font-size: 36px;
+        }
+        
+        .last-updated {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        
+        .privacy-content {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .table-of-contents {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .table-of-contents h2 {
+            color: #4a00e0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .toc-list {
+            list-style: none;
+        }
+        
+        .toc-list li {
+            margin-bottom: 12px;
+        }
+        
+        .toc-list a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        .toc-list a:hover {
+            background-color: #f8f4ff;
+            color: #4a00e0;
+        }
+        
+        .toc-list a i {
+            margin-right: 10px;
+            color: #8e2de2;
+        }
+        
+        .policy-details {
+            flex: 3;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .policy-section {
+            margin-bottom: 40px;
+        }
+        
+        .policy-section h2 {
+            color: #4a00e0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .policy-section h2 i {
+            margin-right: 10px;
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            /* -webkit-background-clip: text; */
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .policy-section p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .policy-section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .policy-section li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .highlight-box {
+            background-color: #f8f4ff;
+            border-left: 4px solid #8e2de2;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .data-table th, .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .data-table th {
+            background-color: #f8f4ff;
+            color: #4a00e0;
+        }
+        
+        .data-table tr:hover {
+            background-color: #fafafa;
+        }
+        
+        .contact-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+        
+        .contact-section h2 {
+            color: #4a00e0;
+            margin-bottom: 20px;
+        }
+        
+        .contact-section p {
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            padding: 12px 25px;
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-btn i {
+            margin-right: 10px;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(142, 45, 226, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .privacy-content {
+                flex-direction: column;
+            }
+            
+            .table-of-contents {
+                position: relative;
+                margin-bottom: 20px;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-shopping-bag"></i>
+                Cartify
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Home.Html">Home</a></li>
+                    <li><a href="Product.Html">Products</a></li>
+                    <li><a href="FAQ.Html">FAQ</a></li>
+                    <li><a href="Privacy policy.Html">Privacy Policy</a></li>
+                    <li><a href="Contact Us.Html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Privacy Policy</h1>
+        <p class="last-updated">Last Updated: October 01, 2025</p>
+        
+        <div class="privacy-content">
+            <div class="table-of-contents">
+                <h2>Contents</h2>
+                <ul class="toc-list">
+                    <li><a href="#section1"><i class="fas fa-chevron-right"></i> Introduction</a></li>
+                    <li><a href="#section2"><i class="fas fa-chevron-right"></i> Information We Collect</a></li>
+                    <li><a href="#section3"><i class="fas fa-chevron-right"></i> How We Use Your Information</a></li>
+                    <li><a href="#section4"><i class="fas fa-chevron-right"></i> Data Sharing & Disclosure</a></li>
+                    <li><a href="#section5"><i class="fas fa-chevron-right"></i> Cookies & Tracking</a></li>
+                    <li><a href="#section6"><i class="fas fa-chevron-right"></i> Data Security</a></li>
+                    <li><a href="#section7"><i class="fas fa-chevron-right"></i> Your Rights</a></li>
+                    <li><a href="#section8"><i class="fas fa-chevron-right"></i> Children's Privacy</a></li>
+                    <li><a href="#section9"><i class="fas fa-chevron-right"></i> Policy Changes</a></li>
+                </ul>
+            </div>
+            
+            <div class="policy-details">
+                <div id="section1" class="policy-section">
+                    <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                    <p>Welcome to Cartify's Privacy Policy. This policy describes how we collect, use, and share your personal information when you visit our website, make a purchase, or interact with us.</p>
+                    <p>By using our services, you agree to the collection and use of information in accordance with this policy. We are committed to protecting your privacy and ensuring you have a positive experience on our website.</p>
+                </div>
+                
+                <div id="section2" class="policy-section">
+                    <h2><i class="fas fa-database"></i> Information We Collect</h2>
+                    <p>We collect several types of information from and about users of our website, including:</p>
+                    
+                    <h3>Personal Information</h3>
+                    <ul>
+                        <li>Contact details (name, email address, phone number)</li>
+                        <li>Shipping and billing address</li>
+                        <li>Payment information (credit card details are processed securely by our payment partners)</li>
+                        <li>Account credentials</li>
+                    </ul>
+                    
+                    <h3>Technical Information</h3>
+                    <ul>
+                        <li>IP address and device information</li>
+                        <li>Browser type and version</li>
+                        <li>Pages visited and time spent on site</li>
+                        <li>Cookies and usage data</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Note:</strong> We only collect personal information that you voluntarily provide to us or that is necessary to fulfill our services to you.</p>
+                    </div>
+                </div>
+                
+                <div id="section3" class="policy-section">
+                    <h2><i class="fas fa-cogs"></i> How We Use Your Information</h2>
+                    <p>We use the information we collect for various purposes, including:</p>
+                    
+                    <table class="data-table">
+                        <tr>
+                            <th>Purpose</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>Order Processing</td>
+                            <td>To process and fulfill your orders, send order confirmations, and provide customer support</td>
+                        </tr>
+                        <tr>
+                            <td>Account Management</td>
+                            <td>To create and manage your account, provide personalized recommendations, and wishlist features</td>
+                        </tr>
+                        <tr>
+                            <td>Communication</td>
+                            <td>To send transactional messages, respond to inquiries, and send promotional emails (with consent)</td>
+                        </tr>
+                        <tr>
+                            <td>Improvement</td>
+                            <td>To analyze website usage and improve our products, services, and user experience</td>
+                        </tr>
+                        <tr>
+                            <td>Security</td>
+                            <td>To detect and prevent fraud, abuse, and security incidents</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div id="section4" class="policy-section">
+                    <h2><i class="fas fa-share-alt"></i> Data Sharing & Disclosure</h2>
+                    <p>We may share your personal information with:</p>
+                    <ul>
+                        <li><strong>Service Providers:</strong> Payment processors, shipping companies, and marketing platforms</li>
+                        <li><strong>Legal Requirements:</strong> When required by law, subpoena, or other legal process</li>
+                        <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets</li>
+                    </ul>
+                    <p>We never sell your personal information to third parties for their marketing purposes.</p>
+                </div>
+                
+                <div id="section5" class="policy-section">
+                    <h2><i class="fas fa-cookie-bite"></i> Cookies & Tracking</h2>
+                    <p>We use cookies and similar tracking technologies to track activity on our website and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier.</p>
+                    
+                    <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our website.</p>
+                    
+                    <div class="highlight-box">
+                        <p>We use both session cookies (which expire once you close your browser) and persistent cookies (which stay on your device until you delete them).</p>
+                    </div>
+                </div>
+                
+                <div id="section6" class="policy-section">
+                    <h2><i class="fas fa-shield-alt"></i> Data Security</h2>
+                    <p>The security of your data is important to us. We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                    
+                    <p>All payment transactions are encrypted using SSL technology and processed through PCI-compliant payment gateways. While we strive to use commercially acceptable means to protect your personal information, no method of transmission over the Internet or electronic storage is 100% secure.</p>
+                </div>
+                
+                <div id="section7" class="policy-section">
+                    <h2><i class="fas fa-user-check"></i> Your Rights</h2>
+                    <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+                    <ul>
+                        <li>Access and receive a copy of your personal data</li>
+                        <li>Rectify inaccurate or incomplete personal data</li>
+                        <li>Request erasure of your personal data</li>
+                        <li>Restrict or object to processing of your personal data</li>
+                        <li>Data portability</li>
+                        <li>Withdraw consent at any time</li>
+                    </ul>
+                    
+                    <p>To exercise any of these rights, please contact us using the information provided in the contact section.</p>
+                </div>
+                
+                <div id="section8" class="policy-section">
+                    <h2><i class="fas fa-child"></i> Children's Privacy</h2>
+                    <p>Our website is not intended for children under the age of 16. We do not knowingly collect personal information from children under 16.</p>
+                    
+                    <p>If you are a parent or guardian and believe that your child has provided us with personal information, please contact us. If we become aware that we have collected personal information from children without verification of parental consent, we take steps to remove that information from our servers.</p>
+                </div>
+                
+                <div id="section9" class="policy-section">
+                    <h2><i class="fas fa-exchange-alt"></i> Policy Changes</h2>
+                    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+                    
+                    <p>We will also provide prominent notice on our website or send you a direct notification for significant changes. You are advised to review this Privacy Policy periodically for any changes.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-section">
+            <h2>Questions About Our Privacy Policy?</h2>
+            <p>If you have any questions about this Privacy Policy or how we handle your personal information, please contact our privacy team.</p>
+            <div class="contact-buttons">
+                <button class="contact-btn">
+                    <i class="fas fa-envelope"></i> privacy@Cartify.com
+                </button>
+                <button class="contact-btn">
+                    <i class="fas fa-phone"></i> (800) 555-PRIVACY
+                </button>
+                <button class="contact-btn">
+                    <i class="fas fa-mail-bulk"></i> Data Request Form
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2015 Cartify. All rights reserved.</p>
+        <p>Privacy Policy | Terms of Service | Refund Policy</p>
+    </footer>
+
+    <script>
+       
+        document.querySelectorAll('.toc-list a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+                
+                
+                document.querySelectorAll('.toc-list a').forEach(link => {
+                    link.parentElement.classList.remove('active');
+                });
+                this.parentElement.classList.add('active');
+            });
+        });
+        
+        
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.policy-section');
+            const navLinks = document.querySelectorAll('.toc-list a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    currentSection = '#' + section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.parentElement.classList.remove('active');
+                if (link.getAttribute('href') === currentSection) {
+                    link.parentElement.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
