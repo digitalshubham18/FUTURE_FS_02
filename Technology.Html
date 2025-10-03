@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 15px 5%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-icons i {
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .header-icons i:hover {
+            color: #ffd700;
+        }
+
+        
+        .page-header {
+            background: linear-gradient(rgba(74, 0, 224, 0.9), rgba(142, 45, 226, 0.9)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #4a00e0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            font-size: 24px;
+        }
+
+        .section-content p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+       
+        .tech-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .tech-card {
+            background: #f9f9ff;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid #8e2de2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-icon {
+            background: #e9dfff;
+            color: #4a00e0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .tech-card h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .tech-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+       
+        .tech-stack {
+            margin: 25px 0;
+        }
+
+        .stack-category {
+            margin-bottom: 30px;
+        }
+
+        .stack-category h3 {
+            font-size: 22px;
+            color: #4a00e0;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .stack-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .stack-item {
+            background: white;
+            border: 1px solid #e9dfff;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .stack-item:hover {
+            background: #f3eefe;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stack-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #4a00e0;
+        }
+
+        .stack-info h4 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .stack-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+       
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: #8e2de2;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #8e2de2;
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px #8e2de2;
+        }
+
+        .timeline-date {
+            font-weight: 500;
+            color: #8e2de2;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content {
+            background: #f9f9ff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .timeline-content h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #666;
+        }
+
+       
+        .stats-section {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 60px 5%;
+            margin: 40px 0;
+            border-radius: 10px;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .stat-label {
+            font-size: 18px;
+        }
+
+       
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .security-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .security-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .security-icon {
+            color: #28a745;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .security-card h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .security-card p {
+            color: #666;
+        }
+
+        
+        .cta-section {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            text-align: center;
+            padding: 60px 30px;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: white;
+            color: #8e2de2;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button:hover {
+            background: #ffd700;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button.outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button.outline:hover {
+            background: white;
+            color: #8e2de2;
+        }
+
+        
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 5% 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 32px;
+            }
+            
+            .tech-features, .security-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 60px 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-number {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cartify</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="Home.Html">Home</a></li>
+                    <li><a href="categories.Html">Categories</a></li>
+                    <li><a href="Deals&Offer.Html">Deals</a></li>
+                    <li><a href="Technology.Html">Technology</a></li>
+                    <li><a href="About us.Html">About</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </header>
+
+  
+    <div class="page-header">
+        <h1>Cartify Technology</h1>
+        <p>Discover the innovative technology powering Africa's fastest-growing e-commerce platform</p>
+    </div>
+
+    
+    <div class="container">
+     
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-laptop-code"></i>
+                Our Technology Platform
+            </h2>
+            <div class="section-content">
+                <p>Cartify is built on a cutting-edge technology stack designed to deliver a seamless shopping experience across Africa. Our platform combines scalability, security, and innovation to serve millions of customers efficiently.</p>
+                
+                <div class="tech-features">
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>High Performance</h3>
+                        <p>Our platform handles over 10,000 requests per second with sub-100ms response times, ensuring a smooth shopping experience even during peak traffic.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </div>
+                        <h3>Scalable Architecture</h3>
+                        <p>Built with microservices and cloud-native technologies, our system scales effortlessly to meet growing demand across the African continent.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile-First Design</h3>
+                        <p>Optimized for mobile devices with responsive design and lightweight pages to accommodate varying network conditions across Africa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-layer-group"></i>
+                Our Technology Stack
+            </h2>
+            <div class="tech-stack">
+                <div class="stack-category">
+                    <h3>Frontend Development</h3>
+                    <div class="stack-items">
+                        <div class="stack-item">
+                            <div class="stack-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="stack-info">
+                                <h4>React</h4>
+                                <p>Component-based UI library</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stack-item">
+                            <div class="stack-icon">
+                                <i class="fab fa-vuejs"></i>
+                            </div>
+                            <div class="stack-info">
+                                <h4>Vue.js</h4>
+                                <p>Progressive JavaScript framework</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stack-item">
+                            <div class="stack-icon">
+                                <i class="fab fa-sass"></i>
+                            </div>
+                            <div class="stack-info">
+                                <h4>Sass</h4>
+                                <p>CSS preprocessor</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stack-category">
+                    <h3>Backend Development</h3>
+                    <div class="stack-items">
+                        <div class="stack-item">
+                            <div class="stack-icon">
+                                <i class="fab fa-node-js"></i>
+                            </div>
+                            <div class="stack-info">
+                                <h4>Node.js</h4>
+                                <p>JavaScript runtime environment</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stack-item">
+                            <div class="stack-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="stack-info">
+                                <h4>MongoDB</h4>
+                                <p>NoSQL database</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stack-item">
+                            <div class="stack-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="stack-info">
+                                <h4>Redis</h4>
+                                <p>In-memory data store</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stack-category">
+                    <h3>Infrastructure & DevOps</h3>
+                    <div class="stack-items">
+                        <div class="stack-item">
+                            <div class="stack-icon">
+                                <i class="fab fa-aws"></i>
+                            </div>
+                            <div class="stack-info">
+                                <h4>AWS</h4>
+                                <p>Cloud infrastructure</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stack-item">
+                            <div class="stack-icon">
+                                <i class="fab fa-docker"></i>
+                            </div>
+                            <div class="stack-info">
+                                <h4>Docker</h4>
+                                <p>Containerization platform</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stack-item">
+                            <div class="stack-icon">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div class="stack-info">
+                                <h4>Kubernetes</h4>
+                                <p>Container orchestration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-road"></i>
+                Innovation Timeline
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2015</div>
+                    <div class="timeline-content">
+                        <h3>Platform Launch</h3>
+                        <p>Launched Cartify with basic e-commerce functionality serving India.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2017</div>
+                    <div class="timeline-content">
+                        <h3>Mobile App Release</h3>
+                        <p>Introduced native iOS and Android apps with enhanced mobile shopping features.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2020</div>
+                    <div class="timeline-content">
+                        <h3>AI Recommendations</h3>
+                        <p>Implemented machine learning algorithms for personalized product recommendations.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <h3>Multi-Currency Support</h3>
+                        <p>Added support for multiple African currencies and local payment methods.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2022 (Planned)</div>
+                    <div class="timeline-content">
+                        <h3>Voice Shopping</h3>
+                        <p>Developing voice-enabled shopping assistants for local languages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+       
+        <div class="stats-section">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">10M+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">200ms</div>
+                    <div class="stat-label">Average Response Time</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">African Countries Served</div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-shield-alt"></i>
+                Security & Privacy
+            </h2>
+            <div class="section-content">
+                <p>At Cartify, we prioritize the security and privacy of our customers' data. Our comprehensive security measures ensure that your information remains protected at all times.</p>
+                
+                <div class="security-features">
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>End-to-End Encryption</h3>
+                        <p>All sensitive data is encrypted in transit and at rest using industry-standard AES-256 encryption.</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <h3>Biometric Authentication</h3>
+                        <p>Mobile app supports fingerprint and facial recognition for secure login and payment authorization.</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                        <h3>Fraud Detection</h3>
+                        <p>Advanced AI-powered systems detect and prevent fraudulent activities in real-time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Join Our Tech Team</h2>
+            <p>We're always looking for talented engineers, designers, and product managers to help us build the future of e-commerce in Africa.</p>
+            <div class="cta-buttons">
+                <button class="cta-button">
+                    
+                    <i class="fas fa-briefcase"></i> View Open Positions
+                </button>
+                <button class="cta-button outline">
+                    <i class="fas fa-file-alt"></i> Developer Documentation
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Cartify</h3>
+                <ul>
+                    <li><a href="About us.Html">About Us</a></li>
+                    <li><a href="carrer.Html">Careers</a></li>
+                    <li><a href="press.Html">Press</a></li>
+                    <li><a href="Blog.Html">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="Contact Us.Html">Contact Us</a></li>
+                    <li><a href="FAQ.Html">Help & FAQ</a></li>
+                    <li><a href="Return&Exchange.Html">Returns & Exchanges</a></li>
+                    <li><a href="Shipping.Html">Shipping Information</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Technology</h3>
+                <ul>
+                    <li><a href="platform.Html">Platform</a></li>
+                    <li><a href="Security.Html">Security</a></li>
+                    <li><a href="API.Html">API</a></li>
+                    <li><a href="Developers.Html">Developer Resources</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2015 Cartify. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const statElements = document.querySelectorAll('.stat-number');
+            const statsSection = document.querySelector('.stats-section');
+            
+            function animateValue(element, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const value = Math.floor(progress * (end - start) + start);
+                    element.textContent = value + (element.textContent.includes('%') ? '%' : '');
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+            
+           
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        
+                        animateValue(statElements[0], 0, 10, 2000);
+                        animateValue(statElements[1], 0, 99.9, 2000);
+                        animateValue(statElements[2], 0, 200, 2000);
+                        animateValue(statElements[3], 0, 15, 2000);
+                        
+                      
+                        observer.unobserve(statsSection);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(statsSection);
+         
+            const ctaButtons = document.querySelectorAll('.cta-button');
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.textContent.includes('Open Positions')) {
+                        alert('Redirecting to careers page...');
+                    } else {
+                        alert('Redirecting to developer documentation...');
+                    }
+                });
+            });
+            
+           
+            const stackItems = document.querySelectorAll('.stack-item');
+            stackItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
