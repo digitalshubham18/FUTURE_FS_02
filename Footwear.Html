@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Footwear - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .logo span {
+            color: #e74c3c;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #e74c3c;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-icons i {
+            font-size: 20px;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .header-icons i:hover {
+            color: #e74c3c;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+        }
+
+        .categories {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #7f8c8d;
+            font-size: 18px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .category-img {
+            height: 200px;
+            background-color: #f1f2f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-img i {
+            font-size: 80px;
+            color: #2c3e50;
+        }
+
+        .category-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .category-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .products {
+            padding: 80px 0;
+            background-color: #f1f2f6;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-img {
+            height: 250px;
+            background-color: #dfe4ea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .product-img img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #7f8c8d;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .add-to-cart, .buy-now {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+
+        .add-to-cart {
+            background-color: #2c3e50;
+            color: #fff;
+        }
+
+        .add-to-cart:hover {
+            background-color: #1e272e;
+        }
+
+        .buy-now {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .buy-now:hover {
+            background-color: #c0392b;
+        }
+
+        .features {
+            padding: 80px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #e74c3c;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #34495e;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: #e74c3c;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+        }
+
+        .checkout-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .checkout-content {
+            background-color: #fff;
+            margin: 50px auto;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        }
+
+        .checkout-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .checkout-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+        }
+
+        .step.active .step-number {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ecf0f1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+
+        .step-content {
+            padding: 20px;
+        }
+
+        .step-panel {
+            display: none;
+        }
+
+        .step-panel.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .checkout-nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .checkout-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-prev {
+            background-color: #ecf0f1;
+        }
+
+        .btn-next {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .confirmation {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .confirmation i {
+            font-size: 60px;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            .header-icons {
+                margin-top: 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .product-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Cart<span>ify</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="New.Html">New Arrivals</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="categories.Html">Categories</a></li>
+                        <li><a href="Sale.Html">Sale</a></li>
+                    </ul>
+                </nav>
+                <div class="header-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Step Up Your Style Game</h1>
+                <p>Discover the latest trends in men's footwear for every occasion</p>
+                <a href="#products-section" class="btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Browse Categories</h2>
+                <p>Find the perfect footwear for your needs</p>
+            </div>
+            <div class="category-grid">
+                <div class="category-card" data-category="athletic">
+                    <div class="category-img">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Athletic Shoes</h3>
+                        <p>Performance and comfort</p>
+                    </div>
+                </div>
+                <div class="category-card" data-category="formal">
+                    <div class="category-img">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Formal Shoes</h3>
+                        <p>Elegance and style</p>
+                    </div>
+                </div>
+                <div class="category-card" data-category="boots">
+                    <div class="category-img">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Boots</h3>
+                        <p>Durable and rugged</p>
+                    </div>
+                </div>
+                <div class="category-card" data-category="casual">
+                    <div class="category-img">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Casual Shoes</h3>
+                        <p>Everyday comfort</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products-section" class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Products</h2>
+                <p>Our most popular picks this season</p>
+            </div>
+            <div class="product-grid" id="product-container">
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Us</h2>
+                <p>We provide the best shopping experience</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Free Shipping</h3>
+                    <p>Free shipping on all orders over $50</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3>Easy Returns</h3>
+                    <p>30-day money-back guarantee</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Payment</h3>
+                    <p>All transactions are secure and encrypted</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Dedicated customer support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify</h3>
+                    <p>Your one-stop destination for premium men's footwear. Quality, style, and comfort combined.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="New.Html">New Arrivals</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="Sale.Html">Sale</a></li>
+                        <li><a href="Contact Us.Html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="Shipping Policy.Html">Shipping Policy</a></li>
+                        <li><a href="Return&Exchange.Html">Returns & Exchanges</a></li>
+                        <li><a href="Size.Html">Size Guide</a></li>
+                        <li><a href="FAQ.Html">FAQs</a></li>
+                        <li><a href="Privacy policy.Html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Fashion Street, City</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@Cartify.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2015 Cartify. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-content">
+            <div class="checkout-header">
+                <h2>Complete Your Purchase</h2>
+                <button class="checkout-close" id="closeCheckout">&times;</button>
+            </div>
+            <div class="checkout-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div>Shipping</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div>Payment</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div>Confirmation</div>
+                </div>
+            </div>
+            <div class="step-content">
+                <div class="step-panel active" id="step1">
+                    <h3>Shipping Information</h3>
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea id="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zipCode">ZIP Code</label>
+                        <input type="text" id="zipCode" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country" required>
+                            <option value="">Select Country</option>
+                            <option value="us">United States</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="ca">Canada</option>
+                            <option value="au">Australia</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="step-panel" id="step2">
+                    <h3>Payment Details</h3>
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardName">Name on Card</label>
+                        <input type="text" id="cardName" required>
+                    </div>
+                    <div class="form-group" style="display: flex; gap: 10px;">
+                        <div style="flex: 1;">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY" required>
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-panel" id="step3">
+                    <div class="confirmation">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Order Confirmed!</h3>
+                        <p>Thank you for your purchase. Your order has been successfully placed.</p>
+                        <p>Order ID: <strong>SK2023#<span id="orderId"></span></strong></p>
+                        <p>You will receive a confirmation email shortly.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-nav">
+                <button class="checkout-btn btn-prev" id="prevBtn">Previous</button>
+                <button class="checkout-btn btn-next" id="nextBtn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = {
+            athletic: [
+                {id: 1, name: "UltraBoost Running Shoes", price: 99.99, oldPrice: 129.99, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", tag: "New", description: "High-performance running shoes with superior cushioning."},
+                {id: 2, name: "AirMax Pro Runners", price: 119.99, oldPrice: 149.99, image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITEhUTEhMVFRAVGBYaGRcXFRgWHRoZFxUYGxUbGBgZHyggGhsmHRUWITEiKisrLy4yFyIzODMtNygtLisBCgoKDg0OGhAQGi0mHyUrLSsvLS0wNS0wLS8tLS0tLS0tLS4tNy0tLy0tLS0tLTUtLSstKy0tLS0tKy0rLS0tK//AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAgMBAQEAAAAAAAAAAAAABgcDBAUIAgH/xABFEAABAwIDBQUEBwUFCQEAAAABAAIDBBEFEiEGMUFRYQcTInGBMlKRoRRykrHB0fAjQmKC4TNDk6KzRVNUY3OywtPxJf/EABkBAQEBAQEBAAAAAAAAAAAAAAABAgMEBf/EACgRAQACAgIBAQcFAAAAAAAAAAABAgMRITESIgQTMkFRYZEUUrHh8P/aAAwDAQACEQMRAD8AuhERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQERRftH2j+g0T3tNp5P2cXRzgbu/lF3eYA4oIP2i9pM0dQYKKQMZCSJJAGuzPHtNGYEBrd3Ug8Auv2UY3ilW581Y9v0JzCIszGMe52YWcMoHhsHb+llUuzGAOrqlsOvdCz5na6MB1F/ecdB6ngV6Ep2tY0NaAGtAAA0AAFgB0UnhXfWKrqWRMdJI4MjY0uc46ANaLkn0WHDJCWm/BxA8rD8b/AAXP23pDLh9ZG32nQS28wwkD4hVGjTdomFySMiZVNMkjg1oySC7nbhctAFzprzUpXj3Z83qqb/rw/wCo1ewyoPxcPbPaBtDSvnNjJ7MbT+9I6+UeQsXHo0ruKiu2TH+/q/o7DeKm0PIyu1eetgA3oQ5Ucd/aDiznNjiqXumkdlY0Mi1J826D5L0BgjJm08Lah7ZKgMaJHttYvt4iLAC1+gVQ9j2zV74hKPauyAEbmg2e/wAy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", tag: "Sale", description: "Lightweight running shoes with advanced air technology."},
+                {id: 3, name: "Gel-Cumulus Trainers", price: 89.99, image: "https://hips.hearstapps.com/hmg-prod/images/asics-gel-cumulus-24-0340-tested-1657127192.jpg"},
+                {id: 4, name: "FlyKnit Athletic Shoes", price: 109.99, image: "https://cdn.triathlete.com/wp-content/uploads/2016/03/Sp16_BSTY_LunarEpic_W_Lateral_161.jpg"},
+                {id: 5, name: "Cloudfoam Running Shoes", price: 79.99, oldPrice: 99.99, image: "https://rukminim2.flixcart.com/image/480/640/xif0q/shoe/c/v/m/-original-imahg3u5rzjww3hs.jpeg?q=90"},
+                {id: 6, name: "Trail Blazer Hikers", price: 129.99, image: "https://baccabucci.com/cdn/shop/files/4_dd01af54-87d5-492b-9ba8-ef33306c42ea.jpg?v=1705842624", description: "Durable hiking shoes for rough terrains."},
+                {id: 7, name: "Speed Flex Sprinters", price: 94.99, image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", description: "Flexible sprinting shoes for maximum performance."},
+                {id: 8, name: "React Infinity Run", price: 139.99, oldPrice: 159.99, image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", tag: "New", description: "Long-distance running shoes with react foam."},
+                {id: 9, name: "Cross Training Pro", price: 89.99, image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", description: "Versatile shoes for cross-training activities."},
+                {id: 10, name: "Energy Boost Walkers", price: 69.99, image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", description: "Comfortable walking shoes with energy return technology."},
+                {id: 11, name: "Air Zoom Pegasus", price: 119.99, image: "https://cdn.fleetfeet.com/a:2.4-f:cover-w:1440/assets/Nike-Pegasus-36-Masthead.png?s=ca820a5a", description: "Responsive running shoes with zoom air units."},
+                {id: 12, name: "Glycerin Cushion", price: 149.99, oldPrice: 169.99, image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", tag: "Sale", description: "Maximum cushioning for premium comfort."}
+            ],
+            formal: [
+                {id: 13, name: "Classic Oxford Shoes", price: 149.99, image: "https://m.media-amazon.com/images/I/81g23duSgWL._UY1000_.jpg", description: "Elegant formal shoes crafted from genuine leather."},
+                {id: 14, name: "Leather Derby Shoes", price: 129.99, oldPrice: 159.99, image: "https://www.theroyalepeacock.com/cdn/shop/products/HTB1iAMGnQyWBuNjy0Fpq6yssXXae.jpg?v=1748098860", tag: "Sale", description: "Sophisticated derby shoes with premium leather."},
+                {id: 15, name: "Cap Toe Dress Shoes", price: 169.99, image: "https://images-cdn.ubuy.co.in/675e0e31a0e6a12afe17bf86-men-39-s-dress-shoes-leather-cap-toe.jpg", description: "Traditional cap toe design for formal occasions."},
+                {id: 16, name: "Monk Strap Formal", price: 159.99, image: "https://pellealbero.com/cdn/shop/products/24_1_3d81377c-122d-440b-93c8-801cfd845572.jpg?v=1666184080", description: "Elegant monk strap shoes for a distinctive look."},
+                {id: 17, name: "Wingtip Brogues", price: 139.99, oldPrice: 169.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7GdnhWmaoYQGlgGEb4k5NkVkZs2__VZbxew&s", tag: "New", description: "Classic wingtip design with detailed broguing."},
+                {id: 18, name: "Suede Loafers", price: 119.99, image: "https://www.southside.in/cdn/shop/products/4.27.png?v=1674565458&width=1445"},
+                {id: 19, name: "Patent Leather Shoes", price: 189.99, image: "https://seeandwear.com/cdn/shop/products/DSC_1209.jpg?v=1699955495", description: "Shiny patent leather for special occasions."},
+                {id: 20, name: "Double Monk Straps", price: 179.99, oldPrice: 199.99, image: "https://alonzoshoes.in/cdn/shop/files/DSC_0774-PhotoRoom.jpg?v=1703850278", tag: "Sale", description: "Sophisticated double monk strap design."},
+                {id: 21, name: "Tassel Loafers", price: 134.99, image: "https://www.escaro.in/cdn/shop/files/1553324651-5_thump.jpg?v=1756396955&width=2048", description: "Elegant tassel loafers for business casual wear."},
+                {id: 22, name: "Wholecut Oxfords", price: 199.99, image: "https://9f8e62d4.delivery.rocketcdn.me/wp-content/uploads/2023/11/Whole-Cut-Oxfords-shoes-formal.jpg"},
+                {id: 23, name: "Buckle Monk Straps", price: 149.99, image: "https://sloshoes.com/cdn/shop/files/Dynasty_shoes.jpg?v=1739340029", description: "Modern monk straps with buckle details."},
+                {id: 24, name: "Formal Slip-Ons", price: 109.99, oldPrice: 129.99, image: "https://assets.ajio.com/medias/sys_master/root/20250226/dYnQ/67bef0972960820c49ade346/-473Wx593H-700341533-tan-MODEL.jpg", tag: "New", description: "Convenient slip-on formal shoes."}
+            ],
+            boots: [
+                {id: 25, name: "Timberland Work Boots", price: 189.99, image: "https://workweargurus.com/cdn/shop/products/Timberland-Iconic-Toe-Cap-Safety-Boots-Mens-Black-1_177c301e-7ba9-4979-a8cf-dcca8abc63f9.jpg?v=1702033579", description: "Durable work boots for tough conditions."},
+                {id: 26, name: "Chelsea Boots", price: 129.99, oldPrice: 149.99, image: "https://craftandglory.in/cdn/shop/files/0000s_0033_DSC06108.ARW.jpg?v=1750241475&width=1445", tag: "Sale", description: "Classic Chelsea boots for versatile styling."},
+                {id: 27, name: "Combat Boots", price: 139.99, image: "https://images-cdn.ubuy.co.in/68372ef8ec366606e90f5c93-ichigo-womens-combat-boots-lace-up-girls.jpg", description: "Rugged combat boots with military inspiration."},
+                {id: 28, name: "Hiking Boots", price: 159.99, image: "https://i.nextmedia.com.au/Utils/ImageResizer.ashx?n=https%3A%2F%2Fi.nextmedia.com.au%2FNews%2FiStock-1433064075.jpg&h=630&w=1120&c=1&s=1", description: "Waterproof hiking boots for outdoor adventures."},
+                {id: 29, name: "Desert Boots", price: 119.99, oldPrice: 139.99, image: "https://www.menswearr.com/cdn/shop/products/lambretta-camden-tan-mens-desert-boots-menswearr-com-991.jpg", tag: "New", description: "Comfortable desert boots with crepe soles."},
+                {id: 30, name: "Snow Boots", price: 169.99, image: "https://m.media-amazon.com/images/I/710pU-5+IIL._UY1000_.jpg", description: "Insulated snow boots for winter conditions."},
+                {id: 31, name: "Motorcycle Boots", price: 199.99, image: "https://www.madornomad.com/wp-content/uploads/2020/06/forma-adventure-boots-brown-2.jpg3_.jpg", description: "Protective boots for motorcycle enthusiasts."},
+                {id: 32, name: "Chukka Boots", price: 134.99, oldPrice: 154.99, image: "https://fellmonger.in/cdn/shop/products/FLAP0063_1.jpg?v=1742463897", tag: "Sale", description: "Versatile chukka boots for casual wear."},
+                {id: 33, name: "Western Boots", price: 179.99, image: "https://cdn11.bigcommerce.com/s-p3k2n80ho/images/stencil/1280x1280/products/48693/55542/tanner-mark-tanner-mark-womens-cognac-pull-up-wide-square-toe-western-leather-boot__98053.1749489106.jpg?c=2", description: "Authentic western boots with detailed stitching."},
+                {id: 34, name: "Rain Boots", price: 89.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8MONmPG2T1MAtElz3B6IHW5vSBg95a2ABdQ&s", description: "Waterproof rain boots for wet weather."},
+                {id: 35, name: "Engineer Boots", price: 219.99, image: "https://www.brogueshop.com/cdn/shop/products/L1013824.jpg?v=1684789354", description: "Classic engineer boots with buckle straps."},
+                {id: 36, name: "Fashion Boots", price: 149.99, oldPrice: 169.99, image: "https://images-cdn.ubuy.co.in/68a42e2d141f8595a20e0241-okbop-womens-snow-boots-christmas.jpg", tag: "New", description: "Stylish fashion boots for urban wear."}
+            ],
+            casual: [
+                {id: 37, name: "UrbanStyle Sneakers", price: 69.99, oldPrice: 89.99, image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", tag: "Sale", description: "Comfortable casual sneakers with modern design."},
+                {id: 38, name: "Canvas Slip-Ons", price: 49.99, image: "https://m.media-amazon.com/images/I/61wVwkh4n9L._UY1000_.jpg", description: "Lightweight canvas slip-ons for everyday wear."},
+                {id: 39, name: "Leather Loafers", price: 79.99, image: "https://egoss.in/cdn/shop/files/ChatGPT_Image_Apr_26_2025_04_17_11_PM.png?v=1753878852&width=1024"},
+                {id: 40, name: "Espadrilles", price: 39.99, oldPrice: 49.99, image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", tag: "Sale", description: "Breathable espadrilles for summer days."},
+                {id: 41, name: "Boat Shoes", price: 89.99, image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", description: "Classic boat shoes with non-slip soles."},
+                {id: 42, name: "Slip-Resistant Shoes", price: 59.99, image: "https://i5.walmartimages.com/seo/SPIEZ-Men-s-Slip-Resistant-Shoes-Waterproof-Oilproof-Lightweight-Non-Slip-Shoes-for-Men-Chef-Restaurant-Work-Shoes-Black_f537b1cc-4ccb-4d1e-a669-6e8fdefea5bc.0963496181f042a9f8eae23169c944b4.png", description: "Practical shoes with slip-resistant technology."},
+                {id: 43, name: "Minimalist Sneakers", price: 74.99, oldPrice: 89.99, image: "https://www.beckettsimonon.com/cdn/shop/collections/beckett-simonon-reid-sneakers-white-leather-lifestyle_1200x630.jpg?v=1606260598", tag: "New", description: "Simple and stylish minimalist sneakers."},
+                {id: 44, name: "Moccasins", price: 69.99, image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", description: "Soft moccasins for ultimate comfort."},
+                {id: 45, name: "Slip-On Sneakers", price: 54.99, image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", description: "Easy-to-wear slip-on sneakers."},
+                {id: 46, name: "Casual Oxfords", price: 99.99, oldPrice: 119.99, image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", tag: "Sale", description: "Casual version of classic oxford shoes."},
+                {id: 47, name: "Driving Shoes", price: 79.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjG_Trqdn3xFfgWstTAirVqHAc7ZCoKYLOlg&s", description: "Comfortable shoes designed for driving."},
+                {id: 48, name: "Fashion Sneakers", price: 89.99, image: "https://5.imimg.com/data5/SELLER/Default/2022/8/MH/RA/AE/47973403/1-4--500x500.JPG", description: "Trendy sneakers for fashion-forward individuals."}
+            ]
+        };
+
+        let currentCategory = 'athletic';
+        let currentProduct = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts('athletic');
+            
+            document.querySelector('.btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    currentCategory = category;
+                    loadProducts(category);
+                    document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            document.getElementById('closeCheckout').addEventListener('click', closeCheckout);
+            document.getElementById('prevBtn').addEventListener('click', prevStep);
+            document.getElementById('nextBtn').addEventListener('click', nextStep);
+
+            document.querySelectorAll('.buy-now').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const productId = parseInt(productCard.getAttribute('data-id'));
+                    currentProduct = products[currentCategory].find(p => p.id === productId);
+                    openCheckout();
+                });
+            });
+        });
+
+        function loadProducts(category) {
+            const container = document.getElementById('product-container');
+            container.innerHTML = '';
+            
+            products[category].forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.setAttribute('data-id', product.id);
+                
+                let priceHtml = '';
+                if (product.oldPrice) {
+                    priceHtml = `<div class="price"><span class="old-price">$${product.oldPrice}</span> $${product.price}</div>`;
+                } else {
+                    priceHtml = `<div class="price">$${product.price}</div>`;
+                }
+                
+                let tagHtml = '';
+                if (product.tag) {
+                    tagHtml = `<span class="product-tag">${product.tag}</span>`;
+                }
+                
+                productCard.innerHTML = `
+                    <div class="product-img">
+                        ${tagHtml}
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-content">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <div class="product-price">
+                            ${priceHtml}
+                        </div>
+                        <div class="product-buttons">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(productCard);
+            });
+
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const product = this.closest('.product-card');
+                    const productName = product.querySelector('h3').textContent;
+                    alert(`${productName} added to cart!`);
+                });
+            });
+
+            document.querySelectorAll('.buy-now').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const productId = parseInt(productCard.getAttribute('data-id'));
+                    currentProduct = products[currentCategory].find(p => p.id === productId);
+                    openCheckout();
+                });
+            });
+        }
+
+        function openCheckout() {
+            document.getElementById('checkoutModal').style.display = 'block';
+            resetCheckout();
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModal').style.display = 'none';
+        }
+
+        function resetCheckout() {
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.querySelector('.step[data-step="1"]').classList.add('active');
+            
+            document.querySelectorAll('.step-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.getElementById('step1').classList.add('active');
+            
+            document.getElementById('prevBtn').style.display = 'none';
+            document.getElementById('nextBtn').textContent = 'Next';
+        }
+
+        function prevStep() {
+            const currentStep = document.querySelector('.step.active');
+            const currentStepNum = parseInt(currentStep.getAttribute('data-step'));
+            
+            if (currentStepNum > 1) {
+                currentStep.classList.remove('active');
+                document.querySelector(`.step[data-step="${currentStepNum - 1}"]`).classList.add('active');
+                
+                document.querySelectorAll('.step-panel').forEach(panel => {
+                    panel.classList.remove('active');
+                });
+                document.getElementById(`step${currentStepNum - 1}`).classList.add('active');
+                
+                if (currentStepNum - 1 === 1) {
+                    document.getElementById('prevBtn').style.display = 'none';
+                }
+                
+                document.getElementById('nextBtn').textContent = 'Next';
+            }
+        }
+
+        function nextStep() {
+            const currentStep = document.querySelector('.step.active');
+            const currentStepNum = parseInt(currentStep.getAttribute('data-step'));
+            
+            if (currentStepNum < 3) {
+                if (validateStep(currentStepNum)) {
+                    currentStep.classList.remove('active');
+                    document.querySelector(`.step[data-step="${currentStepNum + 1}"]`).classList.add('active');
+                    
+                    document.querySelectorAll('.step-panel').forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    document.getElementById(`step${currentStepNum + 1}`).classList.add('active');
+                    
+                    document.getElementById('prevBtn').style.display = 'block';
+                    
+                    if (currentStepNum + 1 === 3) {
+                        document.getElementById('nextBtn').textContent = 'Confirm Order';
+                        document.getElementById('orderId').textContent = Math.floor(1000 + Math.random() * 9000);
+                    }
+                }
+            } else {
+                closeCheckout();
+                alert(`Thank you for your order! Your ${currentProduct.name} will be shipped soon.`);
+            }
+        }
+
+        function validateStep(step) {
+            if (step === 1) {
+                const fullName = document.getElementById('fullName').value;
+                const address = document.getElementById('address').value;
+                const city = document.getElementById('city').value;
+                const zipCode = document.getElementById('zipCode').value;
+                const country = document.getElementById('country').value;
+                
+                if (!fullName || !address || !city || !zipCode || !country) {
+                    alert('Please fill in all shipping information.');
+                    return false;
+                }
+            } else if (step === 2) {
+                const cardNumber = document.getElementById('cardNumber').value;
+                const cardName = document.getElementById('cardName').value;
+                const expiryDate = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
+                
+                if (!cardNumber || !cardName || !expiryDate || !cvv) {
+                    alert('Please fill in all payment details.');
+                    return false;
+                }
+                
+                if (cardNumber.replace(/\s/g, '').length !== 16) {
+                    alert('Please enter a valid 16-digit card number.');
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('checkoutModal');
+            if (event.target === modal) {
+                closeCheckout();
+            }
+        }
+    </script>
+</body>
+</html>
+
