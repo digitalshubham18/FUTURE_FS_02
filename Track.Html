@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+        
+        .track-order-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .section-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .track-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            border-color: #8e2de2;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(142, 45, 226, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .order-details {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+            display: none;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-id {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .order-status {
+            background: #4a00e0;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .progress-tracker {
+            margin: 40px 0;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .progress-step {
+            text-align: center;
+            position: relative;
+            width: 25%;
+        }
+        
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            background: #f1f1f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 20px;
+            color: #888;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-label {
+            font-size: 14px;
+            color: #888;
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            position: absolute;
+            top: 25px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #f1f1f1;
+            z-index: 1;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #4a00e0;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-step.completed .step-icon {
+            background: #4a00e0;
+            color: white;
+        }
+        
+        .progress-step.completed .step-label {
+            color: #4a00e0;
+        }
+        
+        .progress-step.active .step-icon {
+            background: #8e2de2;
+            color: white;
+        }
+        
+        .progress-step.active .step-label {
+            color: #8e2de2;
+        }
+        
+        .order-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info-card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .info-card h3 {
+            margin-bottom: 15px;
+            color: #4a00e0;
+            font-size: 18px;
+        }
+        
+        .info-card p {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .product-list {
+            margin-top: 30px;
+        }
+        
+        .product-list h3 {
+            margin-bottom: 15px;
+            color: #4a00e0;
+            font-size: 18px;
+        }
+        
+        .product-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .product-img {
+            width: 80px;
+            height: 80px;
+            background: #f1f1f1;
+            border-radius: 8px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 12px;
+        }
+        
+        .product-details {
+            flex: 1;
+        }
+        
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            color: #a59db6;
+            font-weight: 500;
+        }
+        
+        footer {
+            background: #2736bb;
+            color: black;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-section p {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            color: #ccc;
+            border-top: 1px solid #444;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .order-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-tracker {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .progress-step {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            
+            .step-icon {
+                margin: 0 15px 0 0;
+            }
+            
+            .progress-bar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shopping-cart"></i>
+                    Cartify
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Product.Html">Products</a></li>
+                        <li><a href="Track.Html">Track Order</a></li>
+                        <li><a href="Contact Us.Html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="track-order-section">
+        <div class="container">
+            <h2 class="section-title">Track Your Order</h2>
+            <p class="section-subtitle">Enter your order ID and email to check the status of your order</p>
+            
+            <div class="track-form">
+                <div class="form-group">
+                    <label for="orderId">Order ID</label>
+                    <input type="text" id="orderId" placeholder="e.g. SK123456789">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Your email address">
+                </div>
+                <button class="btn btn-block" onclick="trackOrder()">Track Order</button>
+            </div>
+            
+            <div class="order-details" id="orderDetails">
+                <div class="order-header">
+                    <div class="order-id">Order #: <span id="displayOrderId">SK123456789</span></div>
+                    <div class="order-status">Shipped</div>
+                </div>
+                
+                <div class="progress-tracker">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-step completed">
+                        <div class="step-icon"><i class="fas fa-shopping-cart"></i></div>
+                        <div class="step-label">Order Placed</div>
+                    </div>
+                    <div class="progress-step completed">
+                        <div class="step-icon"><i class="fas fa-check"></i></div>
+                        <div class="step-label">Order Confirmed</div>
+                    </div>
+                    <div class="progress-step active">
+                        <div class="step-icon"><i class="fas fa-truck"></i></div>
+                        <div class="step-label">Shipped</div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-icon"><i class="fas fa-home"></i></div>
+                        <div class="step-label">Delivered</div>
+                    </div>
+                </div>
+                
+                <div class="order-info">
+                    <div class="info-card">
+                        <h3>Shipping Address</h3>
+                        <p id="shippingName">John Doe</p>
+                        <p id="shippingAddress">123 Main Street, Apt 4B</p>
+                        <p id="shippingCity">New York, NY 10001</p>
+                        <p id="shippingPhone">Phone: (555) 123-4567</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Order Information</h3>
+                        <p>Order Date: <span id="orderDate">October 15, 2023</span></p>
+                        <p>Estimated Delivery: <span id="deliveryDate">October 20, 2023</span></p>
+                        <p>Payment Method: <span id="paymentMethod">Credit Card</span></p>
+                        <p>Total Amount: <span id="orderTotal">$245.99</span></p>
+                    </div>
+                </div>
+                
+                <div class="product-list">
+                    <h3>Order Items</h3>
+                    <div class="product-item">
+                        <div class="product-img">Product Image</div>
+                        <div class="product-details">
+                            <div class="product-name">Wireless Bluetooth Headphones</div>
+                            <div class="product-price">$129.99 × 1</div>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-img">Product Image</div>
+                        <div class="product-details">
+                            <div class="product-name">Smartphone Case</div>
+                            <div class="product-price">$25.99 × 2</div>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-img">Product Image</div>
+                        <div class="product-details">
+                            <div class="product-name">USB-C Charging Cable</div>
+                            <div class="product-price">$19.99 × 3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cartify</h3>
+                    <p>Your one-stop shop for all your needs. We offer quality products at affordable prices.</p>
+                </div>
+                <div class="footer-section">
+                    
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Product.Html">Products</a></li>
+                        <li><a href="Track.Html">Track Order</a></li>
+                        <li><a href="Contact Us.Html">Contact</a></li>
+                
+                </nav>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Commerce St, New York, NY</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> support@Cartify.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2015 Cartify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        const orders = {
+            'SK123456789': {
+                status: 'shipped', 
+                shipping: {
+                    name: 'John Doe',
+                    address: '123 Main Street, Apt 4B',
+                    city: 'New York, NY 10001',
+                    phone: '(555) 123-4567'
+                },
+                orderDate: 'October 15, 2023',
+                deliveryDate: 'October 20, 2023',
+                paymentMethod: 'Credit Card',
+                total: '$245.99',
+                items: [
+                    { name: 'Wireless Bluetooth Headphones', price: '$129.99 × 1' },
+                    { name: 'Smartphone Case', price: '$25.99 × 2' },
+                    { name: 'USB-C Charging Cable', price: '$19.99 × 3' }
+                ]
+            },
+            'SK987654321': {
+                status: 'delivered',
+                shipping: {
+                    name: 'Jane Smith',
+                    address: '456 Oak Avenue',
+                    city: 'Los Angeles, CA 90001',
+                    phone: '(555) 987-6543'
+                },
+                orderDate: 'October 10, 2023',
+                deliveryDate: 'October 14, 2023',
+                paymentMethod: 'PayPal',
+                total: '$189.50',
+                items: [
+                    { name: 'Smart Watch', price: '$159.99 × 1' },
+                    { name: 'Screen Protector', price: '$14.99 × 2' }
+                ]
+            }
+        };
+
+        function trackOrder() {
+            const orderId = document.getElementById('orderId').value.trim();
+            const email = document.getElementById('email').value.trim();
+            
+           
+            if (!orderId) {
+                alert('Please enter your order ID');
+                return;
+            }
+            
+            if (!email) {
+                alert('Please enter your email address');
+                return;
+            }
+            
+            
+            if (orders[orderId]) {
+                const order = orders[orderId];
+                displayOrderDetails(orderId, order);
+            } else {
+                alert('Order not found. Please check your order ID and try again.');
+            }
+        }
+
+        function displayOrderDetails(orderId, order) {
+            
+            document.getElementById('displayOrderId').textContent = orderId;
+            
+           
+            const statusElement = document.querySelector('.order-status');
+            statusElement.textContent = order.status.charAt(0).toUpperCase() + order.status.slice(1);
+            
+
+            const progressFill = document.getElementById('progressFill');
+            const steps = document.querySelectorAll('.progress-step');
+            
+            
+            steps.forEach(step => {
+                step.classList.remove('active', 'completed');
+            });
+            
+            
+            if (order.status === 'ordered') {
+                progressFill.style.width = '0%';
+                steps[0].classList.add('active');
+            } else if (order.status === 'confirmed') {
+                progressFill.style.width = '33%';
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+            } else if (order.status === 'shipped') {
+                progressFill.style.width = '66%';
+                steps[0].classList.add('completed');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+            } else if (order.status === 'delivered') {
+                progressFill.style.width = '100%';
+                steps[0].classList.add('completed');
+                steps[1].classList.add('completed');
+                steps[2].classList.add('completed');
+                steps[3].classList.add('completed');
+            }
+            
+            
+            document.getElementById('shippingName').textContent = order.shipping.name;
+            document.getElementById('shippingAddress').textContent = order.shipping.address;
+            document.getElementById('shippingCity').textContent = order.shipping.city;
+            document.getElementById('shippingPhone').textContent = `Phone: ${order.shipping.phone}`;
+            
+           
+            document.getElementById('orderDate').textContent = order.orderDate;
+            document.getElementById('deliveryDate').textContent = order.deliveryDate;
+            document.getElementById('paymentMethod').textContent = order.paymentMethod;
+            document.getElementById('orderTotal').textContent = order.total;
+            
+            
+            document.getElementById('orderDetails').style.display = 'block';
+            
+          
+            document.getElementById('orderDetails').scrollIntoView({ behavior: 'smooth' });
+        }
+
+ 
+        window.onload = function() {
+            document.getElementById('orderId').value = 'SK123456789';
+            document.getElementById('email').value = 'customer@example.com';
+        };
+    </script>
+</body>
+</html>
+
