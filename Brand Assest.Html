@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Assets - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0062cc, #0095ff);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: white;
+            color: #0062cc;
+            padding: 5px 15px;
+            border-radius: 8px;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            padding: 60px 0;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            color: #0062cc;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eaeaea;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: #0062cc;
+        }
+        
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .asset-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .asset-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .asset-img {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            padding: 20px;
+        }
+        
+        .asset-img img {
+            max-width: 100%;
+            max-height: 160px;
+            object-fit: contain;
+        }
+        
+        .asset-info {
+            padding: 20px;
+        }
+        
+        .asset-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .asset-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #0062cc;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .btn:hover {
+            background: #004a99;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #0062cc;
+            color: #0062cc;
+        }
+        
+        .btn-outline:hover {
+            background: #0062cc;
+            color: white;
+        }
+        
+        .color-palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .color-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .color-box {
+            height: 80px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .color-details {
+            font-size: 0.9rem;
+        }
+        
+        .color-details h4 {
+            margin-bottom: 5px;
+        }
+        
+        .typography-example {
+            margin: 25px 0;
+        }
+        
+        .typography-example h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .typography-sample {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .download-section {
+            text-align: center;
+            background: linear-gradient(135deg, #0062cc, #0095ff);
+            color: white;
+            padding: 80px 0;
+            border-radius: 12px;
+        }
+        
+        .download-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .download-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .btn-large {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            background: white;
+            color: #0062cc;
+        }
+        
+        .btn-large:hover {
+            background: #f0f0f0;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .assets-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Cartify</div>
+            <h1>Brand Assets</h1>
+            <p>Access high-resolution logos, product images, and brand guidelines to correctly represent the Cartify brand in your publications</p>
+        </div>
+    </header>
+    
+    <main class="content">
+        <div class="container">
+            <section class="section">
+                <h2 class="section-title">Logo Assets</h2>
+                <div class="assets-grid">
+                    <div class="asset-card">
+                        <div class="asset-img">
+                            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/2ecb84188316025.659a6334af548.jpg" alt="Cartify Primary Logo">
+                        </div>
+                        <div class="asset-info">
+                            <h3>Primary Logo</h3>
+                            <p>Full color logo on white background. This is our primary logo for most applications.</p>
+                            <button class="btn" onclick="downloadAsset('logo', 'png')">Download PNG</button>
+                            <button class="btn btn-outline" onclick="downloadAsset('logo', 'svg')">Download SVG</button>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-card">
+                        <div class="asset-img" style="background: #0062cc;">
+                            <img src="https://m.media-amazon.com/images/I/31rGgxppwYL._UF350,350_QL80_.jpg" alt="Cartify White Logo">
+                        </div>
+                        <div class="asset-info">
+                            <h3>White Logo</h3>
+                            <p>White logo for use on dark backgrounds. Maintain minimum clear space around logo.</p>
+                            <button class="btn" onclick="downloadAsset('white-logo', 'png')">Download PNG</button>
+                            <button class="btn btn-outline" onclick="downloadAsset('white-logo', 'svg')">Download SVG</button>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-card">
+                        <div class="asset-img">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjgwIiBmaWxsPSIjMDA2MmNjIi8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iNzAiIHI9IjIwIiBmaWxsPSIjZmZmIi8+PHJlY3QgeD0iNjAiIHk9IjEwMCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="Cartify Icon">
+                        </div>
+                        <div class="asset-info">
+                            <h3>App Icon</h3>
+                            <p>Square format icon for use in mobile applications and social media profiles.</p>
+                            <button class="btn" onclick="downloadAsset('icon', 'png')">Download PNG</button>
+                            <button class="btn btn-outline" onclick="downloadAsset('icon', 'svg')">Download SVG</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2 class="section-title">Product Images</h2>
+                <div class="assets-grid">
+                    <div class="asset-card">
+                        <div class="asset-img">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2ZmZjZlMCIvPjxjaXJjbGUgY3g9IjE1MCIgY3k9IjEwMCIgcj0iNTAiIGZpbGw9IiMwMDYyY2MiLz48dGV4dCB4PSIxNTAiIHk9IjE3MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMDA2MmNjIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Qcm9kdWN0IFNob3Q8L3RleHQ+PC9zdmc+" alt="Cartify Product Image">
+                        </div>
+                        <div class="asset-info">
+                            <h3>Product Showcase</h3>
+                            <p>High-quality images showcasing our product interface and user experience.</p>
+                            <button class="btn" onclick="downloadAsset('product-showcase', 'jpg')">Download JPG</button>
+                            <button class="btn btn-outline" onclick="downloadAsset('product-showcase', 'png')">Download PNG</button>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-card">
+                        <div class="asset-img">
+                            <img src="https://i.ytimg.com/vi/M5EKRfynzgM/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGBMgUih_MA8=&rs=AOn4CLAjxTmSgV0JivjfqYEaDXiJnyUdgg" alt="Cartify Mobile App">
+                        </div>
+                        <div class="asset-info">
+                            <h3>Mobile App</h3>
+                            <p>Images of our mobile application on various device mockups.</p>
+                            <button class="btn" onclick="downloadAsset('mobile-app', 'jpg')">Download JPG</button>
+                            <button class="btn btn-outline" onclick="downloadAsset('mobile-app', 'png')">Download PNG</button>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-card">
+                        <div class="asset-img">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzAwYjk5MCIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSI0MCIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjgwIiByPSI0MCIgZmlsbD0iI2ZmZiIvPjxyZWN0IHg9IjgwIiB5PSIxNDAiIHdpZHRoPSIxNDAiIGhlaWdodD0iMjAiIHJ4PSIxMCIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjE1MCIgeT0iMTgwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlRlYW0gUGhvdG88L3RleHQ+PC9zdmc+" alt="Cartify Team">
+                        </div>
+                        <div class="asset-info">
+                            <h3>Team Photos</h3>
+                            <p>Official team photos for media use. Please credit photographer when used.</p>
+                            <button class="btn" onclick="downloadAsset('team', 'jpg')">Download JPG</button>
+                            <button class="btn btn-outline" onclick="downloadAsset('team', 'png')">Download PNG</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2 class="section-title">Brand Guidelines</h2>
+                
+                <div class="typography-example">
+                    <h3>Typography</h3>
+                    <div class="typography-sample" style="font-weight: 700; font-size: 2.5rem;">ABC Corporation</div>
+                    <p>Primary font: Segoe UI - Used for headings and brand messaging</p>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-sample" style="font-size: 1.5rem;">ABC Corporation</div>
+                    <p>Secondary font: Segoe UI - Used for body text and UI elements</p>
+                </div>
+                
+                <h3 style="margin-top: 40px;">Color Palette</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-box" style="background: #0062cc;"></div>
+                        <div class="color-details">
+                            <h4>Primary Blue</h4>
+                            <p>HEX: #0062CC<br>RGB: 0, 98, 204<br>CMYK: 100, 70, 0, 0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="color-item">
+                        <div class="color-box" style="background: #0095ff;"></div>
+                        <div class="color-details">
+                            <h4>Secondary Blue</h4>
+                            <p>HEX: #0095FF<br>RGB: 0, 149, 255<br>CMYK: 85, 35, 0, 0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="color-item">
+                        <div class="color-box" style="background: #333333;"></div>
+                        <div class="color-details">
+                            <h4>Dark Gray</h4>
+                            <p>HEX: #333333<br>RGB: 51, 51, 51<br>CMYK: 0, 0, 0, 100</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <h3>Logo Usage Guidelines</h3>
+                    <p>When using the Cartify logo, always maintain the minimum clear space around it equal to the height of the "S" in the logo. Do not alter the logo colors, rotate the logo, or add effects like shadows or glows without written permission.</p>
+                    
+                    <button class="btn" style="margin-top: 20px;" onclick="downloadAsset('brand-guidelines', 'pdf')">Download Full Brand Guidelines (PDF)</button>
+                </div>
+            </section>
+            
+            <section class="download-section">
+                <h2>Download Complete Media Kit</h2>
+                <p>Get all brand assets in one ZIP file including logos in multiple formats, product images, brand guidelines, and more.</p>
+                <button class="btn btn-large" onclick="downloadMediaKit()"><i class="fas fa-download"></i> Download Media Kit (42MB)</button>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Cartify</div>
+                <div class="footer-links">
+                    <a href="Privacy policy.Html">Privacy Policy</a>
+                    <a href="Terms.Html">Terms of Use</a>
+                    <a href="Contact Us.Html">Contact</a>
+                    <a href="press.Html">Press Inquiries</a>
+                </div>
+                <p class="copyright">© 2015 Cartify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+       
+        function downloadAsset(assetName, format) {
+            
+            const assets = {
+                'logo': { 
+                    png: 'Cartify-logo.png', 
+                    svg: 'Cartify-logo.svg' 
+                },
+                'white-logo': { 
+                    png: 'Cartify-white-logo.png', 
+                    svg: 'Cartify-white-logo.svg' 
+                },
+                'icon': { 
+                    png: 'Cartify-icon.png', 
+                    svg: 'Cartify-icon.svg' 
+                },
+                'product-showcase': { 
+                    jpg: 'Cartify-product-showcase.jpg', 
+                    png: 'Cartify-product-showcase.png' 
+                },
+                'mobile-app': { 
+                    jpg: 'Cartify-mobile-app.jpg', 
+                    png: 'Cartify-mobile-app.png' 
+                },
+                'team': { 
+                    jpg: 'Cartify-team.jpg', 
+                    png: 'Cartify-team.png' 
+                },
+                'brand-guidelines': { 
+                    pdf: 'Cartify-brand-guidelines.pdf' 
+                }
+            };
+            
+            if (assets[assetName] && assets[assetName][format]) {
+                const filename = assets[assetName][format];
+                alert(`Downloading ${filename}`);
+                
+                
+                const link = document.createElement('a');
+                link.href = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzAwNjJjYyIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Eb3dubG9hZDwvdGV4dD48L3N2Zz4=';
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert('File not available for download in this demo. In a real implementation, this would download the actual asset.');
+            }
+        }
+        
+        
+        function downloadMediaKit() {
+            alert('Downloading Cartify-Media-Kit.zip');
+            
+            
+            setTimeout(() => {
+                alert('Media kit download complete!');
+            }, 2000);
+        }
+        
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.classList.contains('btn-large')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
