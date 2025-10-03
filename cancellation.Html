@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Cancellation - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #8e44ad;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background: #783c94;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #8e44ad;
+            color: #8e44ad;
+        }
+        
+        .btn-outline:hover {
+            background: #8e44ad;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .section-title {
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #8e44ad;
+            margin-top: 10px;
+        }
+        
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #8e44ad;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #333;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: #8e44ad;
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            margin-left: 20px;
+            color: #333;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .header-icons a:hover {
+            color: #8e44ad;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #8e44ad;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .cancellation-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+        }
+        
+        .cancellation-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cancellation-hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .cancellation-hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .cancellation-process {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+        
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: #f8f4fb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: #8e44ad;
+        }
+        
+        .step h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .cancellation-form-section {
+            padding: 80px 0;
+            background: #f8f4fb;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #8e44ad;
+            outline: none;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .order-details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .refund-info {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .refund-info h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .cancellation-policy {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .policy-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .policy-points {
+            margin-top: 30px;
+        }
+        
+        .policy-point {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .policy-point i {
+            color: #8e44ad;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .help-section {
+            padding: 80px 0;
+            background: #f8f4fb;
+            text-align: center;
+        }
+        
+        .help-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .help-option {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            width: 250px;
+            transition: transform 0.3s;
+        }
+        
+        .help-option:hover {
+            transform: translateY(-5px);
+        }
+        
+        .help-option i {
+            font-size: 40px;
+            color: #8e44ad;
+            margin-bottom: 20px;
+        }
+        
+        .help-option h3 {
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background: #222;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: #8e44ad;
+            margin-top: 10px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #8e44ad;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #8e44ad;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .header-icons {
+                margin-top: 15px;
+            }
+            
+            .cancellation-hero h1 {
+                font-size: 32px;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+            
+            .step {
+                margin-bottom: 40px;
+            }
+            
+            .form-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Cart<span>ify</span></a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Women.Html">Women</a></li>
+                        <li><a href="Mens.Html">Men</a></li>
+                        <li><a href="Accessories.Html">Accessories</a></li>
+                        <li><a href="Brand.Html">Brands</a></li>
+                        <li><a href="#" class="active">Help Center</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i><span class="cart-count">2</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="cancellation-hero">
+        <div class="container">
+            <div class="cancellation-hero-content">
+                <h1>Order Cancellation</h1>
+                <p>Need to cancel an order? We're here to help. Our simple process ensures quick resolution and refunds.</p>
+                <a href="#cancellation-form" class="btn">Cancel an Order</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cancellation-process">
+        <div class="container">
+            <h2 class="section-title">How to Cancel an Order</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Find Your Order</h3>
+                    <p>Locate the order you wish to cancel in your order history or use the order ID from your confirmation email.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Select & Provide Reason</h3>
+                    <p>Choose the items to cancel and provide a reason for cancellation to help us improve our service.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Confirm Cancellation</h3>
+                    <p>Review your cancellation request and confirm. You'll receive an email confirmation once processed.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-undo-alt"></i>
+                    </div>
+                    <h3>Receive Refund</h3>
+                    <p>If eligible, your refund will be processed immediately and credited to your original payment method.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cancellation-form-section" id="cancellation-form">
+        <div class="container">
+            <h2 class="section-title">Cancel Your Order</h2>
+            <div class="form-container">
+                <form id="cancellationForm">
+                    <div class="form-group">
+                        <label for="orderId">Order ID *</label>
+                        <input type="text" id="orderId" placeholder="Enter your order ID" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" placeholder="Enter the email used for ordering" required>
+                    </div>
+                    
+                    <div class="order-details">
+                        <h3>Order #SK20230715</h3>
+                        <div class="order-item">
+                            <span>Men's Casual Shirt (Size: M)</span>
+                            <span>$45.99</span>
+                        </div>
+                        <div class="order-item">
+                            <span>Women's Running Shoes (Size: 8)</span>
+                            <span>$89.99</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>Total Amount</strong>
+                            <strong>$135.98</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cancelItems">Select Items to Cancel</label>
+                        <select id="cancelItems" multiple>
+                            <option value="shirt">Men's Casual Shirt</option>
+                            <option value="shoes">Women's Running Shoes</option>
+                        </select>
+                        <small>Hold Ctrl (or Cmd on Mac) to select multiple items</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cancelReason">Reason for Cancellation *</label>
+                        <select id="cancelReason" required>
+                            <option value="">Select a reason</option>
+                            <option value="changed-mind">Changed my mind</option>
+                            <option value="wrong-item">Ordered wrong item/size</option>
+                            <option value="found-cheaper">Found a better price elsewhere</option>
+                            <option value="delivery-time">Delivery takes too long</option>
+                            <option value="other">Other reason</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additionalInfo">Additional Information</label>
+                        <textarea id="additionalInfo" placeholder="Please provide any additional details about your cancellation"></textarea>
+                    </div>
+                    
+                    <div class="refund-info">
+                        <h3><i class="fas fa-info-circle"></i> Refund Information</h3>
+                        <p>Based on your order details, you are eligible for a full refund. The refund will be processed to your original payment method within 5-7 business days after cancellation confirmation.</p>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; margin-top: 30px;">
+                        <button type="submit" class="btn">Submit Cancellation Request</button>
+                        <a href="#" class="btn btn-secondary">Back to Orders</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="cancellation-policy">
+        <div class="container">
+            <h2 class="section-title">Cancellation Policy</h2>
+            <div class="policy-content">
+                <p>At Cartify, we understand that sometimes you may need to cancel an order. Our cancellation policy is designed to be fair to both our customers and our business.</p>
+                
+                <div class="policy-points">
+                    <div class="policy-point">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h3>Orders Eligible for Cancellation</h3>
+                            <p>You can cancel your order within 24 hours of placing it, or before it has been shipped. Once an order has been shipped, it can no longer be canceled but may be eligible for return.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="policy-point">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Processing Time</h3>
+                            <p>Cancellation requests are processed within 4 business hours. You will receive an email confirmation once your cancellation is complete.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="policy-point">
+                        <i class="fas fa-undo-alt"></i>
+                        <div>
+                            <h3>Refund Timeline</h3>
+                            <p>Refunds are processed immediately upon cancellation confirmation. It may take 5-10 business days for the refund to appear in your account, depending on your payment method and bank.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="policy-point">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div>
+                            <h3>Non-Cancellable Items</h3>
+                            <p>Some items such as personalized products, digital downloads, and perishable goods cannot be canceled once ordered. These exceptions are clearly marked on product pages.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="help-section">
+        <div class="container">
+            <h2 class="section-title">Need More Help?</h2>
+            <p>Our customer support team is here to assist you with any questions or concerns.</p>
+            
+            <div class="help-options">
+                <div class="help-option">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Call Us</h3>
+                    <p>1-800-CARTIFY</p>
+                    <p>Mon-Sun: 8AM - 10PM EST</p>
+                </div>
+                
+                <div class="help-option">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>support@Cartify.com</p>
+                    <p>Response within 24 hours</p>
+                </div>
+                
+                <div class="help-option">
+                    <i class="fas fa-comments"></i>
+                    <h3>Live Chat</h3>
+                    <p>Available 24/7</p>
+                    <p>Instant assistance</p>
+                </div>
+                
+                <div class="help-option">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>FAQ</h3>
+                    <p>Common questions</p>
+                    <p>Quick answers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify</h3>
+                    <p>Your destination for the world's finest fashion brands.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Brand.Html">Brands</a></li>
+                        <li><a href="New.Html">New Arrivals</a></li>
+                        <li><a href="Trend.Html">Trending</a></li>
+                        <li><a href="Sale.Html">Sale</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="Contact Us.Html">Contact Us</a></li>
+                        <li><a href="Shipping Policy.Html">Shipping Policy</a></li>
+                        <li><a href="Return&Refund.Html">Returns & Refunds</a></li>
+                        <li><a href="#">Cancellation Policy</a></li>
+                        <li><a href="FAQ.Html">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                    <p>Connect with us for updates</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Cartify. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cancellationForm = document.getElementById('cancellationForm');
+            
+            cancellationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                
+                const orderId = document.getElementById('orderId').value;
+                const email = document.getElementById('email').value;
+                const reason = document.getElementById('cancelReason').value;
+                
+                
+                if (!orderId || !email || !reason) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+               
+                alert(`Cancellation request submitted successfully for order ${orderId}. You will receive a confirmation email shortly.`);
+                
+               
+                cancellationForm.reset();
+            });
+            
+            const orderIdInput = document.getElementById('orderId');
+            orderIdInput.addEventListener('blur', function() {
+                if (this.value.trim() !== '') {
+                    
+                    document.querySelector('.order-details').style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
