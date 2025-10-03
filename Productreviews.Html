@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Reviews - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 15px 5%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-icons i {
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .header-icons i:hover {
+            color: #ffd700;
+        }
+
+        .breadcrumb {
+            padding: 15px 5%;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .breadcrumb ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .breadcrumb li {
+            margin-right: 10px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .breadcrumb li:after {
+            content: '/';
+            margin-left: 10px;
+            color: #ccc;
+        }
+
+        .breadcrumb li:last-child:after {
+            content: '';
+        }
+
+        .breadcrumb a {
+            color: #8e2de2;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .product-summary {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-right: 25px;
+            flex-shrink: 0;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-rating-overview {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .average-rating {
+            font-size: 32px;
+            font-weight: bold;
+            color: #4a00e0;
+            margin-right: 15px;
+        }
+
+        .rating-breakdown {
+            margin-left: 20px;
+        }
+
+        .rating-stars {
+            color: #ffd700;
+            margin-right: 10px;
+        }
+
+        .rating-bar-container {
+            width: 200px;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+
+        .rating-bar {
+            height: 100%;
+            background: #4a00e0;
+            border-radius: 4px;
+        }
+
+        .total-reviews {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .review-filters {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .filter-option {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-option:hover, .filter-option.active {
+            background: #4a00e0;
+            color: white;
+            border-color: #4a00e0;
+        }
+
+        .sort-select {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .reviews-list {
+            margin-bottom: 40px;
+        }
+
+        .review-item {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: none;
+        }
+
+        .review-item.active {
+            display: block;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .reviewer-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reviewer-details h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .review-verified {
+            color: #28a745;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .review-meta {
+            text-align: right;
+        }
+
+        .review-date {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .review-rating {
+            color: #ffd700;
+        }
+
+        .review-content {
+            margin-bottom: 15px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .review-images {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .review-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .review-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .review-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .review-helpful {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .helpful-btn {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .helpful-btn:hover {
+            background: #e9dfff;
+            border-color: #8e2de2;
+        }
+
+        .helpful-count {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 5px;
+        }
+
+        .page-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: white;
+            color: #333;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .page-link:hover, .page-link.active {
+            background: #8e2de2;
+            color: white;
+        }
+
+        .write-review {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .write-review h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .review-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #8e2de2;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(142, 45, 226, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .rating-input {
+            display: flex;
+            gap: 5px;
+        }
+
+        .rating-input i {
+            font-size: 24px;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .rating-input i:hover,
+        .rating-input i.active {
+            color: #ffd700;
+        }
+
+        .image-upload {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .image-upload:hover {
+            border-color: #8e2de2;
+        }
+
+        .image-upload i {
+            font-size: 32px;
+            color: #8e2de2;
+            margin-bottom: 10px;
+        }
+
+        .image-upload p {
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .image-upload span {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .uploaded-images {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .uploaded-image {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .uploaded-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .submit-btn {
+            background: #8e2de2;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            grid-column: 1 / -1;
+            justify-self: center;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #4a00e0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 5% 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .no-reviews {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+            font-size: 18px;
+        }
+
+        @media (max-width: 968px) {
+            .review-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-summary {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .product-image {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .rating-breakdown {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .review-header {
+                flex-direction: column;
+            }
+            
+            .review-meta {
+                text-align: left;
+                margin-top: 15px;
+            }
+            
+            .filter-group {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .review-filters {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-title {
+                font-size: 20px;
+            }
+            
+            .average-rating {
+                font-size: 24px;
+            }
+            
+            .review-images {
+                justify-content: center;
+            }
+            
+            .review-image {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cartify</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="Home.Html">Home</a></li>
+                    <li><a href="categories.Html">Categories</a></li>
+                    <li><a href="Deals&Offer.Html">Deals</a></li>
+                    <li><a href="Blog.Html">Blog</a></li>
+                    <li><a href="About us.Html">About</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <ul>
+            <li><a href="Home.Html">Home</a></li>
+            <li><a href="Electronics.Html">Electronics</a></li>
+            <li><a href="Audio.Html">Audio & Headphones</a></li>
+            <li><a href="Wireless.Html">Wireless Noise-Canceling Headphones</a></li>
+            <li>Reviews</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="product-summary">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Wireless Headphones">
+            </div>
+            <div class="product-info">
+                <h1 class="product-title">Wireless Noise-Canceling Headphones</h1>
+                <div class="product-rating-overview">
+                    <div class="average-rating">4.3</div>
+                    <div>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="total-reviews">Based on <span id="total-reviews-count">128</span> reviews</div>
+                    </div>
+                    <div class="rating-breakdown">
+                        <div class="rating-bar-row">
+                            <span class="rating-stars">5 <i class="fas fa-star"></i></span>
+                            <div class="rating-bar-container">
+                                <div class="rating-bar" style="width: 70%;"></div>
+                            </div>
+                            <span class="rating-count">(90)</span>
+                        </div>
+                        <div class="rating-bar-row">
+                            <span class="rating-stars">4 <i class="fas fa-star"></i></span>
+                            <div class="rating-bar-container">
+                                <div class="rating-bar" style="width: 20%;"></div>
+                            </div>
+                            <span class="rating-count">(25)</span>
+                        </div>
+                        <div class="rating-bar-row">
+                            <span class="rating-stars">3 <i class="fas fa-star"></i></span>
+                            <div class="rating-bar-container">
+                                <div class="rating-bar" style="width: 5%;"></div>
+                            </div>
+                            <span class="rating-count">(8)</span>
+                        </div>
+                        <div class="rating-bar-row">
+                            <span class="rating-stars">2 <i class="fas fa-star"></i></span>
+                            <div class="rating-bar-container">
+                                <div class="rating-bar" style="width: 3%;"></div>
+                            </div>
+                            <span class="rating-count">(3)</span>
+                        </div>
+                        <div class="rating-bar-row">
+                            <span class="rating-stars">1 <i class="fas fa-star"></i></span>
+                            <div class="rating-bar-container">
+                                <div class="rating-bar" style="width: 2%;"></div>
+                            </div>
+                            <span class="rating-count">(2)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-filters">
+            <div class="filter-group">
+                <span class="filter-label">Filter by:</span>
+                <span class="filter-option active" data-filter="all">All</span>
+                <span class="filter-option" data-filter="5">5 Stars</span>
+                <span class="filter-option" data-filter="4">4 Stars</span>
+                <span class="filter-option" data-filter="3">3 Stars</span>
+                <span class="filter-option" data-filter="2">2 Stars</span>
+                <span class="filter-option" data-filter="1">1 Star</span>
+                <span class="filter-option" data-filter="with-photos">With Photos</span>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">Sort by:</span>
+                <select class="sort-select" id="sort-select">
+                    <option value="recent">Most Recent</option>
+                    <option value="highest">Highest Rated</option>
+                    <option value="lowest">Lowest Rated</option>
+                    <option value="helpful">Most Helpful</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="reviews-list" id="reviews-list">
+        </div>
+
+        <div class="pagination" id="pagination">
+        </div>
+
+        <div class="write-review">
+            <h2>Write a Review</h2>
+            <form class="review-form" id="review-form">
+                <div class="form-group">
+                    <label for="rating">Your Rating</label>
+                    <div class="rating-input" id="rating-stars">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <input type="hidden" id="rating-value" value="0">
+                </div>
+                
+                <div class="form-group">
+                    <label for="review-title">Review Title</label>
+                    <input type="text" id="review-title" placeholder="Summarize your experience" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reviewer-name">Your Name</label>
+                    <input type="text" id="reviewer-name" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reviewer-email">Email Address</label>
+                    <input type="email" id="reviewer-email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="review-content">Your Review</label>
+                    <textarea id="review-content" placeholder="Share your experience with this product" required></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label>Add Photos (Optional)</label>
+                    <div class="image-upload" id="image-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload images</p>
+                        <span>Maximum 5 images, 4MB each</span>
+                        <input type="file" id="file-input" multiple accept="image/*" style="display: none;">
+                    </div>
+                    <div class="uploaded-images" id="uploaded-images"></div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Cartify</h3>
+                <ul>
+                    <li><a href="About us.Html">About Us</a></li>
+                    <li><a href="carrer.Html">Careers</a></li>
+                    <li><a href="press.Html">Press</a></li>
+                    <li><a href="Blog.Html">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="Contact Us.Html">Contact Us</a></li>
+                    <li><a href="FAQ.Html">Help & FAQ</a></li>
+                    <li><a href="Return&Exchange.Html">Returns & Exchanges</a></li>
+                    <li><a href="Shipping.Html">Shipping Information</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Terms & Policies</h3>
+                <ul>
+                    <li><a href="Terms.Html">Terms of Service</a></li>
+                    <li><a href="Privacy policy.Html">Privacy Policy</a></li>
+                    <li><a href="Cookies.Html">Cookies Policy</a></li>
+                    <li><a href="Accessibility.Html">Accessibility</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2015 Cartify. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const reviewsData = [
+            {
+                id: 1,
+                name: "Michael Chen",
+                avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+                rating: 5,
+                date: "June 15, 2023",
+                title: "Excellent noise cancellation!",
+                content: "These headphones are absolutely fantastic! The noise cancellation works perfectly on my daily commute. The battery life is impressive - I only need to charge them once a week with heavy use. The sound quality is crisp and clear, with excellent bass response.",
+                images: [
+                    "https://images.unsplash.com/photo-1599669454699-248893623464?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80",
+                    "https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80"
+                ],
+                helpful: 24,
+                verified: true
+            },
+            {
+                id: 2,
+                name: "Sarah Johnson",
+                avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+                rating: 4,
+                date: "June 12, 2023",
+                title: "Great sound quality",
+                content: "Great sound quality and comfortable to wear for hours. The noise cancellation is effective for most environments. My only complaint is that they can get a bit warm after several hours of use, but that's expected with over-ear headphones. The battery life is as advertised.",
+                images: [],
+                helpful: 12,
+                verified: true
+            },
+            {
+                id: 3,
+                name: "David Wilson",
+                avatar: "https://randomuser.me/api/portraits/men/67.jpg",
+                rating: 4.5,
+                date: "June 8, 2023",
+                title: "Excellent value for money",
+                content: "Excellent value for money. The noise cancellation is almost as good as headphones twice the price. Battery life is fantastic and the build quality feels premium. The only reason I'm not giving 5 stars is that the companion app could be more intuitive.",
+                images: [
+                    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80"
+                ],
+                helpful: 8,
+                verified: true
+            },
+            {
+                id: 4,
+                name: "Emily Rodriguez",
+                avatar: "https://randomuser.me/api/portraits/women/28.jpg",
+                rating: 3,
+                date: "June 5, 2023",
+                title: "Decent but has connectivity issues",
+                content: "These are decent headphones for the price, but I've experienced some connectivity issues when using them with my laptop. The sound quality is good, but not exceptional. They're comfortable for long listening sessions, but the ear cushions could be softer.",
+                images: [],
+                helpful: 5,
+                verified: true
+            },
+            {
+                id: 5,
+                name: "Alex Thompson",
+                avatar: "https://randomuser.me/api/portraits/men/44.jpg",
+                rating: 5,
+                date: "June 3, 2023",
+                title: "Best purchase this year!",
+                content: "I've tried many headphones over the years, and these are by far the best. The sound quality is incredible, and the noise cancellation makes them perfect for travel. The battery lasts forever, and they're surprisingly comfortable for all-day wear.",
+                images: [
+                    "https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80"
+                ],
+                helpful: 18,
+                verified: true
+            },
+            {
+                id: 6,
+                name: "Priya Sharma",
+                avatar: "https://randomuser.me/api/portraits/women/33.jpg",
+                rating: 2,
+                date: "June 1, 2023",
+                title: "Disappointed with build quality",
+                content: "The sound quality is okay, but the build quality is disappointing. The plastic feels cheap, and one of the ear cups started making a cracking sound after just two weeks of use. Customer service was not helpful in resolving the issue.",
+                images: [],
+                helpful: 7,
+                verified: true
+            },
+            {
+                id: 7,
+                name: "James Wilson",
+                avatar: "https://randomuser.me/api/portraits/men/22.jpg",
+                rating: 5,
+                date: "May 28, 2023",
+                title: "Perfect for work and travel",
+                content: "I use these for both work calls and personal listening. The microphone quality is excellent for video conferences, and the noise cancellation helps me focus in noisy environments. The quick charge feature is a lifesaver when I forget to charge them overnight.",
+                images: [
+                    "https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80"
+                ],
+                helpful: 15,
+                verified: true
+            },
+            {
+                id: 8,
+                name: "Lisa Wang",
+                avatar: "https://randomuser.me/api/portraits/women/45.jpg",
+                rating: 4,
+                date: "May 25, 2023",
+                title: "Great for the price",
+                content: "For the price, these headphones offer excellent value. The sound is clear and balanced, though the bass could be a bit stronger. They're comfortable and the battery life meets my needs. The carrying case is a nice addition.",
+                images: [],
+                helpful: 9,
+                verified: true
+            },
+            {
+                id: 9,
+                name: "Robert Brown",
+                avatar: "https://randomuser.me/api/portraits/men/55.jpg",
+                rating: 1,
+                date: "May 22, 2023",
+                title: "Stopped working after 3 weeks",
+                content: "Very disappointed. The headphones stopped connecting to any device after just 3 weeks of light use. Customer service was unresponsive to my requests for a replacement or refund. Would not recommend.",
+                images: [],
+                helpful: 3,
+                verified: true
+            },
+            {
+                id: 10,
+                name: "Maria Garcia",
+                avatar: "https://randomuser.me/api/portraits/women/51.jpg",
+                rating: 5,
+                date: "May 20, 2023",
+                title: "Amazing sound quality",
+                content: "The audio quality is exceptional - clear highs, rich mids, and powerful bass. The noise cancellation works perfectly in crowded spaces. I've used them daily for a month and they still look and perform like new.",
+                images: [
+                    "https://images.unsplash.com/photo-1487215078519-e21cc028cb29?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80"
+                ],
+                helpful: 22,
+                verified: true
+            },
+            {
+                id: 11,
+                name: "Kevin Lee",
+                avatar: "https://randomuser.me/api/portraits/men/66.jpg",
+                rating: 4,
+                date: "May 18, 2023",
+                title: "Good overall performance",
+                content: "Solid headphones with good performance across the board. The sound quality is impressive, though the noise cancellation could be better for airplane travel. Comfortable for long sessions and the battery life is reliable.",
+                images: [],
+                helpful: 11,
+                verified: true
+            },
+            {
+                id: 12,
+                name: "Sophia Martinez",
+                avatar: "https://randomuser.me/api/portraits/women/29.jpg",
+                rating: 3,
+                date: "May 15, 2023",
+                title: "Average experience",
+                content: "They're okay, but nothing special. The sound quality is decent but not amazing. The build feels a bit flimsy for the price. They get the job done but I expected more based on the reviews.",
+                images: [],
+                helpful: 4,
+                verified: true
+            }
+        ];
+
+        let currentFilter = 'all';
+        let currentSort = 'recent';
+        let currentPage = 1;
+        const reviewsPerPage = 4;
+        let uploadedImages = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeReviews();
+            setupEventListeners();
+        });
+
+        function initializeReviews() {
+            renderReviews();
+            setupPagination();
+        }
+
+        function setupEventListeners() {
+            const ratingStars = document.querySelectorAll('#rating-stars i');
+            const ratingValue = document.getElementById('rating-value');
+            
+            ratingStars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    ratingValue.value = rating;
+                    
+                    ratingStars.forEach(s => {
+                        const starRating = parseInt(s.getAttribute('data-rating'));
+                        if (starRating <= rating) {
+                            s.classList.remove('far');
+                            s.classList.add('fas', 'active');
+                        } else {
+                            s.classList.remove('fas', 'active');
+                            s.classList.add('far');
+                        }
+                    });
+                });
+            });
+
+            const filterOptions = document.querySelectorAll('.filter-option');
+            filterOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    filterOptions.forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.getAttribute('data-filter');
+                    currentPage = 1;
+                    renderReviews();
+                    setupPagination();
+                });
+            });
+
+            const sortSelect = document.getElementById('sort-select');
+            sortSelect.addEventListener('change', function() {
+                currentSort = this.value;
+                renderReviews();
+            });
+
+            const imageUpload = document.getElementById('image-upload');
+            const fileInput = document.getElementById('file-input');
+            
+            imageUpload.addEventListener('click', function() {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener('change', function(e) {
+                handleImageUpload(e.target.files);
+            });
+
+            const reviewForm = document.getElementById('review-form');
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitReview();
+            });
+        }
+
+        function handleImageUpload(files) {
+            if (uploadedImages.length + files.length > 5) {
+                alert('Maximum 5 images allowed');
+                return;
+            }
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (file.size > 4 * 1024 * 1024) {
+                    alert('File size must be less than 4MB');
+                    continue;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImages.push(e.target.result);
+                    renderUploadedImages();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function renderUploadedImages() {
+            const container = document.getElementById('uploaded-images');
+            container.innerHTML = '';
+
+            uploadedImages.forEach((image, index) => {
+                const imageDiv = document.createElement('div');
+                imageDiv.className = 'uploaded-image';
+                imageDiv.innerHTML = `
+                    <img src="${image}" alt="Uploaded image">
+                    <button class="remove-image" onclick="removeImage(${index})">×</button>
+                `;
+                container.appendChild(imageDiv);
+            });
+        }
+
+        function removeImage(index) {
+            uploadedImages.splice(index, 1);
+            renderUploadedImages();
+        }
+
+        function getFilteredAndSortedReviews() {
+            let filteredReviews = [...reviewsData];
+
+            if (currentFilter !== 'all') {
+                if (currentFilter === 'with-photos') {
+                    filteredReviews = filteredReviews.filter(review => review.images.length > 0);
+                } else {
+                    const rating = parseInt(currentFilter);
+                    filteredReviews = filteredReviews.filter(review => Math.floor(review.rating) === rating);
+                }
+            }
+
+            switch (currentSort) {
+                case 'recent':
+                    filteredReviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    break;
+                case 'highest':
+                    filteredReviews.sort((a, b) => b.rating - a.rating);
+                    break;
+                case 'lowest':
+                    filteredReviews.sort((a, b) => a.rating - b.rating);
+                    break;
+                case 'helpful':
+                    filteredReviews.sort((a, b) => b.helpful - a.helpful);
+                    break;
+            }
+
+            return filteredReviews;
+        }
+
+        function renderReviews() {
+            const reviewsList = document.getElementById('reviews-list');
+            const filteredReviews = getFilteredAndSortedReviews();
+            const startIndex = (currentPage - 1) * reviewsPerPage;
+            const endIndex = startIndex + reviewsPerPage;
+            const paginatedReviews = filteredReviews.slice(startIndex, endIndex);
+
+            reviewsList.innerHTML = '';
+
+            if (paginatedReviews.length === 0) {
+                reviewsList.innerHTML = '<div class="no-reviews">No reviews found matching your criteria</div>';
+                return;
+            }
+
+            paginatedReviews.forEach(review => {
+                const reviewItem = document.createElement('div');
+                reviewItem.className = 'review-item active';
+                reviewItem.innerHTML = `
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <img src="${review.avatar}" alt="${review.name}">
+                            </div>
+                            <div class="reviewer-details">
+                                <h3>${review.name}</h3>
+                                ${review.verified ? '<div class="review-verified"><i class="fas fa-check-circle"></i> Verified Purchase</div>' : ''}
+                            </div>
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-date">${review.date}</div>
+                            <div class="review-rating">
+                                ${getStarRating(review.rating)}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <strong>${review.title}</strong>
+                        <p>${review.content}</p>
+                    </div>
+                    ${review.images.length > 0 ? `
+                    <div class="review-images">
+                        ${review.images.map(img => `
+                            <div class="review-image">
+                                <img src="${img}" alt="Review image">
+                            </div>
+                        `).join('')}
+                    </div>
+                    ` : ''}
+                    <div class="review-helpful">
+                        <button class="helpful-btn" onclick="markHelpful(${review.id})">
+                            <i class="fas fa-thumbs-up"></i> Helpful (${review.helpful})
+                        </button>
+                        <span class="helpful-count">${review.helpful} people found this helpful</span>
+                    </div>
+                `;
+                reviewsList.appendChild(reviewItem);
+            });
+
+            document.getElementById('total-reviews-count').textContent = filteredReviews.length;
+        }
+
+        function getStarRating(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+
+            for (let i = 1; i <= 5; i++) {
+                if (i <= fullStars) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else if (i === fullStars + 1 && hasHalfStar) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            return stars;
+        }
+
+        function setupPagination() {
+            const pagination = document.getElementById('pagination');
+            const filteredReviews = getFilteredAndSortedReviews();
+            const totalPages = Math.ceil(filteredReviews.length / reviewsPerPage);
+
+            pagination.innerHTML = '';
+
+            if (totalPages <= 1) return;
+
+            if (currentPage > 1) {
+                pagination.innerHTML += `<a href="#" class="page-link" onclick="changePage(${currentPage - 1})"><i class="fas fa-chevron-left"></i></a>`;
+            }
+
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                    pagination.innerHTML += `<a href="#" class="page-link ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</a>`;
+                } else if (i === currentPage - 2 || i === currentPage + 2) {
+                    pagination.innerHTML += `<span class="page-link">...</span>`;
+                }
+            }
+
+            if (currentPage < totalPages) {
+                pagination.innerHTML += `<a href="#" class="page-link" onclick="changePage(${currentPage + 1})"><i class="fas fa-chevron-right"></i></a>`;
+            }
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            renderReviews();
+            setupPagination();
+            window.scrollTo({ top: document.getElementById('reviews-list').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        function markHelpful(reviewId) {
+            const review = reviewsData.find(r => r.id === reviewId);
+            if (review && !review.helpfulClicked) {
+                review.helpful++;
+                review.helpfulClicked = true;
+                renderReviews();
+            }
+        }
+
+        function submitReview() {
+            const rating = parseInt(document.getElementById('rating-value').value);
+            const title = document.getElementById('review-title').value;
+            const name = document.getElementById('reviewer-name').value;
+            const email = document.getElementById('reviewer-email').value;
+            const content = document.getElementById('review-content').value;
+
+            if (rating === 0) {
+                alert('Please select a rating');
+                return;
+            }
+
+            const newReview = {
+                id: reviewsData.length + 1,
+                name: name,
+                avatar: `https://randomuser.me/api/portraits/${Math.random() > 0.5 ? 'men' : 'women'}/${Math.floor(Math.random() * 70)}.jpg`,
+                rating: rating,
+                date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+                title: title,
+                content: content,
+                images: [...uploadedImages],
+                helpful: 0,
+                verified: true
+            };
+
+            reviewsData.unshift(newReview);
+            
+            document.getElementById('review-form').reset();
+            uploadedImages = [];
+            renderUploadedImages();
+            
+            const ratingStars = document.querySelectorAll('#rating-stars i');
+            ratingStars.forEach(star => {
+                star.classList.remove('fas', 'active');
+                star.classList.add('far');
+            });
+            document.getElementById('rating-value').value = 0;
+
+            currentFilter = 'all';
+            currentSort = 'recent';
+            currentPage = 1;
+            
+            document.querySelectorAll('.filter-option').forEach(opt => {
+                opt.classList.remove('active');
+                if (opt.getAttribute('data-filter') === 'all') {
+                    opt.classList.add('active');
+                }
+            });
+            
+            document.getElementById('sort-select').value = 'recent';
+            
+            renderReviews();
+            setupPagination();
+            
+            alert('Thank you for your review! It has been submitted successfully.');
+        }
+    </script>
+</body>
+</html>
+
