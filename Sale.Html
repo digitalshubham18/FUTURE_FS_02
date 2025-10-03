@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #ff5722;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #e64a19;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #ff5722;
+            color: #ff5722;
+        }
+        
+        .btn-outline:hover {
+            background: #ff5722;
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #ff5722;
+            margin: 10px auto;
+        }
+        
+       
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ff5722;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #333;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: #ff5722;
+        }
+        
+        .header-icons a {
+            margin-left: 20px;
+            color: #333;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .header-icons a:hover {
+            color: #ff5722;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ff5722;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+       
+        .sale-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+        
+        .sale-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .sale-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .sale-hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .sale-tag {
+            display: inline-block;
+            background: #ff5722;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .countdown-item {
+            margin: 0 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 80px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .countdown-number {
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .countdown-label {
+            font-size: 14px;
+        }
+        
+        
+        .sale-categories {
+            padding: 80px 0;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            position: relative;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .category-overlay h3 {
+            margin-bottom: 10px;
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ff5722;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        
+        .featured-sale {
+            padding: 80px 0;
+            background: #fff8f6;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff5722;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            color: #ff5722;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 16px;
+            margin-right: 8px;
+        }
+        
+        .discount-percent {
+            background: #ffebee;
+            color: #ff5722;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .product-actions .btn {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        
+        .flash-sale {
+            padding: 80px 0;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            background: rgba(255,255,255,0.2);
+            height: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: #ff5722;
+            width: 65%;
+            border-radius: 5px;
+        }
+        
+        .sold-items {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+       
+        .special-offers {
+            padding: 80px 0;
+        }
+        
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .offer-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .offer-img {
+            height: 200px;
+        }
+        
+        .offer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .offer-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .offer-content h3 {
+            margin-bottom: 10px;
+        }
+        
+        .offer-content .btn {
+            margin-top: auto;
+            align-self: flex-start;
+        }
+       
+        .newsletter {
+            padding: 80px 0;
+            background: #fff8f6;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 20px;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #666;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+        }
+        
+        .newsletter-form button {
+            background: #ff5722;
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        
+        footer {
+            background: #222;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: #ff5722;
+            margin-top: 10px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #ff5722;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #ff5722;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+        }
+        
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .checkout-steps:before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #eee;
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .step.active .step-number {
+            background: #ff5722;
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .step.active .step-label {
+            color: #ff5722;
+            font-weight: 600;
+        }
+        
+        .checkout-form {
+            display: none;
+        }
+        
+        .checkout-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .checkout-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .order-summary {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 18px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #ddd;
+        }
+        
+        .confirmation {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .confirmation i {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation h2 {
+            margin-bottom: 15px;
+        }
+        
+       
+        @media (max-width: 992px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .header-icons {
+                margin-top: 20px;
+            }
+            
+            .sale-hero h1 {
+                font-size: 36px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .countdown-item {
+                margin: 0 5px;
+                min-width: 60px;
+                padding: 10px;
+            }
+            
+            .countdown-number {
+                font-size: 24px;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-form button {
+                border-radius: 30px;
+                padding: 15px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .checkout-steps {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            
+            .checkout-steps:before {
+                display: none;
+            }
+            
+            .step {
+                flex-direction: row;
+                gap: 15px;
+            }
+            
+            .step-number {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+ 
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Cart<span>ify</span></a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Women.Html">Women</a></li>
+                        <li><a href="Mens.Html">Men</a></li>
+                        <li><a href="Accessories.Html">Accessories</a></li>
+                        <li><a href="Sale.Html" class="active">Sale</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i><span class="cart-count">3</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+   
+    <section class="sale-hero">
+        <div class="container">
+            <div class="sale-hero-content">
+                <div class="sale-tag">UP TO 70% OFF</div>
+                <h1>MEGA SALE</h1>
+                <p>Huge discounts on thousands of styles. Limited time only!</p>
+                
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number">2</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number">18</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number">45</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number">30</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+                
+                <a href="#sale-products" class="btn">Shop Sale Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="sale-categories">
+        <div class="container">
+            <h2 class="section-title">Sale Categories</h2>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="discount-badge">UP TO 60% OFF</div>
+                    <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Women's Sale">
+                    <div class="category-overlay">
+                        <h3>Women's Fashion</h3>
+                        <a href="Women.Html" class="btn" onclick="showCategoryProducts('women')">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="discount-badge">UP TO 50% OFF</div>
+                    <img src="https://i.ytimg.com/vi/aWXPwLXyBcg/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDNAg47Zw-2s6M-X0daQ-aZcfX-Qg" alt="Men's Sale">
+                    <div class="category-overlay">
+                        <h3>Men's Fashion</h3>
+                        <a href="Mens.Html" class="btn" onclick="showCategoryProducts('men')">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="discount-badge">UP TO 40% OFF</div>
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Accessories Sale">
+                    <div class="category-overlay">
+                        <h3>Accessories</h3>
+                        <a href="Accessories.Html" class="btn" onclick="showCategoryProducts('accessories')">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="discount-badge">UP TO 55% OFF</div>
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Shoes Sale">
+                    <div class="category-overlay">
+                        <h3>Shoes</h3>
+                        <a href="Footwear.Html" class="btn" onclick="showCategoryProducts('shoes')">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="featured-sale" id="sale-products">
+        <div class="container">
+            <h2 class="section-title">Featured Sale Items</h2>
+            
+            <div class="product-grid">
+                
+                <div class="product-card">
+                    <div class="product-badge">SALE</div>
+                    <div class="product-img">
+                        <img src="https://d2x02matzb08hy.cloudfront.net/img/clothing/hero_image/781218657/10_b__1_.jpg" alt="Summer Dress">
+                    </div>
+                    <div class="product-info">
+                        <h3>Floral Summer Dress</h3>
+                        <div class="product-price">
+                            <span class="old-price">$59.99</span> $29.99
+                            <span class="discount-percent">50% OFF</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn" onclick="addToCart('Floral Summer Dress', 29.99, 'https://d2x02matzb08hy.cloudfront.net/img/clothing/hero_image/781218657/10_b__1_.jpg')">Add to Cart</a>
+                            <a href="#" class="btn btn-outline" onclick="buyNow('Floral Summer Dress', 29.99, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="product-card">
+                    <div class="product-badge">SALE</div>
+                    <div class="product-img">
+                        <img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/20446716/2023/10/9/e90d4a93-c5c3-4716-a510-1427272618fb1696829329842-Miss-Chase-Women-Black-Skinny-Fit-High-Rise-Jeans-3691696829-1.jpg" alt="Jeans">
+                    </div>
+                    <div class="product-info">
+                        <h3>Slim Fit Jeans</h3>
+                        <div class="product-price">
+                            <span class="old-price">$69.99</span> $34.99
+                            <span class="discount-percent">50% OFF</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn" onclick="addToCart('Slim Fit Jeans', 34.99, 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">Add to Cart</a>
+                            <a href="#" class="btn btn-outline" onclick="buyNow('Slim Fit Jeans', 34.99, 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="product-card">
+                    <div class="product-badge">SALE</div>
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="High Heels">
+                    </div>
+                    <div class="product-info">
+                        <h3>Elegant High Heels</h3>
+                        <div class="product-price">
+                            <span class="old-price">$89.99</span> $44.99
+                            <span class="discount-percent">50% OFF</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn" onclick="addToCart('Elegant High Heels', 44.99, 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">Add to Cart</a>
+                            <a href="#" class="btn btn-outline" onclick="buyNow('Elegant High Heels', 44.99, 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="product-card">
+                    <div class="product-badge">SALE</div>
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Handbag">
+                    </div>
+                    <div class="product-info">
+                        <h3>Designer Handbag</h3>
+                        <div class="product-price">
+                            <span class="old-price">$99.99</span> $59.99
+                            <span class="discount-percent">40% OFF</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn" onclick="addToCart('Designer Handbag', 59.99, 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">Add to Cart</a>
+                            <a href="#" class="btn btn-outline" onclick="buyNow('Designer Handbag', 59.99, 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: center; margin-top: 50px;">
+                <a href="#" class="btn" onclick="showAllSaleItems()">View All Sale Items</a>
+            </div>
+        </div>
+    </section>
+
+  
+    <section class="flash-sale">
+        <div class="container">
+            <h2>FLASH SALE</h2>
+            <p>Ends in: <span style="font-weight: 600;">04:32:15</span></p>
+            
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            
+            <div class="sold-items">
+                <span>65% sold</span>
+                <span>Limited stock</span>
+            </div>
+            
+            <a href="#" class="btn" onclick="showFlashSaleItems()">Shop Flash Sale</a>
+        </div>
+    </section>
+
+    <section class="special-offers">
+        <div class="container">
+            <h2 class="section-title">Special Offers</h2>
+            
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-img">
+                        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Buy 1 Get 1">
+                    </div>
+                    <div class="offer-content">
+                        <h3>Buy 1 Get 1 Free</h3>
+                        <p>Select t-shirts and tops. Limited time offer.</p>
+                        <a href="#" class="btn" onclick="showSpecialOffer('bogo')">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-img">
+                        <img src="https://images.unsplash.com/photo-1566206091558-7f218b696731?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Free Shipping">
+                    </div>
+                    <div class="offer-content">
+                        <h3>Free Shipping</h3>
+                        <p>On all orders over $50. No code needed.</p>
+                        <a href="#" class="btn" onclick="showSpecialOffer('freeshipping')">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-img">
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Extra Discount">
+                    </div>
+                    <div class="offer-content">
+                        <h3>Extra 15% Off</h3>
+                        <p>Use code SAVE15 at checkout.</p>
+                        <a href="#" class="btn" onclick="showSpecialOffer('extra15')">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="newsletter">
+        <div class="container">
+            <h2>Don't Miss Out on Future Sales</h2>
+            <p>Subscribe to our newsletter to be the first to know about upcoming sales and exclusive offers</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+   
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify</h3>
+                    <p>Your destination for amazing deals and fashion.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Sale.Html">Sale</a></li>
+                        <li><a href="New.Html">New Arrivals</a></li>
+                        <li><a href="Trend.Html">Trending</a></li>
+                        <li><a href="categories.Html">Categories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="Contact Us.Html">Contact Us</a></li>
+                        <li><a href="FAQ.Html">FAQs</a></li>
+                        <li><a href="Shipping.Html">Shipping & Returns</a></li>
+                        <li><a href="Track.Html">Track Order</a></li>
+                        <li><a href="Size.Html">Size Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                    <p>Connect for exclusive sale alerts</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2015 Cartify. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
+            
+            <div class="checkout-steps">
+                <div class="step active" id="step1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Shipping</div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Payment</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+            
+            <div id="shippingForm" class="checkout-form active">
+                <h2>Shipping Information</h2>
+                <form id="shippingDetails">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" id="state" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zipCode">ZIP Code</label>
+                            <input type="text" id="zipCode" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country" required>
+                            <option value="">Select Country</option>
+                            <option value="US">United States</option>
+                            <option value="CA">Canada</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="AU">Australia</option>
+                        </select>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <h3>Order Summary</h3>
+                        <div id="orderItems"></div>
+                        <div class="order-total">
+                            <span>Total:</span>
+                            <span id="orderTotal">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-actions">
+                        <button type="button" class="btn btn-outline" onclick="closeCheckoutModal()">Cancel</button>
+                        <button type="button" class="btn" onclick="goToPayment()">Continue to Payment</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div id="paymentForm" class="checkout-form">
+                <h2>Payment Information</h2>
+                <form id="paymentDetails">
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cardName">Name on Card</label>
+                        <input type="text" id="cardName" required>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <h3>Order Summary</h3>
+                        <div id="paymentOrderItems"></div>
+                        <div class="order-total">
+                            <span>Total:</span>
+                            <span id="paymentOrderTotal">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-actions">
+                        <button type="button" class="btn btn-outline" onclick="backToShipping()">Back</button>
+                        <button type="button" class="btn" onclick="processPayment()">Complete Purchase</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div id="confirmation" class="checkout-form">
+                <div class="confirmation">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Order Confirmed!</h2>
+                    <p>Thank you for your purchase. Your order has been successfully placed.</p>
+                    <p>Order ID: <strong id="orderId">SHOP-2023-001</strong></p>
+                    <p>You will receive a confirmation email shortly.</p>
+                    <div class="checkout-actions">
+                        <button type="button" class="btn" onclick="closeCheckoutModal()">Continue Shopping</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        let currentOrder = [];
+        let currentStep = 1;
+        
+        
+        function updateCountdown() {
+            const countdownItems = document.querySelectorAll('.countdown-item');
+            
+            const countDownDate = new Date();
+            countDownDate.setDate(countDownDate.getDate() + 2);
+            
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            countdownItems[0].querySelector('.countdown-number').textContent = days;
+            countdownItems[1].querySelector('.countdown-number').textContent = hours;
+            countdownItems[2].querySelector('.countdown-number').textContent = minutes;
+            countdownItems[3].querySelector('.countdown-number').textContent = seconds;
+        }
+        
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        
+        function updateFlashSale() {
+            const flashSaleElement = document.querySelector('.flash-sale p span');
+          
+            let time = flashSaleElement.textContent;
+            let parts = time.split(':');
+            let hours = parseInt(parts[0]);
+            let minutes = parseInt(parts[1]);
+            let seconds = parseInt(parts[2]);
+            
+            seconds--;
+            
+            if (seconds < 0) {
+                seconds = 59;
+                minutes--;
+                
+                if (minutes < 0) {
+                    minutes = 59;
+                    hours--;
+                    
+                    if (hours < 0) {
+                        hours = 0;
+                        minutes = 0;
+                        seconds = 0;
+                    }
+                }
+            }
+            
+            flashSaleElement.textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        
+        setInterval(updateFlashSale, 1000);
+        
+        
+        const addToCartBtns = document.querySelectorAll('.product-actions .btn:first-child');
+        const cartCount = document.querySelector('.cart-count');
+        
+        addToCartBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                let count = parseInt(cartCount.textContent);
+                cartCount.textContent = count + 1;
+                
+                
+                const originalText = this.textContent;
+                this.textContent = 'Added!';
+                this.style.background = '#4CAF50';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = '';
+                }, 1500);
+            });
+        });
+        
+        
+        function showCategoryProducts(category) {
+            alert(`Showing ${category} products! In a real application, this would filter the products by category.`);
+           
+        }
+        
+        function buyNow(productName, price, image) {
+           
+            currentOrder = [];
+            
+            currentOrder.push({
+                name: productName,
+                price: price,
+                image: image,
+                quantity: 1
+            });
+            
+            openCheckoutModal();
+        }
+        
+        
+        function addToCart(productName, price, image) {
+            let count = parseInt(cartCount.textContent);
+            cartCount.textContent = count + 1;
+            
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = 'Added!';
+            btn.style.background = '#4CAF50';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+            }, 1500);
+        }
+        
+        
+        function showAllSaleItems() {
+            alert('Showing all sale items! In a real application, this would navigate to a page with all sale products.');
+        }
+        
+       
+        function showFlashSaleItems() {
+            alert('Showing flash sale items! In a real application, this would filter products with flash sale discounts.');
+        }
+        
+        
+        function showSpecialOffer(offer) {
+            alert(`Showing ${offer} special offer! In a real application, this would apply the offer code or filter relevant products.`);
+        }
+        
+        
+        function openCheckoutModal() {
+            document.getElementById('checkoutModal').style.display = 'block';
+            updateOrderSummary();
+        }
+        
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').style.display = 'none';
+            resetCheckout();
+        }
+        
+        function resetCheckout() {
+            currentStep = 1;
+            updateCheckoutSteps();
+            document.getElementById('shippingForm').classList.add('active');
+            document.getElementById('paymentForm').classList.remove('active');
+            document.getElementById('confirmation').classList.remove('active');
+        }
+        
+        function updateCheckoutSteps() {
+            
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.remove('active');
+            
+            document.getElementById('step' + currentStep).classList.add('active');
+        }
+        
+        function updateOrderSummary() {
+            const orderItems = document.getElementById('orderItems');
+            const paymentOrderItems = document.getElementById('paymentOrderItems');
+            let total = 0;
+            
+            
+            orderItems.innerHTML = '';
+            paymentOrderItems.innerHTML = '';
+            
+           
+            currentOrder.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item';
+                itemElement.innerHTML = `
+                    <span>${item.name}</span>
+                    <span>$${item.price.toFixed(2)}</span>
+                `;
+                
+                orderItems.appendChild(itemElement);
+                paymentOrderItems.appendChild(itemElement.cloneNode(true));
+                
+                total += item.price;
+            });
+            
+            
+            document.getElementById('orderTotal').textContent = '$' + total.toFixed(2);
+            document.getElementById('paymentOrderTotal').textContent = '$' + total.toFixed(2);
+        }
+        
+        function goToPayment() {
+            
+            const shippingForm = document.getElementById('shippingDetails');
+            if (!shippingForm.checkValidity()) {
+                shippingForm.reportValidity();
+                return;
+            }
+            
+            currentStep = 2;
+            updateCheckoutSteps();
+            document.getElementById('shippingForm').classList.remove('active');
+            document.getElementById('paymentForm').classList.add('active');
+        }
+        
+        function backToShipping() {
+           
+            currentStep = 1;
+            updateCheckoutSteps();
+            document.getElementById('paymentForm').classList.remove('active');
+            document.getElementById('shippingForm').classList.add('active');
+        }
+        
+        function processPayment() {
+         
+            const paymentForm = document.getElementById('paymentDetails');
+            if (!paymentForm.checkValidity()) {
+                paymentForm.reportValidity();
+                return;
+            }
+            
+            
+            const orderId = 'SHOP-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('orderId').textContent = orderId;
+            
+            
+            currentStep = 3;
+            updateCheckoutSteps();
+            document.getElementById('paymentForm').classList.remove('active');
+            document.getElementById('confirmation').classList.add('active');
+            
+           
+            const cartCountElement = document.querySelector('.cart-count');
+            let count = parseInt(cartCountElement.textContent);
+            count = Math.max(0, count - currentOrder.length);
+            cartCountElement.textContent = count;
+        }
+    </script>
+</body>
+</html>
+
