@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start a Return - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #4a6cf7;
+        }
+        
+        .nav-icon {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-icon a {
+            margin-left: 20px;
+            color: #333;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .nav-icon a:hover {
+            color: #4a6cf7;
+        }
+        
+        
+        .hero {
+            background: linear-gradient(to right, #4a6cf7, #6a8eff);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        
+        .breadcrumb {
+            padding: 15px 0;
+            background-color: #f0f5ff;
+        }
+        
+        .breadcrumb-content {
+            display: flex;
+            list-style: none;
+        }
+        
+        .breadcrumb-content li {
+            margin-right: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .breadcrumb-content li:after {
+            content: '/';
+            margin-left: 10px;
+            color: #999;
+        }
+        
+        .breadcrumb-content li:last-child:after {
+            content: '';
+        }
+        
+        .breadcrumb-content a {
+            color: #4a6cf7;
+            text-decoration: none;
+        }
+        
+       
+        .main-content {
+            display: flex;
+            gap: 30px;
+            padding: 40px 0;
+        }
+        
+        .sidebar {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f5ff;
+            color: #4a6cf7;
+        }
+        
+        .help-links {
+            list-style: none;
+        }
+        
+        .help-links li {
+            margin-bottom: 15px;
+        }
+        
+        .help-links a {
+            color: #555;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .help-links a:hover {
+            color: #4a6cf7;
+        }
+        
+        .help-links i {
+            margin-right: 10px;
+            color: #4a6cf7;
+        }
+        
+        .content {
+            flex: 3;
+        }
+        
+        .order-lookup {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .order-lookup h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #4a6cf7;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #3a5cd8;
+        }
+        
+        .recent-orders {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .order-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .order-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .order-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .order-details {
+            flex: 1;
+        }
+        
+        .order-details h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .order-info {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .order-info span {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #f0f5ff;
+            border-radius: 4px;
+            color: #4a6cf7;
+        }
+        
+        .return-btn {
+            padding: 8px 15px;
+            background: #f8f9fa;
+            color: #4a6cf7;
+            border: 1px solid #4a6cf7;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .return-btn:hover {
+            background: #4a6cf7;
+            color: white;
+        }
+        
+       
+        .return-form {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 30px;
+        }
+        
+        .form-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .product-thumb {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+        
+        .product-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .form-header h3 {
+            font-size: 20px;
+            color: #333;
+        }
+        
+        .return-options {
+            margin-bottom: 25px;
+        }
+        
+        .option-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .radio-group {
+            margin-bottom: 15px;
+        }
+        
+        .radio-group input {
+            margin-right: 10px;
+        }
+        
+        .radio-group label {
+            color: #555;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 100px;
+            margin-bottom: 20px;
+        }
+        
+        .submit-section {
+            text-align: right;
+            margin-top: 25px;
+        }
+        
+        
+        footer {
+            background-color: #1f2b48;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: #4a6cf7;
+        }
+        
+        .footer-column p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #2d3e5b;
+            color: #ccc;
+        }
+        
+        @media (max-width: 900px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .order-card {
+                flex-direction: column;
+            }
+            
+            .order-image {
+                width: 100%;
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 15px;
+            }
+            
+            .nav-icon {
+                margin-top: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-shopping-cart"></i>
+                    Cartify
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Product.Html">Products</a></li>
+                        <li><a href="categories.Html">Categories</a></li>
+                        <li><a href="Deals&Offer.Html">Deals</a></li>
+                        <li><a href="About us.Html">About Us</a></li>
+                        <li><a href="Return.Html" style="color: #4a6cf7;">Returns</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-icon">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-content">
+                <li><a href="Home.Html">Home</a></li>
+                <li><a href="Customerservice.Html">Customer Service</a></li>
+                <li>Start a Return</li>
+            </ul>
+        </div>
+    </div>
+
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Start a Return</h1>
+            <p>Initiate a return for your Cartify purchase quickly and easily</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="main-content">
+           
+            <div class="sidebar">
+                <h3>Return Help</h3>
+                <ul class="help-links">
+                    <li><a href="Returns Policy.Html"><i class="fas fa-file-alt"></i> Return Policy</a></li>
+                    <li><a href="Shipping.Html"><i class="fas fa-shipping-fast"></i> Shipping Information</a></li>
+                    <li><a href="FAQ.Html"><i class="fas fa-question-circle"></i> Return FAQs</a></li>
+                    <li><a href="Contact Us.Html"><i class="fas fa-phone-alt"></i> Contact Support</a></li>
+                    <li><a href="Return&Exchange.Html"><i class="fas fa-exchange-alt"></i> Exchange Items</a></li>
+                </ul>
+            </div>
+
+          
+            <div class="content">
+                
+                <div class="order-lookup">
+                    <h2>Find Your Order</h2>
+                    <form id="orderLookupForm">
+                        <div class="form-group">
+                            <label for="orderNumber">Order Number</label>
+                            <input type="text" id="orderNumber" placeholder="e.g., SK123456789">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Your email address">
+                        </div>
+                        <button type="button" class="btn" onclick="findOrder()">Find Order</button>
+                    </form>
+                </div>
+
+                
+                <div class="recent-orders" id="recentOrders">
+                    <h2 class="section-title">Your Recent Orders</h2>
+                    
+                    <div class="order-card">
+                        <div class="order-image">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80" alt="Wireless Headphones">
+                        </div>
+                        <div class="order-details">
+                            <h3>Wireless Bluetooth Headphones</h3>
+                            <div class="order-info">
+                                <div>Order #: <span>SK789456123</span></div>
+                                <div>Placed on: <span>Oct 15, 2023</span></div>
+                                <div>Qty: <span>1</span></div>
+                            </div>
+                            <p>Delivered on Oct 18, 2023</p>
+                        </div>
+                        <button class="return-btn" onclick="startReturn('SK789456123', 'Wireless Bluetooth Headphones')">Return Item</button>
+                    </div>
+                    
+                    <div class="order-card">
+                        <div class="order-image">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80" alt="Smart Watch">
+                        </div>
+                        <div class="order-details">
+                            <h3>Smart Watch Series 5</h3>
+                            <div class="order-info">
+                                <div>Order #: <span>SK456123789</span></div>
+                                <div>Placed on: <span>Oct 10, 2023</span></div>
+                                <div>Qty: <span>1</span></div>
+                            </div>
+                            <p>Delivered on Oct 12, 2023</p>
+                        </div>
+                        <button class="return-btn" onclick="startReturn('SK456123789', 'Smart Watch Series 5')">Return Item</button>
+                    </div>
+                </div>
+
+                
+                <div class="return-form" id="returnForm" style="display: none;">
+                    <div class="form-header">
+                        <div class="product-thumb">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80" alt="Product Image">
+                        </div>
+                        <h3 id="returnProductName">Wireless Bluetooth Headphones</h3>
+                    </div>
+                    
+                    <div class="return-options">
+                        <h3 class="option-title">Why are you returning this item?</h3>
+                        <div class="radio-group">
+                            <input type="radio" id="reason1" name="returnReason" value="wrong-item">
+                            <label for="reason1">Wrong item was sent</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="reason2" name="returnReason" value="defective">
+                            <label for="reason2">Item is defective or damaged</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="reason3" name="returnReason" value="not-as-described">
+                            <label for="reason3">Item is not as described</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="reason4" name="returnReason" value="no-longer-needed">
+                            <label for="reason4">No longer needed</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="reason5" name="returnReason" value="better-price">
+                            <label for="reason5">Found better price elsewhere</label>
+                        </div>
+                    </div>
+                    
+                    <div class="return-options">
+                        <h3 class="option-title">What would you like to do?</h3>
+                        <div class="radio-group">
+                            <input type="radio" id="action1" name="returnAction" value="refund">
+                            <label for="action1">Refund to original payment method</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="action2" name="returnAction" value="exchange">
+                            <label for="action2">Exchange for a different item</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="action3" name="returnAction" value="store-credit">
+                            <label for="action3">Cartify store credit</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="returnDetails">Additional details (optional)</label>
+                        <textarea id="returnDetails" placeholder="Please provide any additional information about your return..."></textarea>
+                    </div>
+                    
+                    <div class="submit-section">
+                        <button class="btn" onclick="submitReturn()">Submit Return Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify</h3>
+                    <p>Your one-stop destination for all your shopping needs. Quality products, competitive prices, and exceptional service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Product.Html">Products</a></li>
+                        <li><a href="categories.Html">Categories</a></li>
+                        <li><a href="Deals&Offer.Html">Deals & Offers</a></li>
+                        <li><a href="About us.Html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="Contact Us.Html">Contact Us</a></li>
+                        <li><a href="FAQ.Html">FAQs</a></li>
+                        <li><a href="Return&Refund.Html">Returns & Refunds</a></li>
+                        <li><a href="Shipping.Html">Shipping Policy</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Commerce St, City, Country</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> support@Cartify.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2015 Cartify. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+       
+        function findOrder() {
+            const orderNumber = document.getElementById('orderNumber').value;
+            const email = document.getElementById('email').value;
+            
+            if (orderNumber && email) {
+                
+                alert('Order found! Showing your recent orders.');
+                document.getElementById('recentOrders').style.display = 'block';
+            } else {
+                alert('Please enter both order number and email address.');
+            }
+        }
+        
+        
+        function startReturn(orderId, productName) {
+            document.getElementById('returnProductName').textContent = productName;
+            document.getElementById('returnForm').style.display = 'block';
+            
+            
+            document.getElementById('returnForm').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        
+        function submitReturn() {
+            const reason = document.querySelector('input[name="returnReason"]:checked');
+            const action = document.querySelector('input[name="returnAction"]:checked');
+            
+            if (!reason || !action) {
+                alert('Please select a return reason and preferred action.');
+                return;
+            }
+            
+           
+            alert('Return request submitted successfully! You will receive a confirmation email with return instructions.');
+            
+          
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.checked = false;
+            });
+            document.getElementById('returnDetails').value = '';
+            document.getElementById('returnForm').style.display = 'none';
+        }
+        
+        
+        window.onload = function() {
+            document.getElementById('recentOrders').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
