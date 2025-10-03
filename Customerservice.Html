@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Service | Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        
+        header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        
+       
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+       
+        .breadcrumb {
+            padding: 15px 0;
+            background-color: #e9ecef;
+        }
+        
+        .breadcrumb-content {
+            display: flex;
+            list-style: none;
+        }
+        
+        .breadcrumb-content li {
+            margin-right: 10px;
+        }
+        
+        .breadcrumb-content li:after {
+            content: ">";
+            margin-left: 10px;
+            color: #6c757d;
+        }
+        
+        .breadcrumb-content li:last-child:after {
+            content: "";
+        }
+        
+        .breadcrumb-content a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .breadcrumb-content span {
+            color: #6c757d;
+        }
+        
+        
+        .main-content {
+            padding: 60px 0;
+        }
+        
+        .support-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .support-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .support-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .support-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #3498db;
+            color: #3498db;
+        }
+        
+        .btn-outline:hover {
+            background: #3498db;
+            color: white;
+        }
+       
+        .faq {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+        
+        .faq h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            color: #6c757d;
+            padding-top: 10px;
+            display: none;
+        }
+        
+        
+        .contact {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+        
+        .contact h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        
+        .service-status {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+        
+        .service-status h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .status-name {
+            font-weight: 500;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .status-up {
+            background: #2ecc71;
+        }
+        
+        .status-down {
+            background: #e74c3c;
+        }
+        
+        .status-warning {
+            background: #f39c12;
+        }
+        
+       
+        .chat-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chat-container {
+            background: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ai-indicator {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .ai-indicator .pulse {
+            width: 8px;
+            height: 8px;
+            background-color: #2ecc71;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+        
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            position: relative;
+        }
+        
+        .bot-message {
+            background: #f1f1f1;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background: #3498db;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: #f1f1f1;
+            border-radius: 18px;
+            align-self: flex-start;
+            max-width: 80px;
+            margin-bottom: 10px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #999;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+        
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .quick-reply {
+            background: #e9ecef;
+            border: none;
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quick-reply:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        .chat-input-container {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+        
+        .send-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .send-btn:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+        
+     
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #34495e;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: #3498db;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+       
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .faq, .contact, .service-status {
+                padding: 20px;
+            }
+            
+            .chat-container {
+                width: 95%;
+                height: 80vh;
+            }
+        }
+    </style>
+</head>
+<body>
+  
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cartify</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Product.Html">Products</a></li>
+                        <li><a href="support.Html">Support</a></li>
+                        <li><a href="Contact Us.Html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-content">
+                <li><a href="#">Home</a></li>
+                <li><a href="support.Html">Support</a></li>
+                <li><span>Customer Service</span></li>
+            </ul>
+        </div>
+    </div>
+
+   
+    <section class="hero">
+        <div class="container">
+            <h1>Cartify Customer Service</h1>
+            <p>We're here to help you with any questions or issues you may have with your Cartify products and services.</p>
+        </div>
+    </section>
+
+    
+    <div class="container main-content">
+      
+        <div class="support-options">
+            <div class="support-card">
+                <div class="support-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3>Phone Support</h3>
+                <p>Speak directly with our customer support agents</p>
+                <p><strong>123-456</strong></p>
+                <p>Mon-Fri: 8am-10pm EST<br>Sat-Sun: 9am-8pm EST</p>
+                <a href="tel:7783822708" class="btn">Call Now</a>
+            </div>
+            
+            <div class="support-card">
+                <div class="support-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3>Live Chat</h3>
+                <p>Chat with our AI assistant in real-time</p>
+                <p>Available 24/7 for quick assistance</p>
+                <p>Powered by advanced AI technology</p>
+                <button class="btn" id="start-chat">Start Chat</button>
+            </div>
+            
+            <div class="support-card">
+                <div class="support-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email Support</h3>
+                <p>Send us a message and we'll respond within 24 hours</p>
+                <p>For non-urgent inquiries and detailed issues</p>
+                <a href="mailto:shubraj2323@gmail.com?subject=Cartify%20Support%20Request" class="btn">Send Email</a>
+            </div>
+        </div>
+
+        
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I track my order?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You can track your order by logging into your Cartify account and visiting the "Order History" section. Alternatively, you can use the tracking link provided in your shipping confirmation email. If you're having trouble locating your order, please contact our support team.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is your return policy?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer a 30-day return policy for most items in original condition. Some products may have different return timelines or conditions (e.g., final sale items). To initiate a return, please visit the Returns Center in your account or contact our support team for assistance.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I reset my password?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>To reset your password, click on the "Forgot Password" link on the login page. Enter your email address, and we'll send you a link to create a new password. If you don't receive the email within a few minutes, please check your spam folder or contact our support team.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer international shipping?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we ship to over 50 countries worldwide. Shipping costs and delivery times vary by location. You can see the shipping options and costs during checkout before completing your purchase. Some restrictions may apply to certain products or destinations.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How can I update my payment method?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You can update your payment method by logging into your account, going to "Payment Settings," and selecting "Add Payment Method." You can also set a default payment method for future purchases. If you encounter any issues, our support team can assist you.</p>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="contact" id="contact">
+            <h2>Contact Us</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Your email address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="order">Order Issue</option>
+                        <option value="return">Return Request</option>
+                        <option value="product">Product Question</option>
+                        <option value="shipping">Shipping Inquiry</option>
+                        <option value="account">Account Problem</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="order">Order Number (if applicable)</label>
+                    <input type="text" id="order" placeholder="Order number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="Please describe your issue or question in detail" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Submit Request</button>
+            </form>
+        </div>
+
+        
+        <div class="service-status">
+            <h2>Service Status</h2>
+            
+            <div class="status-item">
+                <div class="status-name">
+                    <span class="status-indicator status-up"></span>
+                    Website & Mobile App
+                </div>
+                <div class="status-value">Operational</div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-name">
+                    <span class="status-indicator status-up"></span>
+                    Order Processing
+                </div>
+                <div class="status-value">Operational</div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-name">
+                    <span class="status-indicator status-warning"></span>
+                    Shipping Services
+                </div>
+                <div class="status-value">Minor Delays</div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-name">
+                    <span class="status-indicator status-up"></span>
+                    Payment Processing
+                </div>
+                <div class="status-value">Operational</div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-name">
+                    <span class="status-indicator status-up"></span>
+                    Customer Support
+                </div>
+                <div class="status-value">Operational</div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="chat-modal" id="chat-modal">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-title">
+                    Cartify AI Assistant
+                    <div class="ai-indicator">
+                        <div class="pulse"></div>
+                        <span>Online</span>
+                    </div>
+                </div>
+                <button class="close-chat" id="close-chat">&times;</button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot-message">
+                    Hello! I'm your Cartify AI assistant. I'm here to help with any questions about orders, products, shipping, returns, or anything else related to your shopping experience. How can I assist you today?
+                    <div class="message-time" id="initial-time"></div>
+                    <div class="quick-replies">
+                        <button class="quick-reply" data-reply="Track my order">Track my order</button>
+                        <button class="quick-reply" data-reply="Return policy">Return policy</button>
+                        <button class="quick-reply" data-reply="Shipping information">Shipping information</button>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chat-input" placeholder="Type your message here...">
+                <button class="send-btn" id="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify</h3>
+                    <p>Your trusted online shopping destination for quality products at great prices.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fas fa-phone"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Product.Html">Products</a></li>
+                        <li><a href="About us.Html">About Us</a></li>
+                        <li><a href="Contact Us.Html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="FAQ.Html">FAQ</a></li>
+                        <li><a href="Shipping.Html">Shipping & Returns</a></li>
+                        <li><a href="Warranty.Html">Warranty</a></li>
+                        <li><a href="support.Html">Support Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 778-382-2708</li>
+                        <li><i class="fas fa-envelope"></i> shubraj2323@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Commerce St, Business City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2015 Cartify. All rights reserved. Terms of Service | Privacy Policy</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        document.getElementById('initial-time').textContent = getCurrentTime();
+        
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    answer.style.display = 'block';
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && subject && message) {
+                const mailtoLink = `mailto:shubraj2323@gmail.com?subject=Cartify Support: ${subject}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+                window.location.href = mailtoLink;
+                this.reset();
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        const chatModal = document.getElementById('chat-modal');
+        const startChatBtn = document.getElementById('start-chat');
+        const closeChatBtn = document.getElementById('close-chat');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        startChatBtn.addEventListener('click', function() {
+            chatModal.style.display = 'flex';
+            chatInput.focus();
+        });
+
+        closeChatBtn.addEventListener('click', function() {
+            chatModal.style.display = 'none';
+        });
+
+        chatModal.addEventListener('click', function(e) {
+            if (e.target === chatModal) {
+                chatModal.style.display = 'none';
+            }
+        });
+
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        }
+
+        function addMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.textContent = message;
+            
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.textContent = getCurrentTime();
+            
+            messageDiv.appendChild(timeDiv);
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.id = 'typing-indicator';
+            
+            for (let i = 0; i < 3; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'typing-dot';
+                typingDiv.appendChild(dot);
+            }
+            
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        
+        function getAIResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+           
+            if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+                const greetings = [
+                    "Hello! How can I assist you with your Cartify experience today?",
+                    "Hi there! What can I help you with today?",
+                    "Hey! I'm here to help. What's on your mind?"
+                ];
+                return greetings[Math.floor(Math.random() * greetings.length)];
+            }
+            
+            
+            if (lowerMessage.includes('track') || lowerMessage.includes('order')) {
+                return "You can track your order by logging into your account and visiting the 'Order History' section. You'll also receive a tracking number via email once your order ships. Do you have an order number I can help you look up?";
+            }
+            
+           
+            if (lowerMessage.includes('return') || lowerMessage.includes('refund')) {
+                return "We offer a 30-day return policy for most items. To initiate a return, please visit the Returns Center in your account. Items must be in original condition with tags attached. Is there a specific product you'd like to return?";
+            }
+            
+            
+            if (lowerMessage.includes('shipping') || lowerMessage.includes('delivery') || lowerMessage.includes('ship')) {
+                return "Standard shipping takes 3-5 business days. Express shipping is available for an additional fee with 1-2 day delivery. We ship to over 50 countries worldwide. Are you looking for domestic or international shipping information?";
+            }
+            
+            if (lowerMessage.includes('payment') || lowerMessage.includes('credit card') || lowerMessage.includes('pay')) {
+                return "We accept Visa, MasterCard, American Express, PayPal, and Cartify gift cards. You can update your payment method in your account settings. Is there a specific payment issue you're experiencing?";
+            }
+            
+           
+            if (lowerMessage.includes('account') || lowerMessage.includes('password') || lowerMessage.includes('login')) {
+                return "To reset your password, click 'Forgot Password' on the login page. For other account issues, our support team can assist you further. Are you having trouble accessing your account?";
+            }
+            
+            
+            if (lowerMessage.includes('product') || lowerMessage.includes('item') || lowerMessage.includes('catalog')) {
+                return "We have thousands of products across categories like electronics, fashion, home goods, and more. Is there a specific product you're looking for or a category you'd like to explore?";
+            }
+            
+          
+            if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('deal') || lowerMessage.includes('sale')) {
+                return "Product prices are listed on each product page. We also frequently run sales and promotions - check our Deals page for current offers. Are you looking for something specific?";
+            }
+            
+            
+            if (lowerMessage.includes('contact') || lowerMessage.includes('support') || lowerMessage.includes('help')) {
+                return "You can reach our support team by phone at 778-382-2708, by email at shubraj2323@gmail.com, or through this chat. We're here to help! Is there something specific you'd like assistance with?";
+            }
+            
+            
+            if (lowerMessage.includes('warranty') || lowerMessage.includes('guarantee')) {
+                return "Most products come with a manufacturer's warranty. The duration and terms vary by product. Check the product description for specific warranty information. Do you have a product in mind?";
+            }
+            
+           
+            if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
+                const thanksResponses = [
+                    "You're welcome! Is there anything else I can help you with?",
+                    "Happy to help! Let me know if you have any other questions.",
+                    "My pleasure! Feel free to ask if you need anything else."
+                ];
+                return thanksResponses[Math.floor(Math.random() * thanksResponses.length)];
+            }
+            
+            
+            if (lowerMessage.includes('bye') || lowerMessage.includes('goodbye') || lowerMessage.includes('see you')) {
+                return "Thanks for chatting! If you have more questions later, I'll be here. Have a great day!";
+            }
+            
+            const defaultResponses = [
+                "I understand you're asking about " + userMessage + ". For detailed assistance with this matter, I recommend contacting our support team directly for personalized help.",
+                "That's an interesting question. While I can help with general inquiries, for specific issues like this, our human support team would be better equipped to assist you.",
+                "I want to make sure you get the most accurate information. Let me connect you with a specialist who can address " + userMessage + " in more detail.",
+                "Thanks for your question! For matters related to " + userMessage + ", our support team has the most up-to-date information to assist you properly.",
+                "I'm still learning about all aspects of Cartify. For questions about " + userMessage + ", our customer service team would be happy to help you directly."
+            ];
+            
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+
+        function addQuickReplies(message) {
+            const quickReplies = document.createElement('div');
+            quickReplies.className = 'quick-replies';
+            
+           
+            if (message.includes('track') || message.includes('order')) {
+                quickReplies.innerHTML = `
+                    <button class="quick-reply" data-reply="Where is my order?">Where is my order?</button>
+                    <button class="quick-reply" data-reply="I need a tracking number">I need a tracking number</button>
+                `;
+            } else if (message.includes('return') || message.includes('refund')) {
+                quickReplies.innerHTML = `
+                    <button class="quick-reply" data-reply="How do I start a return?">How do I start a return?</button>
+                    <button class="quick-reply" data-reply="Return policy details">Return policy details</button>
+                `;
+            } else if (message.includes('shipping') || message.includes('delivery')) {
+                quickReplies.innerHTML = `
+                    <button class="quick-reply" data-reply="Shipping costs">Shipping costs</button>
+                    <button class="quick-reply" data-reply="Delivery times">Delivery times</button>
+                `;
+            } else {
+                
+                quickReplies.innerHTML = `
+                    <button class="quick-reply" data-reply="Track my order">Track my order</button>
+                    <button class="quick-reply" data-reply="Return policy">Return policy</button>
+                    <button class="quick-reply" data-reply="Contact support">Contact support</button>
+                `;
+            }
+            
+            return quickReplies;
+        }
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                
+                
+                showTypingIndicator();
+                
+                
+                const thinkingTime = Math.floor(Math.random() * 2000) + 1000;
+                
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const response = getAIResponse(message);
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message bot-message';
+                    messageDiv.textContent = response;
+                    
+                    const timeDiv = document.createElement('div');
+                    timeDiv.className = 'message-time';
+                    timeDiv.textContent = getCurrentTime();
+                    
+                    messageDiv.appendChild(timeDiv);
+                    
+                    
+                    const quickReplies = addQuickReplies(response);
+                    messageDiv.appendChild(quickReplies);
+                    
+                    chatMessages.appendChild(messageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    
+                    messageDiv.querySelectorAll('.quick-reply').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const replyText = this.getAttribute('data-reply');
+                            addMessage(replyText, true);
+                            chatMessages.scrollTop = chatMessages.scrollHeight;
+                            
+                            
+                            showTypingIndicator();
+                            
+                            setTimeout(() => {
+                                hideTypingIndicator();
+                                const aiResponse = getAIResponse(replyText);
+                                const replyDiv = document.createElement('div');
+                                replyDiv.className = 'message bot-message';
+                                replyDiv.textContent = aiResponse;
+                                
+                                const replyTimeDiv = document.createElement('div');
+                                replyTimeDiv.className = 'message-time';
+                                replyTimeDiv.textContent = getCurrentTime();
+                                
+                                replyDiv.appendChild(replyTimeDiv);
+                                
+                                
+                                const newQuickReplies = addQuickReplies(aiResponse);
+                                replyDiv.appendChild(newQuickReplies);
+                                
+                                chatMessages.appendChild(replyDiv);
+                                chatMessages.scrollTop = chatMessages.scrollHeight;
+                                
+                                
+                                replyDiv.querySelectorAll('.quick-reply').forEach(btn => {
+                                    btn.addEventListener('click', function() {
+                                        const text = this.getAttribute('data-reply');
+                                        addMessage(text, true);
+                                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                                        
+                                    });
+                                });
+                            }, Math.floor(Math.random() * 2000) + 1000);
+                        });
+                    });
+                }, thinkingTime);
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        
+        document.querySelectorAll('.quick-reply').forEach(button => {
+            button.addEventListener('click', function() {
+                const replyText = this.getAttribute('data-reply');
+                addMessage(replyText, true);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                
+                showTypingIndicator();
+                
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const aiResponse = getAIResponse(replyText);
+                    const replyDiv = document.createElement('div');
+                    replyDiv.className = 'message bot-message';
+                    replyDiv.textContent = aiResponse;
+                    
+                    const replyTimeDiv = document.createElement('div');
+                    replyTimeDiv.className = 'message-time';
+                    replyTimeDiv.textContent = getCurrentTime();
+                    
+                    replyDiv.appendChild(replyTimeDiv);
+                    
+                    
+                    const quickReplies = addQuickReplies(aiResponse);
+                    replyDiv.appendChild(quickReplies);
+                    
+                    chatMessages.appendChild(replyDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    
+
+                    replyDiv.querySelectorAll('.quick-reply').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const text = this.getAttribute('data-reply');
+                            addMessage(text, true);
+                            chatMessages.scrollTop = chatMessages.scrollHeight;
+                        });
+                    });
+                }, Math.floor(Math.random() * 2000) + 1000);
+            });
+        });
+
+        window.addEventListener('load', function() {
+            if (window.location.hash === '#contact') {
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>
+
