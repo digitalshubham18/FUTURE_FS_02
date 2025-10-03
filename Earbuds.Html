@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireless Earbuds | Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+       
+        header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        
+        .cart-icon {
+            background-color: #3498db;
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .cart-count {
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+        
+        .cart-icon i {
+            margin-right: 5px;
+        }
+        
+        
+        .hero {
+            padding: 60px 0;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 30px;
+        }
+        
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: perspective(800px) rotateY(-10deg);
+            transition: transform 0.5s;
+        }
+        
+        .hero-image img:hover {
+            transform: perspective(800px) rotateY(0);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #3498db;
+            color: #3498db;
+            margin-left: 10px;
+        }
+        
+        .btn-outline:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .product-details {
+            padding: 80px 0;
+            background: linear-gradient(to right, #e9ecef, #f8f9fa);
+        }
+        
+        .details-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .details-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .details-image img {
+            max-width: 90%;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .details-info {
+            flex: 1;
+            padding-left: 40px;
+        }
+        
+        .details-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .price {
+            font-size: 1.8rem;
+            color: #3498db;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .color-options {
+            margin-bottom: 25px;
+        }
+        
+        .color-options h4 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .colors {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .color {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .color-black {
+            background-color: #2c3e50;
+        }
+        
+        .color-white {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+        }
+        
+        .color-blue {
+            background-color: #3498db;
+        }
+        
+        .color-red {
+            background-color: #e74c3c;
+        }
+        
+        .quantity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .quantity input {
+            width: 60px;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+        
+        .quantity-btn {
+            background: #e9ecef;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+       
+        .reviews {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .review-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .reviewer {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .rating {
+            color: #f39c12;
+        }
+        
+      
+        .products {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            color: #3498db;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFade 0.3s;
+        }
+        
+        @keyframes modalFade {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            color: #2c3e50;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #7f8c8d;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+      
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .checkout-steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e9ecef;
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+        
+        .step.active .step-circle {
+            background: #3498db;
+            color: white;
+        }
+        
+        .step.completed .step-circle {
+            background: #2ecc71;
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .step.active .step-label {
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        .checkout-form {
+            display: none;
+        }
+        
+        .checkout-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .checkout-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        
+        .cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .cart-item {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .cart-item-quantity button {
+            background: #e9ecef;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .cart-item-quantity input {
+            width: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        
+        .remove-item {
+            color: #e74c3c;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .cart-total {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .cart-actions {
+            padding: 0 20px 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .cart-actions .btn {
+            flex: 1;
+            text-align: center;
+        }
+        
+       
+        .product-detail-content {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .product-detail-image {
+            flex: 1;
+        }
+        
+        .product-detail-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .product-detail-info {
+            flex: 1;
+        }
+        
+        /* Confirmation */
+        .confirmation {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .confirmation-icon {
+            font-size: 4rem;
+            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .confirmation p {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+       
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #34495e;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: #3498db;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        
+        @media (max-width: 992px) {
+            .hero-content, .details-content, .product-detail-content {
+                flex-direction: column;
+            }
+            
+            .hero-text, .details-info, .product-detail-info {
+                padding: 0;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+            
+            .details-info {
+                padding-left: 0;
+            }
+            
+            .btn {
+                margin-bottom: 10px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .checkout-steps {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .checkout-steps::before {
+                display: none;
+            }
+            
+            .step {
+                flex-direction: row;
+                gap: 15px;
+            }
+            
+            .step-circle {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-headphones"></i>
+                    <span>Cartify</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Product.Html">Products</a></li>
+                        <li><a href="About us.Html">About</a></li>
+                        <li><a href="Contact Us.Html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Wireless Earbuds Pro</h1>
+                    <p>Experience crystal clear sound with our premium wireless earbuds. Featuring active noise cancellation, 30-hour battery life, and seamless connectivity for the ultimate listening experience.</p>
+                    <a href="#" class="btn" id="buyNowHero">Buy Now</a>
+                    <a href="#" class="btn btn-outline" id="learnMoreHero">Learn More</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wireless Earbuds Pro">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Our Earbuds</h2>
+                <p>Discover the features that make our earbuds stand out from the competition</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <h3>Superior Sound Quality</h3>
+                    <p>Experience crystal clear highs and deep, powerful bass with our advanced audio technology.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-assistive-listening-systems"></i>
+                    </div>
+                    <h3>Active Noise Cancellation</h3>
+                    <p>Block out ambient noise and focus on your music, calls, or content without distractions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bluetooth"></i>
+                    </div>
+                    <h3>Wireless Freedom</h3>
+                    <p>Bluetooth 5.3 technology provides seamless connectivity up to 30 feet away from your device.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <h3>All-Day Battery</h3>
+                    <p>Up to 30 hours of playback with noise cancellation enabled. Quick charge gives 3 hours in 15 minutes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Water Resistant</h3>
+                    <p>IPX7 rating protects against sweat and rain, making them perfect for workouts and outdoor activities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3>Clear Voice Calls</h3>
+                    <p>Built-in microphones with noise reduction ensure your voice comes through clearly on calls.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Products</h2>
+                <p>Explore our range of premium audio products</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wireless Earbuds Pro">
+                    </div>
+                    <div class="product-info">
+                        <h3>Wireless Earbuds Pro</h3>
+                        <p>Premium sound with active noise cancellation</p>
+                        <div class="product-price">$149.99</div>
+                        <div class="product-actions">
+                            <button class="btn add-to-cart" data-id="1" data-name="Wireless Earbuds Pro" data-price="149.99" data-image="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">Add to Cart</button>
+                            <button class="btn btn-outline learn-more" data-id="1">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Over-Ear Headphones">
+                    </div>
+                    <div class="product-info">
+                        <h3>Over-Ear Headphones</h3>
+                        <p>Studio-quality sound with premium comfort</p>
+                        <div class="product-price">$199.99</div>
+                        <div class="product-actions">
+                            <button class="btn add-to-cart" data-id="2" data-name="Over-Ear Headphones" data-price="199.99" data-image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">Add to Cart</button>
+                            <button class="btn btn-outline learn-more" data-id="2">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="data:image/jpeg;base64,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" alt="Portable Speaker">
+                    </div>
+                    <div class="product-info">
+                        <h3>Portable Speaker</h3>
+                        <p>360° sound with deep bass and waterproof design</p>
+                        <div class="product-price">$129.99</div>
+                        <div class="product-actions">
+                            <button class="btn add-to-cart" data-id="3" data-name="Portable Speaker" data-price="129.99" data-image="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">Add to Cart</button>
+                            <button class="btn btn-outline learn-more" data-id="3">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2k05Mt1aEGVpciE5A-24WK71J_vMccbuDzg&s" alt="Wireless Earbuds Lite">
+                    </div>
+                    <div class="product-info">
+                        <h3>Wireless Earbuds Lite</h3>
+                        <p>Compact design with impressive battery life</p>
+                        <div class="product-price">$89.99</div>
+                        <div class="product-actions">
+                            <button class="btn add-to-cart" data-id="4" data-name="Wireless Earbuds Lite" data-price="89.99" data-image="https://images.unsplash.com/photo-1546435770-a3e426bf472b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">Add to Cart</button>
+                            <button class="btn btn-outline learn-more" data-id="4">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="product-details">
+        <div class="container">
+            <div class="details-content">
+                <div class="details-image">
+                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wireless Earbuds in charging case">
+                </div>
+                <div class="details-info">
+                    <h2>Customize Your Earbuds</h2>
+                    <div class="price">$149.99</div>
+                    <div class="color-options">
+                        <h4>Choose Color:</h4>
+                        <div class="colors">
+                            <div class="color color-black"></div>
+                            <div class="color color-white"></div>
+                            <div class="color color-blue"></div>
+                            <div class="color color-red"></div>
+                        </div>
+                    </div>
+                    <div class="quantity">
+                        <button class="quantity-btn">-</button>
+                        <input type="number" value="1" min="1">
+                        <button class="quantity-btn">+</button>
+                        <span style="margin-left: 10px;">Qty</span>
+                    </div>
+                    <button class="btn add-to-cart" data-id="1" data-name="Wireless Earbuds Pro" data-price="149.99" data-image="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">Add to Cart</button>
+                    <button class="btn btn-outline" id="buyNowDetails">Buy Now</button>
+                    
+                    <div style="margin-top: 30px;">
+                        <h4>Product Details:</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Active noise cancellation technology</li>
+                            <li>30-hour total battery life with charging case</li>
+                            <li>Bluetooth 5.3 with multipoint connectivity</li>
+                            <li>Built-in microphones with noise reduction</li>
+                            <li>IPX7 water and sweat resistance</li>
+                            <li>Touch controls for music and calls</li>
+                            <li>Three sizes of silicone tips for perfect fit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <section class="reviews">
+        <div class="container">
+            <div class="section-title">
+                <h2>Customer Reviews</h2>
+                <p>See what our customers are saying about our earbuds</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer">Alex Johnson</span>
+                        <span class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                    </div>
+                    <p>"These are the best earbuds I've ever owned. The noise cancellation is incredible, and the battery lasts forever! The fit is perfect for my workouts too."</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer">Sarah Miller</span>
+                        <span class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                    </div>
+                    <p>"The sound quality is amazing. I use them for both podcasts and music. The touch controls are intuitive and the connection is always stable."</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer">Michael Chen</span>
+                        <span class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                    </div>
+                    <p>"I travel frequently, and these earbuds have been a game-changer. The noise cancellation makes flights so much more enjoyable, and the case is compact and easy to carry."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify</h3>
+                    <p>Your destination for premium audio products and accessories.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Product.Html">Products</a></li>
+                        <li><a href="About us.Html">About Us</a></li>
+                        <li><a href="Contact Us.Html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="FAQ.Html">FAQ</a></li>
+                        <li><a href="Shipping Policy.Html">Shipping & Returns</a></li>
+                        <li><a href="Warranty.Html">Warranty</a></li>
+                        <li><a href="support.Html">Support Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest products and offers.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address" style="padding: 10px; width: 100%; margin-bottom: 10px; border-radius: 5px; border: none;">
+                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2015 Cartify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Shopping Cart</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-items" id="cartItems">
+                    
+                </div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+                <div class="cart-actions">
+                    <button class="btn btn-outline" id="continueShopping">Continue Shopping</button>
+                    <button class="btn" id="checkoutBtn">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Checkout</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="checkout-steps">
+                    <div class="step active" id="step1">
+                        <div class="step-circle">1</div>
+                        <div class="step-label">Shipping</div>
+                    </div>
+                    <div class="step" id="step2">
+                        <div class="step-circle">2</div>
+                        <div class="step-label">Payment</div>
+                    </div>
+                    <div class="step" id="step3">
+                        <div class="step-circle">3</div>
+                        <div class="step-label">Confirmation</div>
+                    </div>
+                </div>
+                
+                <form id="shippingForm" class="checkout-form active">
+                    <h3>Shipping Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" id="state" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zipCode">ZIP Code</label>
+                            <input type="text" id="zipCode" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="checkout-actions">
+                        <button type="button" class="btn btn-outline" id="cancelCheckout">Cancel</button>
+                        <button type="button" class="btn" id="nextToPayment">Next</button>
+                    </div>
+                </form>
+                
+                <form id="paymentForm" class="checkout-form">
+                    <h3>Payment Information</h3>
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardName">Name on Card</label>
+                        <input type="text" id="cardName" required>
+                    </div>
+                    <div class="checkout-actions">
+                        <button type="button" class="btn btn-outline" id="backToShipping">Back</button>
+                        <button type="button" class="btn" id="placeOrder">Place Order</button>
+                    </div>
+                </form>
+                
+                <div id="confirmation" class="checkout-form">
+                    <div class="confirmation">
+                        <div class="confirmation-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>Order Confirmed!</h2>
+                        <p>Thank you for your purchase. Your order has been successfully placed.</p>
+                        <p>Order ID: <strong id="orderId">SK2023-001</strong></p>
+                        <p>We've sent a confirmation email to <strong id="confirmEmail">your@email.com</strong></p>
+                        <button class="btn" id="continueShoppingConfirm">Continue Shopping</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal" id="productDetailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="productDetailTitle">Product Details</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="product-detail-content">
+                    <div class="product-detail-image">
+                        <img id="productDetailImage" src="" alt="Product Image">
+                    </div>
+                    <div class="product-detail-info">
+                        <h3 id="productDetailName"></h3>
+                        <div class="price" id="productDetailPrice"></div>
+                        <p id="productDetailDescription"></p>
+                        <div class="product-actions" style="margin-top: 20px;">
+                            <button class="btn" id="addToCartFromDetail">Add to Cart</button>
+                            <button class="btn btn-outline" id="buyNowFromDetail">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        const products = {
+            1: {
+                name: "Wireless Earbuds Pro",
+                price: 149.99,
+                image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Experience crystal clear sound with our premium wireless earbuds. Featuring active noise cancellation, 30-hour battery life, and seamless connectivity for the ultimate listening experience."
+            },
+            2: {
+                name: "Over-Ear Headphones",
+                price: 199.99,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Studio-quality sound with premium comfort. These over-ear headphones deliver exceptional audio fidelity with plush ear cushions for extended listening sessions."
+            },
+            3: {
+                name: "Portable Speaker",
+                price: 129.99,
+                image: "data:image/jpeg;base64,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",
+                description: "360° sound with deep bass and waterproof design. Perfect for outdoor adventures, this portable speaker delivers rich, immersive audio in any environment."
+            },
+            4: {
+                name: "Wireless Earbuds Lite",
+                price: 89.99,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2k05Mt1aEGVpciE5A-24WK71J_vMccbuDzg&s",
+                description: "Compact design with impressive battery life. These lightweight earbuds offer great sound quality and all-day comfort at an affordable price."
+            }
+        };
+
+        
+        let cart = [];
+        let currentProductId = null;
+
+        
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartCount = document.querySelector('.cart-count');
+        const checkoutModal = document.getElementById('checkoutModal');
+        const productDetailModal = document.getElementById('productDetailModal');
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const savedCart = localStorage.getItem('CartifyCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartUI();
+            }
+
+        
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    const image = this.getAttribute('data-image');
+                    addToCart(id, name, price, image);
+                });
+            });
+
+            
+            document.querySelectorAll('.learn-more').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    showProductDetail(id);
+                });
+            });
+
+            
+            document.getElementById('buyNowHero').addEventListener('click', function(e) {
+                e.preventDefault();
+                addToCart(1, "Wireless Earbuds Pro", 149.99, "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80");
+                showCheckout();
+            });
+
+            document.getElementById('buyNowDetails').addEventListener('click', function() {
+                addToCart(1, "Wireless Earbuds Pro", 149.99, "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80");
+                showCheckout();
+            });
+
+            document.getElementById('learnMoreHero').addEventListener('click', function(e) {
+                e.preventDefault();
+                showProductDetail(1);
+            });
+
+       
+            cartIcon.addEventListener('click', showCart);
+            document.querySelectorAll('.close-modal').forEach(button => {
+                button.addEventListener('click', closeModals);
+            });
+
+            document.getElementById('continueShopping').addEventListener('click', closeModals);
+            document.getElementById('checkoutBtn').addEventListener('click', showCheckout);
+
+            
+            document.getElementById('nextToPayment').addEventListener('click', nextToPayment);
+            document.getElementById('backToShipping').addEventListener('click', backToShipping);
+            document.getElementById('placeOrder').addEventListener('click', placeOrder);
+            document.getElementById('cancelCheckout').addEventListener('click', closeModals);
+            document.getElementById('continueShoppingConfirm').addEventListener('click', closeModals);
+
+            
+            document.getElementById('addToCartFromDetail').addEventListener('click', function() {
+                if (currentProductId) {
+                    const product = products[currentProductId];
+                    addToCart(currentProductId, product.name, product.price, product.image);
+                    closeModals();
+                }
+            });
+
+            document.getElementById('buyNowFromDetail').addEventListener('click', function() {
+                if (currentProductId) {
+                    const product = products[currentProductId];
+                    addToCart(currentProductId, product.name, product.price, product.image);
+                    closeModals();
+                    showCheckout();
+                }
+            });
+
+            
+            document.querySelectorAll('.quantity-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.parentNode.querySelector('input');
+                    if (this.textContent === '+') {
+                        input.value = parseInt(input.value) + 1;
+                    } else if (this.textContent === '-' && parseInt(input.value) > 1) {
+                        input.value = parseInt(input.value) - 1;
+                    }
+                });
+            });
+
+            
+            document.querySelectorAll('.color').forEach(color => {
+                color.addEventListener('click', function() {
+                    document.querySelectorAll('.color').forEach(c => c.style.border = 'none');
+                    this.style.border = '2px solid #3498db';
+                });
+            });
+
+            document.querySelector('.color').style.border = '2px solid #3498db';
+        });
+
+        
+        function addToCart(id, name, price, image) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            updateCartUI();
+            saveCartToStorage();
+            
+           
+            showNotification(`${name} added to cart!`);
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+            saveCartToStorage();
+        }
+
+        function updateCartUI() {
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; padding: 20px;">Your cart is empty</p>';
+                cartTotal.textContent = '$0.00';
+                return;
+            }
+            
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <div class="cart-item-quantity">
+                            <button class="decrease-quantity" data-id="${item.id}">-</button>
+                            <input type="number" value="${item.quantity}" min="1" data-id="${item.id}">
+                            <button class="increase-quantity" data-id="${item.id}">+</button>
+                        </div>
+                        <button class="remove-item" data-id="${item.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                
+                cartItems.appendChild(cartItem);
+            });
+            
+            cartTotal.textContent = `$${total.toFixed(2)}`;
+            
+           
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    updateQuantity(id, -1);
+                });
+            });
+            
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    updateQuantity(id, 1);
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    removeFromCart(id);
+                });
+            });
+            
+            document.querySelectorAll('.cart-item-quantity input').forEach(input => {
+                input.addEventListener('change', function() {
+                    const id = this.getAttribute('data-id');
+                    const newQuantity = parseInt(this.value);
+                    
+                    if (newQuantity < 1) {
+                        this.value = 1;
+                        return;
+                    }
+                    
+                    updateQuantity(id, newQuantity - cart.find(item => item.id === id).quantity);
+                });
+            });
+        }
+
+        function updateQuantity(id, change) {
+            const item = cart.find(item => item.id === id);
+            
+            if (item) {
+                item.quantity += change;
+                
+                if (item.quantity < 1) {
+                    removeFromCart(id);
+                } else {
+                    updateCartUI();
+                    saveCartToStorage();
+                }
+            }
+        }
+
+        function saveCartToStorage() {
+            localStorage.setItem('CartifyCart', JSON.stringify(cart));
+        }
+
+        
+        function showCart() {
+            cartModal.style.display = 'block';
+        }
+
+        function showCheckout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!');
+                return;
+            }
+            
+            closeModals();
+            checkoutModal.style.display = 'block';
+            resetCheckoutSteps();
+        }
+
+        function showProductDetail(id) {
+            currentProductId = id;
+            const product = products[id];
+            
+            if (product) {
+                document.getElementById('productDetailTitle').textContent = product.name;
+                document.getElementById('productDetailName').textContent = product.name;
+                document.getElementById('productDetailPrice').textContent = `$${product.price.toFixed(2)}`;
+                document.getElementById('productDetailImage').src = product.image;
+                document.getElementById('productDetailDescription').textContent = product.description;
+                
+                productDetailModal.style.display = 'block';
+            }
+        }
+
+        function closeModals() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+        }
+
+        
+        function resetCheckoutSteps() {
+            document.getElementById('step1').className = 'step active';
+            document.getElementById('step2').className = 'step';
+            document.getElementById('step3').className = 'step';
+            
+            document.getElementById('shippingForm').className = 'checkout-form active';
+            document.getElementById('paymentForm').className = 'checkout-form';
+            document.getElementById('confirmation').className = 'checkout-form';
+        }
+
+        function nextToPayment() {
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const address = document.getElementById('address').value;
+            const email = document.getElementById('email').value;
+            
+            if (!firstName || !lastName || !address || !email) {
+                showNotification('Please fill in all required fields');
+                return;
+            }
+            
+            document.getElementById('step1').className = 'step completed';
+            document.getElementById('step2').className = 'step active';
+            
+            document.getElementById('shippingForm').className = 'checkout-form';
+            document.getElementById('paymentForm').className = 'checkout-form active';
+        }
+
+        function backToShipping() {
+            document.getElementById('step1').className = 'step active';
+            document.getElementById('step2').className = 'step';
+            
+            document.getElementById('shippingForm').className = 'checkout-form active';
+            document.getElementById('paymentForm').className = 'checkout-form';
+        }
+
+        function placeOrder() {
+            
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+            const cvv = document.getElementById('cvv').value;
+            const cardName = document.getElementById('cardName').value;
+            
+            if (!cardNumber || !expiryDate || !cvv || !cardName) {
+                showNotification('Please fill in all payment details');
+                return;
+            }
+            
+            
+            document.getElementById('step2').className = 'step completed';
+            document.getElementById('step3').className = 'step active';
+            
+            document.getElementById('paymentForm').className = 'checkout-form';
+            document.getElementById('confirmation').className = 'checkout-form active';
+            
+            
+            const email = document.getElementById('email').value;
+            document.getElementById('confirmEmail').textContent = email;
+            
+           
+            const orderId = 'SK' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('orderId').textContent = orderId;
+            
+            
+            cart = [];
+            updateCartUI();
+            saveCartToStorage();
+        }
+
+        
+        function showNotification(message) {
+            
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #2ecc71;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+            
+            
+            if (!document.querySelector('#notification-styles')) {
+                const style = document.createElement('style');
+                style.id = 'notification-styles';
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOut {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeModals();
+            }
+        });
+    </script>
+</body>
+</html>
