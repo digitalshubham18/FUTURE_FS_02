@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Fashion - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #e9437a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn:hover {
+            background: #d32f6c;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #e9437a;
+            color: #e9437a;
+        }
+        
+        .btn-outline:hover {
+            background: #e9437a;
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #e9437a;
+            margin: 10px auto;
+        }
+        
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #e9437a;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #333;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #e9437a;
+        }
+        
+        .header-icons a {
+            margin-left: 20px;
+            color: #333;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .header-icons a:hover {
+            color: #e9437a;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e9437a;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .categories {
+            padding: 80px 0;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            position: relative;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .category-overlay h3 {
+            margin-bottom: 10px;
+        }
+        
+        .featured-products {
+            padding: 80px 0;
+            background: #fff;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            color: #e9437a;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .special-offer {
+            padding: 80px 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .special-offer h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .special-offer p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .countdown-item {
+            margin: 0 15px;
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+        
+        .countdown-number {
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .countdown-label {
+            font-size: 14px;
+        }
+        
+        .newsletter {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+        }
+        
+        .newsletter-form button {
+            background: #e9437a;
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: #e9437a;
+            margin-top: 10px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e9437a;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #e9437a;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            font-size: 14px;
+        }
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .product-modal {
+            background: white;
+            border-radius: 10px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: flex;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        .modal-image {
+            flex: 1;
+            max-width: 50%;
+        }
+        
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px 0 0 10px;
+        }
+        
+        .modal-content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .modal-content h2 {
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        
+        .modal-price {
+            font-size: 24px;
+            color: #e9437a;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .modal-description {
+            margin-bottom: 25px;
+            color: #666;
+        }
+        
+        .size-selector {
+            margin-bottom: 25px;
+        }
+        
+        .size-selector h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .size-options {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .size-option {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .size-option.selected {
+            border-color: #e9437a;
+            background: #e9437a;
+            color: white;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .quantity-selector h3 {
+            margin-right: 15px;
+            font-size: 16px;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            height: 40px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .checkout-modal {
+            background: white;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+        }
+        
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .checkout-steps:before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ddd;
+            z-index: 1;
+        }
+        
+        .checkout-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ddd;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .step-number.active {
+            background: #e9437a;
+        }
+        
+        .step-label {
+            font-size: 14px;
+        }
+        
+        .checkout-form {
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .order-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .checkout-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart-sidebar.active {
+            right: 0;
+        }
+        
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-header h3 {
+            margin: 0;
+        }
+        
+        .cart-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-details h4 {
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: #e9437a;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+        
+        .cart-item-quantity button {
+            width: 25px;
+            height: 25px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+        
+        .cart-item-quantity input {
+            width: 40px;
+            height: 25px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
+        }
+        
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .header-icons {
+                margin-top: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-form button {
+                border-radius: 30px;
+                padding: 15px;
+            }
+            
+            .product-modal {
+                flex-direction: column;
+                max-height: 95vh;
+            }
+            
+            .modal-image {
+                max-width: 100%;
+                max-height: 300px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .checkout-modal {
+                padding: 20px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Cart<span>ify</span></a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="New.Html">New Arrivals</a></li>
+                        <li><a href="clothing.Html">Clothing</a></li>
+                        <li><a href="Footwear.Html">Shoes</a></li>
+                        <li><a href="Accessories.Html">Accessories</a></li>
+                        <li><a href="Sale.Html">Sale</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Discover Your Style</h1>
+                <p>Shop the latest trends in women's fashion and express your unique personality</p>
+                <a href="#featured-products" class="btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Shop By Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dresses">
+                    <div class="category-overlay">
+                        <h3>Dresses</h3>
+                        <button class="btn" data-category="dresses">Explore</button>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tops">
+                    <div class="category-overlay">
+                        <h3>Tops</h3>
+                        <button class="btn" data-category="tops">Explore</button>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1582418702059-97ebafb35d09?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Shoes">
+                    <div class="category-overlay">
+                        <h3>Shoes</h3>
+                        <button class="btn" data-category="shoes">Explore</button>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1611010344444-5f9e4d86a6e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Accessories">
+                    <div class="category-overlay">
+                        <h3>Accessories</h3>
+                        <button class="btn" data-category="accessories">Explore</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-products" id="featured-products">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="product-grid" id="product-grid">
+            </div>
+        </div>
+    </section>
+
+    <section class="special-offer">
+        <div class="container">
+            <h2>Summer Sale</h2>
+            <p>Get up to 50% off on selected items. Hurry up before the offer ends!</p>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number">2</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number">18</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number">45</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number">30</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            
+            <button class="btn" id="shop-sale-btn">Shop the Sale</button>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <h2 class="section-title">Subscribe to Our Newsletter</h2>
+            <p>Get updates on new arrivals, special offers and more</p>
+            
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify</h3>
+                    <p>Your one-stop destination for all your fashion needs. We offer trendy and affordable women's clothing, shoes, and accessories.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="New.Html">New Arrivals</a></li>
+                        <li><a href="Trend.Html">Trending</a></li>
+                        <li><a href="categories.Html">Categories</a></li>
+                        <li><a href="Sale.Html">Sale</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="Contact Us.Html">Contact Us</a></li>
+                        <li><a href="FAQ.Html">FAQs</a></li>
+                        <li><a href="Shipping.Html">Shipping & Returns</a></li>
+                        <li><a href="Track.Html">Track Order</a></li>
+                        <li><a href="Size.Html">Size Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                    <p>Stay connected for the latest updates</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2015 Cartify. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="product-modal">
+        <div class="product-modal">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-image">
+                <img id="modal-product-image" src="" alt="">
+            </div>
+            <div class="modal-content">
+                <h2 id="modal-product-name"></h2>
+                <p class="modal-price" id="modal-product-price"></p>
+                <p class="modal-description" id="modal-product-description"></p>
+                
+                <div class="size-selector">
+                    <h3>Size</h3>
+                    <div class="size-options" id="size-options">
+                    </div>
+                </div>
+                
+                <div class="quantity-selector">
+                    <h3>Quantity</h3>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" id="decrease-quantity">-</button>
+                        <input type="text" class="quantity-input" id="quantity-input" value="1" readonly>
+                        <button class="quantity-btn" id="increase-quantity">+</button>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="btn" id="add-to-cart-btn">Add to Cart</button>
+                    <button class="btn btn-outline" id="buy-now-btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="checkout-modal">
+            <button class="modal-close" id="checkout-close">&times;</button>
+            <h2 class="section-title">Checkout</h2>
+            
+            <div class="checkout-steps">
+                <div class="checkout-step">
+                    <div class="step-number active">1</div>
+                    <div class="step-label">Shipping</div>
+                </div>
+                <div class="checkout-step">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Payment</div>
+                </div>
+                <div class="checkout-step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+            
+            <div class="checkout-form" id="shipping-form">
+                <h3>Shipping Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" id="state" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">ZIP Code</label>
+                        <input type="text" id="zip" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" required>
+                        <option value="">Select Country</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                
+                <div class="checkout-actions">
+                    <button class="btn btn-outline" id="cancel-checkout">Cancel</button>
+                    <button class="btn" id="continue-to-payment">Continue to Payment</button>
+                </div>
+            </div>
+            
+            <div class="checkout-form" id="payment-form" style="display: none;">
+                <h3>Payment Information</h3>
+                <div class="form-group">
+                    <label for="card-name">Name on Card</label>
+                    <input type="text" id="card-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expiry">Expiry Date</label>
+                        <input type="text" id="expiry" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" placeholder="123" required>
+                    </div>
+                </div>
+                
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="checkout-items">
+                    </div>
+                    <div class="order-total">
+                        <span>Total:</span>
+                        <span id="checkout-total">$0.00</span>
+                    </div>
+                </div>
+                
+                <div class="checkout-actions">
+                    <button class="btn btn-outline" id="back-to-shipping">Back</button>
+                    <button class="btn" id="place-order">Place Order</button>
+                </div>
+            </div>
+            
+            <div class="checkout-form" id="confirmation-form" style="display: none;">
+                <div style="text-align: center; padding: 40px 0;">
+                    <i class="fas fa-check-circle" style="font-size: 60px; color: #4CAF50; margin-bottom: 20px;"></i>
+                    <h3>Order Confirmed!</h3>
+                    <p>Thank you for your purchase. Your order has been successfully placed.</p>
+                    <p>Order ID: <strong>#SHOP-2023-001</strong></p>
+                    <p>You will receive a confirmation email shortly.</p>
+                    <button class="btn" id="continue-shopping" style="margin-top: 30px;">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="cart-close" id="cart-close">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="btn" id="checkout-btn" style="width: 100%;">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Summer Floral Dress",
+                price: 59.99,
+                category: "dresses",
+                image: "https://images.unsplash.com/photo-1591369822096-ffd140ec948a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "A beautiful summer dress with floral pattern, perfect for warm days and special occasions.",
+                sizes: ["XS", "S", "M", "L", "XL"]
+            },
+            {
+                id: 2,
+                name: "Classic Denim Jacket",
+                price: 49.99,
+                category: "tops",
+                image: "https://images.unsplash.com/photo-1589810635657-232948472d98?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "A timeless denim jacket that goes with everything in your wardrobe.",
+                sizes: ["S", "M", "L", "XL"]
+            },
+            {
+                id: 3,
+                name: "Elegant High Heels",
+                price: 79.99,
+                category: "shoes",
+                image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Stylish high heels that combine comfort and elegance for any occasion.",
+                sizes: ["6", "7", "8", "9", "10"]
+            },
+            {
+                id: 4,
+                name: "Designer Handbag",
+                price: 89.99,
+                category: "accessories",
+                image: "https://images.unsplash.com/photo-1601924582970-9238bcb495d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "A sophisticated handbag with ample space for all your essentials.",
+                sizes: ["One Size"]
+            },
+            {
+                id: 5,
+                name: "Striped Summer Top",
+                price: 34.99,
+                category: "tops",
+                image: "https://images.unsplash.com/photo-1506629905607-e48b0e67d879?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Comfortable and stylish striped top perfect for summer outings.",
+                sizes: ["XS", "S", "M", "L"]
+            },
+            {
+                id: 6,
+                name: "Casual Sneakers",
+                price: 64.99,
+                category: "shoes",
+                image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Versatile sneakers that combine style and comfort for everyday wear.",
+                sizes: ["6", "7", "8", "9", "10", "11"]
+            },
+            {
+                id: 7,
+                name: "Evening Gown",
+                price: 129.99,
+                category: "dresses",
+                image: "https://images.unsplash.com/photo-1566479179816-d53e6d20395e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Elegant evening gown for special occasions and formal events.",
+                sizes: ["XS", "S", "M", "L", "XL"]
+            },
+            {
+                id: 8,
+                name: "Statement Necklace",
+                price: 29.99,
+                category: "accessories",
+                image: "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Bold statement necklace to elevate any outfit.",
+                sizes: ["One Size"]
+            }
+        ];
+
+        const saleProducts = [1, 3, 5, 7];
+
+        let cart = [];
+        let currentProduct = null;
+        let selectedSize = "";
+        let quantity = 1;
+
+        const productGrid = document.getElementById('product-grid');
+        const cartIcon = document.getElementById('cart-icon');
+        const cartCount = document.querySelector('.cart-count');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartClose = document.getElementById('cart-close');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const productModal = document.getElementById('product-modal');
+        const modalClose = document.getElementById('modal-close');
+        const modalProductImage = document.getElementById('modal-product-image');
+        const modalProductName = document.getElementById('modal-product-name');
+        const modalProductPrice = document.getElementById('modal-product-price');
+        const modalProductDescription = document.getElementById('modal-product-description');
+        const sizeOptions = document.getElementById('size-options');
+        const decreaseQuantity = document.getElementById('decrease-quantity');
+        const increaseQuantity = document.getElementById('increase-quantity');
+        const quantityInput = document.getElementById('quantity-input');
+        const addToCartBtn = document.getElementById('add-to-cart-btn');
+        const buyNowBtn = document.getElementById('buy-now-btn');
+        const checkoutModal = document.getElementById('checkout-modal');
+        const checkoutClose = document.getElementById('checkout-close');
+        const cancelCheckout = document.getElementById('cancel-checkout');
+        const continueToPayment = document.getElementById('continue-to-payment');
+        const backToShipping = document.getElementById('back-to-shipping');
+        const placeOrder = document.getElementById('place-order');
+        const continueShopping = document.getElementById('continue-shopping');
+        const shopSaleBtn = document.getElementById('shop-sale-btn');
+        const shippingForm = document.getElementById('shipping-form');
+        const paymentForm = document.getElementById('payment-form');
+        const confirmationForm = document.getElementById('confirmation-form');
+        const checkoutItems = document.getElementById('checkout-items');
+        const checkoutTotal = document.getElementById('checkout-total');
+
+        function init() {
+            displayProducts(products);
+            setupEventListeners();
+            updateCartCount();
+        }
+
+        function displayProducts(productsToShow) {
+            productGrid.innerHTML = '';
+            
+            productsToShow.forEach(product => {
+                const isOnSale = saleProducts.includes(product.id);
+                const salePrice = isOnSale ? (product.price * 0.7).toFixed(2) : null;
+                
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-img">
+                        <img src="${product.image}" alt="${product.name}">
+                        ${isOnSale ? '<div style="position: absolute; top: 10px; right: 10px; background: #e9437a; color: white; padding: 5px 10px; border-radius: 20px; font-size: 14px;">SALE</div>' : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p class="product-price">
+                            ${isOnSale ? `<span style="text-decoration: line-through; color: #999; margin-right: 10px;">$${product.price}</span> $${salePrice}` : `$${product.price}`}
+                        </p>
+                        <div class="product-actions">
+                            <button class="btn" data-id="${product.id}">Add to Cart</button>
+                            <button class="btn btn-outline" data-id="${product.id}">View Details</button>
+                        </div>
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
+            
+            document.querySelectorAll('.product-actions .btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    const product = products.find(p => p.id === productId);
+                    
+                    if (this.textContent === 'Add to Cart') {
+                        addToCart(product, product.sizes[0], 1);
+                    } else {
+                        openProductModal(product);
+                    }
+                });
+            });
+        }
+
+        function filterProducts(category) {
+            if (category === 'all') {
+                displayProducts(products);
+            } else {
+                const filteredProducts = products.filter(product => product.category === category);
+                displayProducts(filteredProducts);
+            }
+            
+            document.getElementById('featured-products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openProductModal(product) {
+            currentProduct = product;
+            selectedSize = product.sizes[0];
+            quantity = 1;
+            
+            modalProductImage.src = product.image;
+            modalProductName.textContent = product.name;
+            modalProductPrice.textContent = `$${product.price}`;
+            modalProductDescription.textContent = product.description;
+            
+            sizeOptions.innerHTML = '';
+            product.sizes.forEach(size => {
+                const sizeOption = document.createElement('div');
+                sizeOption.className = `size-option ${size === selectedSize ? 'selected' : ''}`;
+                sizeOption.textContent = size;
+                sizeOption.addEventListener('click', () => {
+                    document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+                    sizeOption.classList.add('selected');
+                    selectedSize = size;
+                });
+                sizeOptions.appendChild(sizeOption);
+            });
+            
+            quantityInput.value = quantity;
+            
+            productModal.classList.add('active');
+        }
+
+        function closeProductModal() {
+            productModal.classList.remove('active');
+        }
+
+        function addToCart(product, size, qty) {
+            const existingItem = cart.find(item => 
+                item.id === product.id && item.size === size
+            );
+            
+            if (existingItem) {
+                existingItem.quantity += qty;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    size: size,
+                    quantity: qty
+                });
+            }
+            
+            updateCartCount();
+            updateCartSidebar();
+            closeProductModal();
+            
+            alert(`${product.name} added to cart!`);
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        function openCartSidebar() {
+            cartSidebar.classList.add('active');
+            updateCartSidebar();
+        }
+
+        function closeCartSidebar() {
+            cartSidebar.classList.remove('active');
+        }
+
+        function updateCartSidebar() {
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; padding: 20px;">Your cart is empty</p>';
+                cartTotal.textContent = '$0.00';
+                checkoutBtn.disabled = true;
+                return;
+            }
+            
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-details">
+                        <h4>${item.name}</h4>
+                        <p class="cart-item-price">$${item.price}</p>
+                        <p>Size: ${item.size}</p>
+                        <div class="cart-item-quantity">
+                            <button class="decrease" data-index="${index}">-</button>
+                            <input type="text" value="${item.quantity}" readonly>
+                            <button class="increase" data-index="${index}">+</button>
+                            <button class="cart-item-remove" data-index="${index}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            
+            cartTotal.textContent = `$${total.toFixed(2)}`;
+            checkoutBtn.disabled = false;
+            
+            document.querySelectorAll('.cart-item-quantity .decrease').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    if (cart[index].quantity > 1) {
+                        cart[index].quantity--;
+                        updateCartSidebar();
+                        updateCartCount();
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.cart-item-quantity .increase').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cart[index].quantity++;
+                    updateCartSidebar();
+                    updateCartCount();
+                });
+            });
+            
+            document.querySelectorAll('.cart-item-remove').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cart.splice(index, 1);
+                    updateCartSidebar();
+                    updateCartCount();
+                });
+            });
+        }
+
+        function openCheckoutModal() {
+            closeCartSidebar();
+            checkoutModal.classList.add('active');
+            updateCheckoutSummary();
+        }
+
+        function closeCheckoutModal() {
+            checkoutModal.classList.remove('active');
+            resetCheckoutForms();
+        }
+
+        function updateCheckoutSummary() {
+            checkoutItems.innerHTML = '';
+            
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                orderItem.innerHTML = `
+                    <span>${item.name} (${item.size}) x ${item.quantity}</span>
+                    <span>$${itemTotal.toFixed(2)}</span>
+                `;
+                checkoutItems.appendChild(orderItem);
+            });
+            
+            checkoutTotal.textContent = `$${total.toFixed(2)}`;
+        }
+
+        function resetCheckoutForms() {
+            shippingForm.style.display = 'block';
+            paymentForm.style.display = 'none';
+            confirmationForm.style.display = 'none';
+            
+            document.querySelectorAll('.step-number').forEach((step, index) => {
+                if (index === 0) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+            
+            document.getElementById('shipping-form').reset();
+            document.getElementById('payment-form').reset();
+        }
+
+        function setupEventListeners() {
+            document.querySelector('.hero .btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('featured-products').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            document.querySelectorAll('.category-overlay .btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    filterProducts(category);
+                });
+            });
+            
+            cartIcon.addEventListener('click', function(e) {
+                e.preventDefault();
+                openCartSidebar();
+            });
+            
+            cartClose.addEventListener('click', closeCartSidebar);
+            
+            modalClose.addEventListener('click', closeProductModal);
+            
+            decreaseQuantity.addEventListener('click', function() {
+                if (quantity > 1) {
+                    quantity--;
+                    quantityInput.value = quantity;
+                }
+            });
+            
+            increaseQuantity.addEventListener('click', function() {
+                quantity++;
+                quantityInput.value = quantity;
+            });
+            
+            addToCartBtn.addEventListener('click', function() {
+                if (currentProduct) {
+                    addToCart(currentProduct, selectedSize, quantity);
+                }
+            });
+            
+            buyNowBtn.addEventListener('click', function() {
+                if (currentProduct) {
+                    addToCart(currentProduct, selectedSize, quantity);
+                    openCheckoutModal();
+                }
+            });
+            
+            checkoutBtn.addEventListener('click', openCheckoutModal);
+            
+            checkoutClose.addEventListener('click', closeCheckoutModal);
+            cancelCheckout.addEventListener('click', closeCheckoutModal);
+            
+            continueToPayment.addEventListener('click', function() {
+                shippingForm.style.display = 'none';
+                paymentForm.style.display = 'block';
+                
+                document.querySelectorAll('.step-number').forEach((step, index) => {
+                    if (index <= 1) {
+                        step.classList.add('active');
+                    } else {
+                        step.classList.remove('active');
+                    }
+                });
+            });
+            
+            backToShipping.addEventListener('click', function() {
+                paymentForm.style.display = 'none';
+                shippingForm.style.display = 'block';
+                
+                document.querySelectorAll('.step-number').forEach((step, index) => {
+                    if (index === 0) {
+                        step.classList.add('active');
+                    } else {
+                        step.classList.remove('active');
+                    }
+                });
+            });
+            
+            placeOrder.addEventListener('click', function() {
+                paymentForm.style.display = 'none';
+                confirmationForm.style.display = 'block';
+                
+                document.querySelectorAll('.step-number').forEach(step => {
+                    step.classList.add('active');
+                });
+                
+                cart = [];
+                updateCartCount();
+            });
+            
+            continueShopping.addEventListener('click', function() {
+                closeCheckoutModal();
+            });
+            
+            shopSaleBtn.addEventListener('click', function() {
+                const saleItems = products.filter(product => saleProducts.includes(product.id));
+                displayProducts(saleItems);
+                document.getElementById('featured-products').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input').value;
+                if (email) {
+                    alert('Thank you for subscribing to our newsletter!');
+                    this.querySelector('input').value = '';
+                }
+            });
+        }
+
+        function updateCountdown() {
+            const countdownItems = document.querySelectorAll('.countdown-item');
+            const countDownDate = new Date();
+            countDownDate.setDate(countDownDate.getDate() + 2);
+            
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            countdownItems[0].querySelector('.countdown-number').textContent = days;
+            countdownItems[1].querySelector('.countdown-number').textContent = hours;
+            countdownItems[2].querySelector('.countdown-number').textContent = minutes;
+            countdownItems[3].querySelector('.countdown-number').textContent = seconds;
+        }
+        
+        document.addEventListener('DOMContentLoaded', init);
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
+
