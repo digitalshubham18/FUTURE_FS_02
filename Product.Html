@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartify - Online Shopping</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        .contact-info {
+            font-size: 14px;
+        }
+        
+        .header-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-right: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        .search-bar {
+            display: flex;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            padding: 5px;
+        }
+        
+        .search-bar input {
+            border: none;
+            padding: 8px 15px;
+            width: 250px;
+            outline: none;
+        }
+        
+        .search-bar button {
+            background: #ff6b6b;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-bar button:hover {
+            background: #ff5252;
+        }
+        
+        .special-offers {
+            background: #ffeb3b;
+            padding: 10px 0;
+            margin: 15px 0;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .marquee-container {
+            display: flex;
+            animation: marquee 25s linear infinite;
+        }
+        
+        .offer-item {
+            display: flex;
+            align-items: center;
+            margin: 0 30px;
+            white-space: nowrap;
+        }
+        
+        .offer-item img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        
+        .offer-text {
+            font-weight: 600;
+            color: #d32f2f;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .product-section {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .product-gallery {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: border 0.3s;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border: 2px solid #6a11cb;
+        }
+        
+        .product-details {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .product-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .product-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #6a11cb;
+            margin-bottom: 15px;
+        }
+        
+        .product-description {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .product-features {
+            margin-bottom: 20px;
+        }
+        
+        .product-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .product-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .product-features li i {
+            color: #6a11cb;
+            margin-right: 10px;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .quantity-selector label {
+            margin-right: 10px;
+            font-weight: 500;
+        }
+        
+        .quantity-selector input {
+            width: 60px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: #6a11cb;
+            color: white;
+            flex: 2;
+        }
+        
+        .btn-primary:hover {
+            background: #5a0db3;
+        }
+        
+        .btn-secondary {
+            background: #ff6b6b;
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-secondary:hover {
+            background: #ff5252;
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .product-info {
+            margin: 30px 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            color: #6a11cb;
+            border-bottom: 3px solid #6a11cb;
+        }
+        
+        .tab-content {
+            padding: 25px;
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .related-products {
+            margin: 40px 0;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #333;
+            border-left: 4px solid #6a11cb;
+            padding-left: 10px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-card-content {
+            padding: 15px;
+        }
+        
+        .product-card-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .product-card-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #6a11cb;
+            margin-bottom: 10px;
+        }
+        
+        .product-card-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .product-card-button {
+            flex: 1;
+            padding: 10px;
+            background: #6a11cb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-card-button i {
+            margin-right: 5px;
+        }
+        
+        .product-card-button:hover {
+            background: #5a0db3;
+        }
+        
+        .product-card-button.secondary {
+            background: #ff6b6b;
+        }
+        
+        .product-card-button.secondary:hover {
+            background: #ff5252;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #ff6b6b;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+        }
+        
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .checkout-steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .step.active .step-number {
+            background: #6a11cb;
+            color: white;
+        }
+        
+        .step.completed .step-number {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 14px;
+        }
+        
+        .checkout-section {
+            display: none;
+        }
+        
+        .checkout-section.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-method:hover {
+            border-color: #6a11cb;
+        }
+        
+        .payment-method.active {
+            border-color: #6a11cb;
+            background-color: #f9f5ff;
+        }
+        
+        .payment-method input {
+            margin-right: 10px;
+        }
+        
+        .payment-method-details {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        .payment-method-details.active {
+            display: block;
+        }
+        
+        .upi-apps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .upi-app {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .upi-app:hover {
+            border-color: #6a11cb;
+        }
+        
+        .upi-app.active {
+            border-color: #6a11cb;
+            background-color: #f9f5ff;
+        }
+        
+        .upi-app i {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .search-results {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+        
+        .search-results.active {
+            display: block;
+        }
+        
+        .search-result-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-result-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .search-result-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 350px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-items {
+            padding: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: #6a11cb;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+        
+        .cart-item-quantity button {
+            width: 25px;
+            height: 25px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .cart-item-quantity input {
+            width: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+            padding: 5px;
+        }
+        
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .cart-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .cart-count {
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+        
+        .cart-icon-container {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .product-section {
+                flex-direction: column;
+            }
+            
+            .header-top, .header-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .search-bar input {
+                width: 200px;
+            }
+            
+            .product-card-actions {
+                flex-direction: column;
+            }
+            
+            .cart-modal {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-shopping-bag"></i>
+                    Cartify
+                </div>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> OFFICIAL OFFER | FREE</p>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Product.Html">Products</a></li>
+                        <li><a href="categories.Html">Categories</a></li>
+                        <li><a href="Deals&Offer.Html">Deals</a></li>
+                        <li><a href="About us.Html">About</a></li>
+                        <li><a href="Contact Us.Html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="search-bar" style="position: relative;">
+                    <input type="text" id="search-input" placeholder="Search for products...">
+                    <button id="search-button"><i class="fas fa-search"></i></button>
+                    <div class="search-results" id="search-results">
+                    </div>
+                </div>
+                <div class="cart-icon-container" id="cart-icon">
+                    <i class="fas fa-shopping-cart" style="font-size: 24px; color: white;"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="special-offers">
+            <div class="marquee-container">
+                <div class="offer-item">
+                    <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Special Offer 1">
+                    <div class="offer-text">FLAT 30% OFF ON ELECTRONICS</div>
+                </div>
+                <div class="offer-item">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Special Offer 2">
+                    <div class="offer-text">BUY 2 GET 1 FREE ON FASHION ITEMS</div>
+                </div>
+                <div class="offer-item">
+                    <img src="https://images.unsplash.com/photo-1585155770447-2f66e2a397b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Special Offer 3">
+                    <div class="offer-text">FREE SHIPPING ON ORDERS OVER $50</div>
+                </div>
+                <div class="offer-item">
+                    <img src="https://images.unsplash.com/photo-1585155770447-2f66e2a397b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Special Offer 4">
+                    <div class="offer-text">UP TO 50% OFF ON HOME APPLIANCES</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="product-section">
+            <div class="product-gallery">
+                <img id="main-image" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wireless Headphones" class="main-image">
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Thumbnail 1" class="thumbnail active" data-image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                    <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Thumbnail 2" class="thumbnail" data-image="https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Thumbnail 3" class="thumbnail" data-image="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                    <img src="https://images.unsplash.com/photo-1487215078519-e21cc028cb29?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Thumbnail 4" class="thumbnail" data-image="https://images.unsplash.com/photo-1487215078519-e21cc028cb29?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                </div>
+            </div>
+            
+            <div class="product-details">
+                <h1 class="product-title">Premium Wireless Bluetooth Headphones</h1>
+                <div class="product-price">$129.99</div>
+                <div class="product-description">
+                    <p>Experience superior sound quality with our premium wireless headphones. Featuring active noise cancellation, 30-hour battery life, and comfortable over-ear design for all-day listening.</p>
+                </div>
+                
+                <div class="product-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Active Noise Cancellation</li>
+                        <li><i class="fas fa-check"></i> 30-hour battery life</li>
+                        <li><i class="fas fa-check"></i> Quick charge (3 hours in 15 minutes)</li>
+                        <li><i class="fas fa-check"></i> Built-in microphone for calls</li>
+                        <li><i class="fas fa-check"></i> Foldable design for easy storage</li>
+                        <li><i class="fas fa-check"></i> Compatible with all Bluetooth devices</li>
+                    </ul>
+                </div>
+                
+                <div class="quantity-selector">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" value="1" min="1" max="10">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="buy-now-btn">
+                        <i class="fas fa-shopping-cart"></i> Buy Now
+                    </button>
+                    <button class="btn btn-secondary" id="add-to-cart-btn">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-info">
+            <div class="tabs">
+                <div class="tab active" data-tab="description">Description</div>
+                <div class="tab" data-tab="specifications">Specifications</div>
+                <div class="tab" data-tab="reviews">Reviews</div>
+                <div class="tab" data-tab="shipping">Shipping & Returns</div>
+            </div>
+            
+            <div class="tab-content active" id="description">
+                <h3>Product Description</h3>
+                <p>Our Premium Wireless Bluetooth Headphones deliver an exceptional audio experience with cutting-edge technology. The active noise cancellation feature blocks out ambient noise, allowing you to immerse yourself in your music, podcasts, or calls.</p>
+                <p>With a battery life of up to 30 hours, you can enjoy uninterrupted listening throughout your day. The quick charge feature gives you 3 hours of playback with just 15 minutes of charging.</p>
+                <p>The ergonomic design ensures comfort during extended use, and the foldable construction makes them perfect for travel. The built-in microphone provides crystal-clear call quality, and the intuitive controls allow you to manage your audio without reaching for your device.</p>
+            </div>
+            
+            <div class="tab-content" id="specifications">
+                <h3>Technical Specifications</h3>
+                <ul>
+                    <li><strong>Driver Size:</strong> 40mm</li>
+                    <li><strong>Frequency Response:</strong> 20Hz - 20kHz</li>
+                    <li><strong>Bluetooth Version:</strong> 5.0</li>
+                    <li><strong>Battery Life:</strong> Up to 30 hours</li>
+                    <li><strong>Charging Time:</strong> 2 hours</li>
+                    <li><strong>Weight:</strong> 250g</li>
+                    <li><strong>Connection:</strong> Bluetooth, 3.5mm audio jack</li>
+                    <li><strong>Color Options:</strong> Black, Silver, Blue</li>
+                </ul>
+            </div>
+            
+            <div class="tab-content" id="reviews">
+                <h3>Customer Reviews</h3>
+                <div class="review">
+                    <div class="review-header">
+                        <strong>John D.</strong>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p>These headphones are amazing! The sound quality is exceptional and the noise cancellation works perfectly. Highly recommended!</p>
+                </div>
+                <div class="review">
+                    <div class="review-header">
+                        <strong>Sarah M.</strong>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p>Very comfortable for long listening sessions. Battery life is as advertised. The only minor issue is the case could be more protective.</p>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="shipping">
+                <h3>Shipping & Returns</h3>
+                <p><strong>Shipping:</strong> We offer free standard shipping on all orders over $50. Orders are processed within 1-2 business days and delivered within 3-7 business days.</p>
+                <p><strong>Returns:</strong> We offer a 30-day return policy for unused items in original packaging. Return shipping is free for defective products.</p>
+            </div>
+        </div>
+        
+        <div class="related-products">
+            <h2 class="section-title">Related Products</h2>
+            <div class="products-grid">
+                <div class="product-card" data-product="wireless-earbuds">
+                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSIR0SqDo7-82VNFwrY0S-k81oZVKC9S6IYQZ-3aerGKL3vr3oU5KaJVxKNL3JWa5igmPX-voxWQMnG_VypxPZ0kHVDEkEIPF_1kzRmofBkhp4IxdSBKsYLUEm5BiprKAcBehWsabs&usqp=CAc" alt="Wireless Earbuds">
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">True Wireless Earbuds</h3>
+                        <div class="product-card-price">$79.99</div>
+                        <div class="product-card-actions">
+                            <button class="product-card-button buy-now-related" data-product="wireless-earbuds">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                            <button class="product-card-button secondary add-to-cart-related" data-product="wireless-earbuds">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product="smartwatch">
+                    <img src="https://m.media-amazon.com/images/I/71JU-bUt-sL.jpg" alt="Smartwatch">
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">Smart Fitness Watch</h3>
+                        <div class="product-card-price">$199.99</div>
+                        <div class="product-card-actions">
+                            <button class="product-card-button buy-now-related" data-product="smartwatch">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                            <button class="product-card-button secondary add-to-cart-related" data-product="smartwatch">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product="bluetooth-speaker">
+                    <img src="https://hips.hearstapps.com/hmg-prod/images/water-proof-speakers699-646f630e63c50.jpg?crop=0.549xw:0.732xh;0.402xw,0.201xh&resize=1200:*" alt="Portable Speaker">
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">Waterproof Bluetooth Speaker</h3>
+                        <div class="product-card-price">$59.99</div>
+                        <div class="product-card-actions">
+                            <button class="product-card-button buy-now-related" data-product="bluetooth-speaker">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                            <button class="product-card-button secondary add-to-cart-related" data-product="bluetooth-speaker">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product="gaming-headset">
+                    <img src="https://www.pcstudio.in/wp-content/uploads/2025/01/Razer-Kraken-V3-X-71-Rgb-Gaming-Headset-Black-5-1.webp" alt="Gaming Headset">
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">RGB Gaming Headset</h3>
+                        <div class="product-card-price">$89.99</div>
+                        <div class="product-card-actions">
+                            <button class="product-card-button buy-now-related" data-product="gaming-headset">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                            <button class="product-card-button secondary add-to-cart-related" data-product="gaming-headset">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product="phone-case">
+                    <img src="https://coveritup.com/cdn/shop/files/Artboard_1_copy_01636f13-8b4d-40ec-986a-36332aafa6c8.png?v=1728114818&width=3200" alt="Phone Case">
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">Premium Phone Case</h3>
+                        <div class="product-card-price">$24.99</div>
+                        <div class="product-card-actions">
+                            <button class="product-card-button buy-now-related" data-product="phone-case">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                            <button class="product-card-button secondary add-to-cart-related" data-product="phone-case">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product="tablet">
+                    <img src="https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Tablet">
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">10-inch Tablet</h3>
+                        <div class="product-card-price">$299.99</div>
+                        <div class="product-card-actions">
+                            <button class="product-card-button buy-now-related" data-product="tablet">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                            <button class="product-card-button secondary add-to-cart-related" data-product="tablet">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify</h3>
+                    <ul>
+                        <li><a href="About us.Html">About Us</a></li>
+                        <li><a href="carrer.Html">Careers</a></li>
+                        <li><a href="press.Html">Press</a></li>
+                        <li><a href="corporate.Html">Corporate Information</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="Contact Us.Html">Contact Us</a></li>
+                        <li><a href="FAQ.Html">FAQ</a></li>
+                        <li><a href="Shipping.Html">Shipping Policy</a></li>
+                        <li><a href="Return&Refund.Html">Returns & Refunds</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Payment Methods</h3>
+                    <ul>
+                        <li><a href="#" class="payment-link" data-method="credit-card">Credit Cards</a></li>
+                        <li><a href="#" class="payment-link" data-method="paypal">PayPal</a></li>
+                        <li><a href="#" class="payment-link" data-method="btc">BTC micro 1.00%</a></li>
+                        <li><a href="#" class="payment-link" data-method="upi">UPI</a></li>
+                        <li><a href="#" class="payment-link" data-method="cash">Cash on Delivery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2015 Cartify - Online Shopping. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+   
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-modal" id="close-cart">&times;</span>
+        </div>
+        <div class="cart-items" id="cart-items">
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <div class="cart-actions">
+                <button class="btn btn-primary" id="checkout-cart">Checkout</button>
+                <button class="btn btn-secondary" id="continue-shopping">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-checkout">&times;</span>
+            <h2 class="section-title">Checkout</h2>
+            
+            <div class="checkout-steps">
+                <div class="step active" id="step-shipping">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Shipping</div>
+                </div>
+                <div class="step" id="step-payment">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Payment</div>
+                </div>
+                <div class="step" id="step-confirmation">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+            
+            <div class="checkout-section active" id="shipping-section">
+                <div class="form-group">
+                    <label for="shipping-name">Full Name</label>
+                    <input type="text" id="shipping-name" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="shipping-address">Address</label>
+                    <textarea id="shipping-address" placeholder="Enter your complete address"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="shipping-city">City</label>
+                    <input type="text" id="shipping-city" placeholder="Enter your city">
+                </div>
+                <div class="form-group">
+                    <label for="shipping-pincode">Zip Code</label>
+                    <input type="text" id="shipping-pincode" placeholder="Enter your zip code">
+                </div>
+                <div class="form-group">
+                    <label for="shipping-phone">Phone Number</label>
+                    <input type="tel" id="shipping-phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-buttons">
+                    <button class="btn btn-secondary" id="cancel-checkout">Cancel</button>
+                    <button class="btn btn-primary" id="next-payment">Next: Payment</button>
+                </div>
+            </div>
+            
+            <div class="checkout-section" id="payment-section">
+                <div class="form-group">
+                    <label>Select Payment Method</label>
+                    <div class="payment-methods">
+                        <div class="payment-method active" data-method="credit-card">
+                            <input type="radio" id="payment-credit-card" name="payment" value="credit-card" checked>
+                            <label for="payment-credit-card">Credit/Debit Card</label>
+                        </div>
+                        <div class="payment-method" data-method="paypal">
+                            <input type="radio" id="payment-paypal" name="payment" value="paypal">
+                            <label for="payment-paypal">PayPal</label>
+                        </div>
+                        <div class="payment-method" data-method="btc">
+                            <input type="radio" id="payment-btc" name="payment" value="btc">
+                            <label for="payment-btc">BTC micro 1.00%</label>
+                        </div>
+                        <div class="payment-method" data-method="upi">
+                            <input type="radio" id="payment-upi" name="payment" value="upi">
+                            <label for="payment-upi">UPI</label>
+                        </div>
+                        <div class="payment-method" data-method="cash">
+                            <input type="radio" id="payment-cash" name="payment" value="cash">
+                            <label for="payment-cash">Cash on Delivery</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-method-details active" id="credit-card-details">
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="Enter card number">
+                    </div>
+                    <div class="form-group">
+                        <label for="card-name">Name on Card</label>
+                        <input type="text" id="card-name" placeholder="Enter name on card">
+                    </div>
+                    <div style="display: flex; gap: 15px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="card-expiry">Expiry Date</label>
+                            <input type="text" id="card-expiry" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="card-cvv">CVV</label>
+                            <input type="text" id="card-cvv" placeholder="CVV">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-method-details" id="paypal-details">
+                    <p>You will be redirected to PayPal to complete your payment securely.</p>
+                    <div class="form-group">
+                        <label for="paypal-email">PayPal Email</label>
+                        <input type="email" id="paypal-email" placeholder="Enter your PayPal email">
+                    </div>
+                </div>
+                
+                <div class="payment-method-details" id="btc-details">
+                    <p>Pay with Bitcoin and get 1% cashback on your purchase.</p>
+                    <div class="form-group">
+                        <label for="btc-address">BTC Wallet Address</label>
+                        <input type="text" id="btc-address" placeholder="Enter your BTC wallet address">
+                    </div>
+                    <p style="font-size: 14px; color: #666;">Current BTC/USD rate: 1 BTC = $45,230.50</p>
+                </div>
+                
+                <div class="payment-method-details" id="upi-details">
+                    <p>Select your preferred UPI app to complete payment:</p>
+                    <div class="upi-apps">
+                        <div class="upi-app" data-app="phonepe">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>PhonePe</span>
+                        </div>
+                        <div class="upi-app" data-app="gpay">
+                            <i class="fab fa-google"></i>
+                            <span>Google Pay</span>
+                        </div>
+                        <div class="upi-app" data-app="paytm">
+                            <i class="fas fa-wallet"></i>
+                            <span>Paytm</span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label for="upi-id">UPI ID</label>
+                        <input type="text" id="upi-id" placeholder="Enter your UPI ID">
+                    </div>
+                </div>
+                
+                <div class="payment-method-details" id="cash-details">
+                    <p>Pay with cash when your order is delivered.</p>
+                    <p style="font-size: 14px; color: #666;">Please keep exact change ready for the delivery person.</p>
+                </div>
+                
+                <div class="order-summary" style="margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 8px;">
+                    <h4 style="margin-bottom: 10px;">Order Summary</h4>
+                    <div id="checkout-items"></div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px; font-weight: 600;">
+                        <span>Total:</span>
+                        <span id="checkout-total">$0.00</span>
+                    </div>
+                </div>
+                
+                <div class="form-buttons">
+                    <button class="btn btn-secondary" id="back-shipping">Back</button>
+                    <button class="btn btn-primary" id="next-confirmation">Next: Confirmation</button>
+                </div>
+            </div>
+            
+            <div class="checkout-section" id="confirmation-section">
+                <div style="text-align: center; padding: 20px;">
+                    <i class="fas fa-check-circle" style="font-size: 60px; color: #4CAF50; margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 10px;">Order Placed Successfully!</h3>
+                    <p>Thank you for your purchase. Your order will be delivered within 3-5 business days.</p>
+                    <p style="margin-top: 20px; font-weight: 600;">Order ID: #SK2025<span id="order-id"></span></p>
+                    <div id="confirmation-details" style="margin-top: 20px; text-align: left; background: #f9f9f9; padding: 15px; border-radius: 8px;"></div>
+                </div>
+                <div class="form-buttons">
+                    <button class="btn btn-primary" id="continue-shopping">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Premium Wireless Bluetooth Headphones",
+                price: 129.99,
+                category: "electronics",
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                description: "Experience superior sound quality with our premium wireless headphones."
+            },
+            {
+                id: 2,
+                name: "True Wireless Earbuds",
+                price: 79.99,
+                category: "electronics",
+                image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSIR0SqDo7-82VNFwrY0S-k81oZVKC9S6IYQZ-3aerGKL3vr3oU5KaJVxKNL3JWa5igmPX-voxWQMnG_VypxPZ0kHVDEkEIPF_1kzRmofBkhp4IxdSBKsYLUEm5BiprKAcBehWsabs&usqp=CAc",
+                description: "Compact wireless earbuds with excellent sound quality."
+            },
+            {
+                id: 3,
+                name: "Smart Fitness Watch",
+                price: 199.99,
+                category: "electronics",
+                image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                description: "Track your fitness goals with this advanced smartwatch."
+            },
+            {
+                id: 4,
+                name: "Waterproof Bluetooth Speaker",
+                price: 59.99,
+                category: "electronics",
+                image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                description: "Take your music anywhere with this waterproof speaker."
+            },
+            {
+                id: 5,
+                name: "RGB Gaming Headset",
+                price: 89.99,
+                category: "electronics",
+                image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                description: "Immerse yourself in games with this RGB gaming headset."
+            },
+            {
+                id: 6,
+                name: "Premium Phone Case",
+                price: 24.99,
+                category: "accessories",
+                image: "https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                description: "Protect your phone with our premium case."
+            },
+            {
+                id: 7,
+                name: "10-inch Tablet",
+                price: 299.99,
+                category: "electronics",
+                image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                description: "Perfect for work and entertainment."
+            }
+        ];
+
+        const productDetails = {
+            "wireless-headphones": {
+                description: "Our Premium Wireless Bluetooth Headphones deliver an exceptional audio experience with cutting-edge technology. The active noise cancellation feature blocks out ambient noise, allowing you to immerse yourself in your music, podcasts, or calls.",
+                specifications: [
+                    "Driver Size: 40mm",
+                    "Frequency Response: 20Hz - 20kHz",
+                    "Bluetooth Version: 5.0",
+                    "Battery Life: Up to 30 hours",
+                    "Charging Time: 2 hours",
+                    "Weight: 250g",
+                    "Connection: Bluetooth, 3.5mm audio jack",
+                    "Color Options: Black, Silver, Blue"
+                ],
+                reviews: [
+                    { name: "John D.", rating: 5, comment: "These headphones are amazing! The sound quality is exceptional and the noise cancellation works perfectly. Highly recommended!" },
+                    { name: "Sarah M.", rating: 4.5, comment: "Very comfortable for long listening sessions. Battery life is as advertised. The only minor issue is the case could be more protective." }
+                ],
+                shipping: "We offer free standard shipping on all orders over $50. Orders are processed within 1-2 business days and delivered within 3-7 business days."
+            },
+            "wireless-earbuds": {
+                description: "Experience true wireless freedom with our compact earbuds. Perfect for workouts, commuting, or everyday use with crystal clear audio and secure fit.",
+                specifications: [
+                    "Driver Size: 10mm",
+                    "Battery Life: Up to 8 hours (24 with case)",
+                    "Charging: Wireless charging case",
+                    "Water Resistance: IPX7",
+                    "Connectivity: Bluetooth 5.2",
+                    "Weight: 5g per earbud",
+                    "Color Options: White, Black, Blue"
+                ],
+                reviews: [
+                    { name: "Mike T.", rating: 4, comment: "Great sound for the price. The battery life is impressive and they fit comfortably in my ears." },
+                    { name: "Lisa K.", rating: 5, comment: "Perfect for running! They don't fall out and the sound quality is amazing." }
+                ],
+                shipping: "Free shipping on all orders. Delivered within 2-5 business days."
+            },
+            "smartwatch": {
+                description: "Track your fitness, receive notifications, and stay connected with our advanced smartwatch. With heart rate monitoring, GPS, and multiple sport modes.",
+                specifications: [
+                    "Display: 1.4\" AMOLED",
+                    "Battery Life: Up to 7 days",
+                    "Water Resistance: 5 ATM",
+                    "Sensors: Heart rate, GPS, Accelerometer",
+                    "Connectivity: Bluetooth, Wi-Fi",
+                    "Compatibility: iOS and Android",
+                    "Color Options: Black, Silver, Rose Gold"
+                ],
+                reviews: [
+                    { name: "David L.", rating: 4.5, comment: "Excellent fitness tracker with accurate heart rate monitoring. The battery lasts almost a week with normal use." },
+                    { name: "Emma R.", rating: 5, comment: "Love the design and the features. The sleep tracking is very accurate and helpful." }
+                ],
+                shipping: "Express shipping available. Free returns within 30 days."
+            },
+            "bluetooth-speaker": {
+                description: "Take your music anywhere with our waterproof Bluetooth speaker. Perfect for pool parties, beach days, or outdoor adventures with powerful sound and rugged design.",
+                specifications: [
+                    "Output Power: 20W",
+                    "Battery Life: Up to 12 hours",
+                    "Water Resistance: IPX7",
+                    "Connectivity: Bluetooth 5.0, AUX",
+                    "Weight: 600g",
+                    "Color Options: Blue, Black, Red"
+                ],
+                reviews: [
+                    { name: "Alex P.", rating: 5, comment: "The sound quality is incredible for its size. Perfect for outdoor gatherings and the battery lasts all day." },
+                    { name: "Sophia M.", rating: 4, comment: "Great speaker! The waterproof feature gives me peace of mind when using it by the pool." }
+                ],
+                shipping: "Standard shipping 3-7 business days. Free shipping on orders over $30."
+            },
+            "gaming-headset": {
+                description: "Immerse yourself in your games with our RGB gaming headset. Featuring 7.1 surround sound, noise-canceling microphone, and customizable RGB lighting.",
+                specifications: [
+                    "Driver Size: 50mm",
+                    "Frequency Response: 20Hz-20kHz",
+                    "Microphone: Detachable noise-canceling",
+                    "Connectivity: USB, 3.5mm jack",
+                    "Lighting: RGB with customization",
+                    "Weight: 320g",
+                    "Color Options: Black, White"
+                ],
+                reviews: [
+                    { name: "Chris G.", rating: 5, comment: "The surround sound is amazing for gaming. My teammates can hear me clearly and the RGB looks awesome." },
+                    { name: "Jessica T.", rating: 4.5, comment: "Very comfortable for long gaming sessions. The sound quality is excellent and the mic works great." }
+                ],
+                shipping: "Free expedited shipping. Delivered within 1-3 business days."
+            },
+            "phone-case": {
+                description: "Protect your phone in style with our premium phone case. Made from durable materials with a sleek design that doesn't add bulk.",
+                specifications: [
+                    "Material: Polycarbonate and TPU",
+                    "Compatibility: Various phone models",
+                    "Features: Raised edges, wireless charging compatible",
+                    "Color Options: Clear, Black, Blue, Pink",
+                    "Drop Protection: Up to 6 feet"
+                ],
+                reviews: [
+                    { name: "Ryan K.", rating: 4, comment: "Fits perfectly and feels great in hand. The clear option shows off my phone's color nicely." },
+                    { name: "Olivia M.", rating: 5, comment: "Excellent protection without being bulky. The buttons are responsive and it works with wireless charging." }
+                ],
+                shipping: "Free shipping. Delivered within 2-4 business days."
+            },
+            "tablet": {
+                description: "Our 10-inch tablet is perfect for work, entertainment, and everything in between. With a vibrant display and long battery life.",
+                specifications: [
+                    "Display: 10.1\" IPS LCD",
+                    "Resolution: 1920x1200",
+                    "Processor: Octa-core 2.0GHz",
+                    "RAM: 4GB",
+                    "Storage: 64GB (expandable)",
+                    "Battery: 7000mAh",
+                    "OS: Android 12",
+                    "Color Options: Silver, Space Gray"
+                ],
+                reviews: [
+                    { name: "Michael B.", rating: 4.5, comment: "Great value for the price. The display is crisp and the battery lasts all day with moderate use." },
+                    { name: "Sophie L.", rating: 5, comment: "Perfect for reading, watching videos, and light work. Very responsive and easy to use." }
+                ],
+                shipping: "Free expedited shipping. Delivered within 1-3 business days."
+            }
+        };
+
+        let cart = [];
+        let currentProduct = {
+            id: 1,
+            name: "Premium Wireless Bluetooth Headphones",
+            price: 129.99,
+            image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    document.getElementById('main-image').src = this.getAttribute('data-image');
+                    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById(this.getAttribute('data-tab')).classList.add('active');
+                });
+            });
+            
+            const searchInput = document.getElementById('search-input');
+            const searchResults = document.getElementById('search-results');
+            const searchButton = document.getElementById('search-button');
+            
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                searchResults.innerHTML = '';
+                
+                if (query.length > 2) {
+                    const filteredProducts = products.filter(product => 
+                        product.name.toLowerCase().includes(query) || 
+                        product.description.toLowerCase().includes(query)
+                    );
+                    
+                    if (filteredProducts.length > 0) {
+                        searchResults.classList.add('active');
+                        filteredProducts.forEach(product => {
+                            const resultItem = document.createElement('div');
+                            resultItem.className = 'search-result-item';
+                            resultItem.innerHTML = `
+                                <img src="${product.image}" alt="${product.name}">
+                                <div>
+                                    <div style="font-weight: 600;">${product.name}</div>
+                                    <div style="font-size: 14px; color: #666;">$${product.price}</div>
+                                </div>
+                            `;
+                            resultItem.addEventListener('click', function() {
+                                alert(`You selected: ${product.name}`);
+                                searchInput.value = product.name;
+                                searchResults.classList.remove('active');
+                            });
+                            searchResults.appendChild(resultItem);
+                        });
+                    } else {
+                        searchResults.classList.add('active');
+                        searchResults.innerHTML = '<div class="search-result-item">No products found</div>';
+                    }
+                } else {
+                    searchResults.classList.remove('active');
+                }
+            });
+            
+            searchButton.addEventListener('click', function() {
+                const query = searchInput.value.toLowerCase();
+                if (query.length > 0) {
+                    alert(`Searching for: ${query}`);
+                }
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.addEventListener('click', function() {
+                    const methodType = this.getAttribute('data-method');
+                    
+                    document.querySelector(`#payment-${methodType}`).checked = true;
+                    
+                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    document.querySelectorAll('.payment-method-details').forEach(d => d.classList.remove('active'));
+                    document.getElementById(`${methodType}-details`).classList.add('active');
+                });
+            });
+            
+            document.querySelectorAll('.upi-app').forEach(app => {
+                app.addEventListener('click', function() {
+                    document.querySelectorAll('.upi-app').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            document.querySelectorAll('.payment-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const method = this.getAttribute('data-method');
+                    openCheckout();
+                    
+                    setTimeout(() => {
+                        document.querySelector(`.payment-method[data-method="${method}"]`).click();
+                    }, 100);
+                });
+            });
+            
+            document.getElementById('buy-now-btn').addEventListener('click', function() {
+                const quantity = parseInt(document.getElementById('quantity').value);
+                const product = {
+                    ...currentProduct,
+                    quantity: quantity
+                };
+                openCheckout([product]);
+            });
+            
+            document.querySelectorAll('.buy-now-related').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product');
+                    const product = products.find(p => p.name.toLowerCase().includes(productId)) || products[0];
+                    const productWithQuantity = {
+                        ...product,
+                        quantity: 1
+                    };
+                    openCheckout([productWithQuantity]);
+                });
+            });
+            
+            document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+                const quantity = parseInt(document.getElementById('quantity').value);
+                addToCart(currentProduct, quantity);
+            });
+            
+            document.querySelectorAll('.add-to-cart-related').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product');
+                    const product = products.find(p => p.name.toLowerCase().includes(productId)) || products[0];
+                    addToCart(product, 1);
+                });
+            });
+            
+            const cartModal = document.getElementById('cart-modal');
+            const cartIcon = document.getElementById('cart-icon');
+            const closeCart = document.getElementById('close-cart');
+            const continueShopping = document.getElementById('continue-shopping');
+            const checkoutCart = document.getElementById('checkout-cart');
+            
+            cartIcon.addEventListener('click', function() {
+                updateCartDisplay();
+                cartModal.style.display = 'block';
+            });
+            
+            closeCart.addEventListener('click', function() {
+                cartModal.style.display = 'none';
+            });
+            
+            continueShopping.addEventListener('click', function() {
+                cartModal.style.display = 'none';
+            });
+            
+            checkoutCart.addEventListener('click', function() {
+                if (cart.length > 0) {
+                    cartModal.style.display = 'none';
+                    openCheckout(cart);
+                } else {
+                    alert('Your cart is empty!');
+                }
+            });
+            
+            const checkoutModal = document.getElementById('checkout-modal');
+            const closeCheckout = document.getElementById('close-checkout');
+            
+            closeCheckout.addEventListener('click', function() {
+                checkoutModal.style.display = 'none';
+            });
+            
+            document.getElementById('next-payment').addEventListener('click', nextToPayment);
+            document.getElementById('back-shipping').addEventListener('click', backToShipping);
+            document.getElementById('next-confirmation').addEventListener('click', nextToConfirmation);
+            document.getElementById('cancel-checkout').addEventListener('click', function() {
+                checkoutModal.style.display = 'none';
+            });
+            document.getElementById('continue-shopping').addEventListener('click', function() {
+                checkoutModal.style.display = 'none';
+                cart = [];
+                updateCartCount();
+            });
+            
+            window.addEventListener('click', function(e) {
+                if (e.target === checkoutModal) {
+                    checkoutModal.style.display = 'none';
+                }
+                if (e.target === cartModal) {
+                    cartModal.style.display = 'none';
+                }
+            });
+        });
+
+        function addToCart(product, quantity) {
+            const existingItem = cart.find(item => item.id === product.id);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: quantity
+                });
+            }
+            
+            updateCartCount();
+            alert('Product added to cart!');
+        }
+
+        function updateCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotalPrice = document.getElementById('cart-total-price');
+            
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty</p>';
+                cartTotalPrice.textContent = '$0.00';
+                return;
+            }
+            
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">$${item.price}</div>
+                        <div class="cart-item-quantity">
+                            <button class="decrease-quantity" data-id="${item.id}">-</button>
+                            <input type="number" value="${item.quantity}" min="1" data-id="${item.id}">
+                            <button class="increase-quantity" data-id="${item.id}">+</button>
+                        </div>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            
+            cartTotalPrice.textContent = `$${total.toFixed(2)}`;
+            
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    const item = cart.find(item => item.id === id);
+                    if (item && item.quantity > 1) {
+                        item.quantity--;
+                        updateCartDisplay();
+                        updateCartCount();
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    const item = cart.find(item => item.id === id);
+                    if (item) {
+                        item.quantity++;
+                        updateCartDisplay();
+                        updateCartCount();
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.cart-item-quantity input').forEach(input => {
+                input.addEventListener('change', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    const item = cart.find(item => item.id === id);
+                    if (item) {
+                        item.quantity = parseInt(this.value) || 1;
+                        updateCartDisplay();
+                        updateCartCount();
+                    }
+                });
+            });
+        }
+
+        function openCheckout(items) {
+            const checkoutItems = document.getElementById('checkout-items');
+            const checkoutTotal = document.getElementById('checkout-total');
+            
+            checkoutItems.innerHTML = '';
+            let total = 0;
+            
+            items.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const itemElement = document.createElement('div');
+                itemElement.style.display = 'flex';
+                itemElement.style.justifyContent = 'space-between';
+                itemElement.style.marginBottom = '5px';
+                itemElement.innerHTML = `
+                    <span>${item.name} (x${item.quantity})</span>
+                    <span>$${itemTotal.toFixed(2)}</span>
+                `;
+                checkoutItems.appendChild(itemElement);
+            });
+            
+            checkoutTotal.textContent = `$${total.toFixed(2)}`;
+            
+            checkoutModal.style.display = 'flex';
+            resetCheckoutSteps();
+        }
+
+        function resetCheckoutSteps() {
+            document.getElementById('step-shipping').classList.add('active');
+            document.getElementById('step-payment').classList.remove('active', 'completed');
+            document.getElementById('step-confirmation').classList.remove('active', 'completed');
+            
+            document.getElementById('shipping-section').classList.add('active');
+            document.getElementById('payment-section').classList.remove('active');
+            document.getElementById('confirmation-section').classList.remove('active');
+        }
+
+        function nextToPayment() {
+            const name = document.getElementById('shipping-name').value;
+            const address = document.getElementById('shipping-address').value;
+            const city = document.getElementById('shipping-city').value;
+            const pincode = document.getElementById('shipping-pincode').value;
+            const phone = document.getElementById('shipping-phone').value;
+
+            if (!name || !address || !city || !pincode || !phone) {
+                alert('Please fill in all shipping details');
+                return;
+            }
+
+            document.getElementById('step-shipping').classList.remove('active');
+            document.getElementById('step-shipping').classList.add('completed');
+            document.getElementById('step-payment').classList.add('active');
+            
+            document.getElementById('shipping-section').classList.remove('active');
+            document.getElementById('payment-section').classList.add('active');
+        }
+
+        function backToShipping() {
+            document.getElementById('step-shipping').classList.add('active');
+            document.getElementById('step-payment').classList.remove('active');
+            document.getElementById('step-shipping').classList.remove('completed');
+            
+            document.getElementById('shipping-section').classList.add('active');
+            document.getElementById('payment-section').classList.remove('active');
+        }
+
+        function nextToConfirmation() {
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            let valid = true;
+            
+            if (paymentMethod === 'credit-card') {
+                const cardNumber = document.getElementById('card-number').value;
+                const cardName = document.getElementById('card-name').value;
+                const cardExpiry = document.getElementById('card-expiry').value;
+                const cardCvv = document.getElementById('card-cvv').value;
+
+                if (!cardNumber || !cardName || !cardExpiry || !cardCvv) {
+                    alert('Please fill in all card details');
+                    valid = false;
+                }
+            } else if (paymentMethod === 'paypal') {
+                const paypalEmail = document.getElementById('paypal-email').value;
+                if (!paypalEmail) {
+                    alert('Please enter your PayPal email');
+                    valid = false;
+                }
+            } else if (paymentMethod === 'btc') {
+                const btcAddress = document.getElementById('btc-address').value;
+                if (!btcAddress) {
+                    alert('Please enter your BTC wallet address');
+                    valid = false;
+                }
+            } else if (paymentMethod === 'upi') {
+                const upiId = document.getElementById('upi-id').value;
+                const selectedApp = document.querySelector('.upi-app.active');
+                if (!upiId || !selectedApp) {
+                    alert('Please enter your UPI ID and select a UPI app');
+                    valid = false;
+                }
+            }
+            
+            if (!valid) return;
+
+            document.getElementById('step-payment').classList.remove('active');
+            document.getElementById('step-payment').classList.add('completed');
+            document.getElementById('step-confirmation').classList.add('active');
+            
+            document.getElementById('payment-section').classList.remove('active');
+            document.getElementById('confirmation-section').classList.add('active');
+
+            document.getElementById('order-id').textContent = Math.floor(1000 + Math.random() * 9000);
+            
+            const confirmationDetails = document.getElementById('confirmation-details');
+            const name = document.getElementById('shipping-name').value;
+            const address = document.getElementById('shipping-address').value;
+            const city = document.getElementById('shipping-city').value;
+            const pincode = document.getElementById('shipping-pincode').value;
+            const phone = document.getElementById('shipping-phone').value;
+            const total = document.getElementById('checkout-total').textContent;
+            
+            confirmationDetails.innerHTML = `
+                <h4>Order Details</h4>
+                <p><strong>Shipping to:</strong> ${name}, ${address}, ${city}, ${pincode}</p>
+                <p><strong>Contact:</strong> ${phone}</p>
+                <p><strong>Payment Method:</strong> ${paymentMethod.charAt(0).toUpperCase() + paymentMethod.slice(1)}</p>
+                <p><strong>Total Amount:</strong> ${total}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
