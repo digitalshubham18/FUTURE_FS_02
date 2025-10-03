@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press Room - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4a00e0;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #4a00e0;
+        }
+        
+        .press-hero {
+            background: linear-gradient(135deg, #8e2de2, #4a00e0);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .press-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .press-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #fff;
+            color: #4a00e0;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: #fff;
+            color: #4a00e0;
+        }
+        
+        .press-resources {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .section-title p {
+            color: #777;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .resource-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .resource-icon {
+            font-size: 40px;
+            color: #4a00e0;
+            margin-bottom: 20px;
+        }
+        
+        .resource-card h3 {
+            margin-bottom: 15px;
+        }
+        
+        .press-releases {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .releases-container {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .release-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .release-info h3 {
+            margin-bottom: 10px;
+        }
+        
+        .release-info p {
+            color: #777;
+            margin-bottom: 10px;
+        }
+        
+        .release-date {
+            color: #4a00e0;
+            font-weight: 600;
+        }
+        
+        .release-download a {
+            color: #4a00e0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .media-coverage {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .coverage-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .coverage-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .coverage-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .coverage-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .coverage-card:hover .coverage-image img {
+            transform: scale(1.05);
+        }
+        
+        .coverage-content {
+            padding: 20px;
+        }
+        
+        .coverage-source {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .source-logo {
+            width: 30px;
+            height: 30px;
+            background-color: #4a00e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .coverage-content h3 {
+            margin-bottom: 10px;
+        }
+        
+        .coverage-content p {
+            color: #777;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            color: #4a00e0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .press-contact {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #8e2de2, #4a00e0);
+            color: white;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-details {
+            margin-top: 30px;
+        }
+        
+        .contact-details p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            margin-right: 15px;
+            font-size: 20px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-form button {
+            background-color: #fff;
+            color: #4a00e0;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .contact-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: #4a00e0;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #bbb;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4a00e0;
+        }
+        
+        .brand-assets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .asset-card {
+            text-align: center;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .asset-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .asset-preview {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .asset-preview img {
+            max-width: 100%;
+            max-height: 100px;
+        }
+        
+        .asset-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .asset-actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .article-content {
+            line-height: 1.8;
+        }
+        
+        .article-content h3 {
+            margin: 20px 0 10px;
+            color: #4a00e0;
+        }
+        
+        .article-content p {
+            margin-bottom: 15px;
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .press-hero h1 {
+                font-size: 36px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 15px;
+                display: block;
+            }
+            
+            .release-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .release-info {
+                margin-bottom: 20px;
+            }
+            
+            .brand-assets-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Cartify</a>
+                <ul class="nav-links">
+                    <li><a href="Home.Html">Home</a></li>
+                    <li><a href="Product.Html">Products</a></li>
+                    <li><a href="About us.Html">About Us</a></li>
+                    <li><a href="carrer.Html">Careers</a></li>
+                    <li><a href="press.Html">Press</a></li>
+                    <li><a href="Contact Us.Html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="press-hero">
+        <div class="container">
+            <h1>Cartify Press Room</h1>
+            <p>Welcome to the Cartify Press Center. Find the latest news, media resources, and company information.</p>
+            <a href="#contact" class="btn">Media Inquiry</a>
+            <a href="#resources" class="btn btn-outline">Press Resources</a>
+        </div>
+    </section>
+
+    <section class="press-resources" id="resources">
+        <div class="container">
+            <div class="section-title">
+                <h2>Press Resources</h2>
+                <p>Access media kit, brand assets, and company information</p>
+            </div>
+            <div class="resources">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>Media Kit</h3>
+                    <p>Download our press kit containing logos, executive bios, and company facts</p>
+                    <a href="#" class="read-more download-pdf" data-pdf="media-kit">Download</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3>Brand Assets</h3>
+                    <p>Access high-resolution logos, product images, and brand guidelines</p>
+                    <a href="#" class="read-more" id="open-brand-assets">Access</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Company Info</h3>
+                    <p>Learn about our company history, mission, and executive team</p>
+                    <a href="#" class="read-more" id="open-company-info">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="press-releases">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest Press Releases</h2>
+                <p>Official announcements and news from Cartify</p>
+            </div>
+            <div class="releases-container">
+                <div class="release-card">
+                    <div class="release-info">
+                        <h3>Cartify Raises $50M in Series C Funding</h3>
+                        <p>Company plans to expand operations to Southeast Asian markets</p>
+                        <span class="release-date">June 15, 2023</span>
+                    </div>
+                    <div class="release-download">
+                        <a href="#" class="download-pdf" data-pdf="series-c-funding"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+                <div class="release-card">
+                    <div class="release-info">
+                        <h3>Cartify Introduces Sustainable Packaging Initiative</h3>
+                        <p>New eco-friendly packaging reduces plastic waste by 75%</p>
+                        <span class="release-date">April 22, 2023</span>
+                    </div>
+                    <div class="release-download">
+                        <a href="#" class="download-pdf" data-pdf="sustainable-packaging"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+                <div class="release-card">
+                    <div class="release-info">
+                        <h3>Cartify Appoints New Chief Technology Officer</h3>
+                        <p>Former Amazon executive to lead technology innovation</p>
+                        <span class="release-date">March 5, 2023</span>
+                    </div>
+                    <div class="release-download">
+                        <a href="#" class="download-pdf" data-pdf="cto-appointment"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+                <div class="release-card">
+                    <div class="release-info">
+                        <h3>Cartify Reports Record Q4 Sales</h3>
+                        <p>Company sees 125% year-over-year growth during holiday season</p>
+                        <span class="release-date">January 18, 2023</span>
+                    </div>
+                    <div class="release-download">
+                        <a href="#" class="download-pdf" data-pdf="q4-sales"><i class="fas fa-download"></i> Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="media-coverage">
+        <div class="container">
+            <div class="section-title">
+                <h2>Media Coverage</h2>
+                <p>See what the press is saying about Cartify</p>
+            </div>
+            <div class="coverage-container">
+                <div class="coverage-card">
+                    <div class="coverage-image">
+                        <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=300&q=80" alt="Tech News">
+                    </div>
+                    <div class="coverage-content">
+                        <div class="coverage-source">
+                            <div class="source-logo">TN</div>
+                            <span>Tech News</span>
+                        </div>
+                        <h3>How Cartify is Revolutionizing E-Commerce in India</h3>
+                        <p>Cartify's innovative approach to online shopping is changing the game for retailers and consumers alike.</p>
+                        <a href="#" class="read-more read-article" data-article="tech-news">Read Article</a>
+                    </div>
+                </div>
+                <div class="coverage-card">
+                    <div class="coverage-image">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=300&q=80" alt="Business Today">
+                    </div>
+                    <div class="coverage-content">
+                        <div class="coverage-source">
+                            <div class="source-logo">BT</div>
+                            <span>Business Today</span>
+                        </div>
+                        <h3>Cartify: The Startup That's Challenging Amazon and Flipkart</h3>
+                        <p>With its unique approach to customer service and logistics, Cartify is making waves in the e-commerce industry.</p>
+                        <a href="#" class="read-more read-article" data-article="business-today">Read Article</a>
+                    </div>
+                </div>
+                <div class="coverage-card">
+                    <div class="coverage-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=300&q=80" alt="Digital Trends">
+                    </div>
+                    <div class="coverage-content">
+                        <div class="coverage-source">
+                            <div class="source-logo">DT</div>
+                            <span>Digital Trends</span>
+                        </div>
+                        <h3>Cartify's AI-Powered Recommendations Are Changing How We Shop Online</h3>
+                        <p>The company's sophisticated algorithm learns your preferences to suggest products you'll actually want to buy.</p>
+                        <a href="#" class="read-more read-article" data-article="digital-trends">Read Article</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="press-contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Press Contact</h2>
+                <p>Get in touch with our media relations team</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>We're Here to Help</h2>
+                    <p>For media inquiries, interview requests, or other press-related questions, please contact our communications team.</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-user"></i> Sarah Johnson, Head of Communications</p>
+                        <p><i class="fas fa-envelope"></i> press@Cartify.com</p>
+                        <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Tech Park, Bangalore, India</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email">
+                    <input type="text" placeholder="Media Organization">
+                    <textarea placeholder="Your Message"></textarea>
+                    <button type="submit">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify</h3>
+                    <p>India's leading e-commerce platform, connecting millions of buyers and sellers.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Product.Html">Products</a></li>
+                        <li><a href="About us.Html">About Us</a></li>
+                        <li><a href="carrer.Html">Careers</a></li>
+                        <li><a href="press.Html">Press</a></li>
+                        <li><a href="Contact Us.Html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Press Resources</h3>
+                    <ul>
+                        <li><a href="#" class="download-pdf" data-pdf="media-kit">Media Kit</a></li>
+                        <li><a href="#" id="footer-brand-assets">Brand Assets</a></li>
+                        <li><a href="#" id="footer-company-info">Company Info</a></li>
+                        <li><a href="#">Media Coverage</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: press@Cartify.com</li>
+                        <li>Phone: +91 123-456-789</li>
+                        <li>Address: Tech Park, Bangalore, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2015 Cartify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <div class="modal" id="brand-assets-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Brand Assets</h2>
+            <p>Download high-resolution logos and brand resources for media use.</p>
+            
+            <div class="brand-assets-grid">
+                <div class="asset-card">
+                    <div class="asset-preview">
+                        <img src="https://via.placeholder.com/150x100/4a00e0/ffffff?text=Logo+Color" alt="Cartify Logo Color">
+                    </div>
+                    <h4>Logo (Color)</h4>
+                    <div class="asset-actions">
+                        <button class="btn" data-asset="logo-color-png">PNG</button>
+                        <button class="btn" data-asset="logo-color-svg">SVG</button>
+                    </div>
+                </div>
+                
+                <div class="asset-card">
+                    <div class="asset-preview">
+                        <img src="https://via.placeholder.com/150x100/ffffff/4a00e0?text=Logo+White" alt="Cartify Logo White">
+                    </div>
+                    <h4>Logo (White)</h4>
+                    <div class="asset-actions">
+                        <button class="btn" data-asset="logo-white-png">PNG</button>
+                        <button class="btn" data-asset="logo-white-svg">SVG</button>
+                    </div>
+                </div>
+                
+                <div class="asset-card">
+                    <div class="asset-preview">
+                        <img src="https://via.placeholder.com/150x100/000000/ffffff?text=Logo+Black" alt="Cartify Logo Black">
+                    </div>
+                    <h4>Logo (Black)</h4>
+                    <div class="asset-actions">
+                        <button class="btn" data-asset="logo-black-png">PNG</button>
+                        <button class="btn" data-asset="logo-black-svg">SVG</button>
+                    </div>
+                </div>
+                
+                <div class="asset-card">
+                    <div class="asset-preview">
+                        <img src="https://via.placeholder.com/150x100/4a00e0/ffffff?text=App+Icon" alt="Cartify App Icon">
+                    </div>
+                    <h4>App Icon</h4>
+                    <div class="asset-actions">
+                        <button class="btn" data-asset="app-icon-png">PNG</button>
+                        <button class="btn" data-asset="app-icon-svg">SVG</button>
+                    </div>
+                </div>
+                
+                <div class="asset-card">
+                    <div class="asset-preview">
+                        <img src="https://via.placeholder.com/150x100/f0f0f0/333333?text=Brand+Guide" alt="Brand Guidelines">
+                    </div>
+                    <h4>Brand Guidelines</h4>
+                    <div class="asset-actions">
+                        <button class="btn" data-asset="brand-guidelines">PDF</button>
+                    </div>
+                </div>
+                
+                <div class="asset-card">
+                    <div class="asset-preview">
+                        <img src="https://via.placeholder.com/150x100/f0f0f0/333333?text=Product+Shots" alt="Product Images">
+                    </div>
+                    <h4>Product Images</h4>
+                    <div class="asset-actions">
+                        <button class="btn" data-asset="product-images">ZIP</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="modal" id="company-info-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Company Information</h2>
+            <div class="article-content">
+                <h3>About Cartify</h3>
+                <p>Cartify is India's fastest-growing e-commerce platform, connecting millions of buyers and sellers across the country. Founded in 2018, we've revolutionized online shopping with our customer-first approach and innovative technology.</p>
+                
+                <h3>Our Mission</h3>
+                <p>To make online shopping accessible, affordable, and enjoyable for everyone in India and beyond.</p>
+                
+                <h3>Our Vision</h3>
+                <p>To become the world's most customer-centric e-commerce platform, where people can find and discover anything they want to buy online.</p>
+                
+                <h3>Company History</h3>
+                <p>Cartify was founded in 2015 by Shubham Kumar, who identified a gap in the market for an e-commerce platform that truly understood the needs of Indian consumers. Starting with just 10 employees and 100 sellers, we've grown to become one of India's leading e-commerce platforms with over 1,200 employees and 85,000+ sellers.</p>
+                
+                <h3>Key Milestones</h3>
+                <ul>
+                    <li><strong>2018:</strong> Company founded with initial seed funding</li>
+                    <li><strong>2019:</strong> Reached 1 million registered users</li>
+                    <li><strong>2020:</strong> Expanded to 50 cities across India</li>
+                    <li><strong>2021:</strong> Launched mobile app with AI recommendations</li>
+                    <li><strong>2022:</strong> Achieved 125% YoY growth in Q4</li>
+                    <li><strong>2023:</strong> Raised $50M in Series C funding</li>
+                </ul>
+                
+                <h3>Executive Team</h3>
+                <ul>
+                    <li><strong>Shubham Kumar</strong> - CEO & Founder</li>
+                    <li><strong>Priya Patel</strong> - Chief Operating Officer</li>
+                    <li><strong>Arun Kumar</strong> - Chief Technology Officer</li>
+                    <li><strong>Neha Gupta</strong> - Chief Marketing Officer</li>
+                    <li><strong>Vikram Singh</strong> - Chief Financial Officer</li>
+                </ul>
+                
+                <h3>Company Facts</h3>
+                <ul>
+                    <li><strong>Founded:</strong> 2018</li>
+                    <li><strong>Headquarters:</strong> Bangalore, India</li>
+                    <li><strong>Employees:</strong> 1,200+</li>
+                    <li><strong>Active Users:</strong> 15 million+</li>
+                    <li><strong>Seller Partners:</strong> 85,000+</li>
+                    <li><strong>Products:</strong> 12 million+</li>
+                    <li><strong>Categories:</strong> 150+</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal" id="article-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="article-content">
+               
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const brandAssetsModal = document.getElementById('brand-assets-modal');
+            const companyInfoModal = document.getElementById('company-info-modal');
+            const articleModal = document.getElementById('article-modal');
+            const openBrandAssetsBtn = document.getElementById('open-brand-assets');
+            const openCompanyInfoBtn = document.getElementById('open-company-info');
+            const footerBrandAssetsBtn = document.getElementById('footer-brand-assets');
+            const footerCompanyInfoBtn = document.getElementById('footer-company-info');
+            const closeModalBtns = document.querySelectorAll('.close-modal');
+            const downloadPdfLinks = document.querySelectorAll('.download-pdf');
+            const readArticleLinks = document.querySelectorAll('.read-article');
+            const assetButtons = document.querySelectorAll('.asset-actions .btn');
+            
+            document.querySelector('.contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thanks for your message! Our press team will contact you shortly.');
+                this.reset();
+            });
+            
+            
+            openBrandAssetsBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                brandAssetsModal.style.display = 'flex';
+            });
+            
+            footerBrandAssetsBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                brandAssetsModal.style.display = 'flex';
+            });
+            
+            
+            openCompanyInfoBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                companyInfoModal.style.display = 'flex';
+            });
+            
+            footerCompanyInfoBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                companyInfoModal.style.display = 'flex';
+            });
+            
+           
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    brandAssetsModal.style.display = 'none';
+                    companyInfoModal.style.display = 'none';
+                    articleModal.style.display = 'none';
+                });
+            });
+            
+            window.addEventListener('click', function(e) {
+                if (e.target === brandAssetsModal) {
+                    brandAssetsModal.style.display = 'none';
+                }
+                if (e.target === companyInfoModal) {
+                    companyInfoModal.style.display = 'none';
+                }
+                if (e.target === articleModal) {
+                    articleModal.style.display = 'none';
+                }
+            });
+            
+          
+            downloadPdfLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pdfType = this.getAttribute('data-pdf');
+                    downloadPdf(pdfType);
+                });
+            });
+            
+            
+            readArticleLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const articleId = this.getAttribute('data-article');
+                    showArticle(articleId);
+                });
+            });
+            
+            
+            assetButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const assetType = this.getAttribute('data-asset');
+                    downloadAsset(assetType);
+                });
+            });
+            
+            
+            function downloadPdf(pdfType) {
+                const pdfContents = {
+                    'media-kit': {
+                        title: 'Cartify Media Kit',
+                        filename: 'Cartify-Media-Kit.pdf',
+                        content: `
+                            <h2>Cartify Media Kit</h2>
+                            <p><strong>Date:</strong> October 2023</p>
+                            <h3>Company Overview</h3>
+                            <p>Cartify is India's fastest-growing e-commerce platform, connecting millions of buyers and sellers across the country. Founded in 2018, we've revolutionized online shopping with our customer-first approach and innovative technology.</p>
+                            <h3>Key Facts</h3>
+                            <ul>
+                                <li><strong>Founded:</strong> 2018</li>
+                                <li><strong>Headquarters:</strong> Bangalore, India</li>
+                                <li><strong>Employees:</strong> 1,200+</li>
+                                <li><strong>Active Users:</strong> 15 million+</li>
+                                <li><strong>Seller Partners:</strong> 85,000+</li>
+                                <li><strong>Products:</strong> 12 million+</li>
+                            </ul>
+                            <h3>Executive Team</h3>
+                            <ul>
+                                <li><strong>Rahul Sharma</strong> - CEO & Founder</li>
+                                <li><strong>Priya Patel</strong> - Chief Operating Officer</li>
+                                <li><strong>Arun Kumar</strong> - Chief Technology Officer</li>
+                                <li><strong>Neha Gupta</strong> - Chief Marketing Officer</li>
+                            </ul>
+                            <h3>Recent Milestones</h3>
+                            <ul>
+                                <li>Raised $50M in Series C funding (June 2023)</li>
+                                <li>Expanded to 50 new cities across India</li>
+                                <li>Launched AI-powered recommendation engine</li>
+                                <li>Achieved 125% YoY growth in Q4 2022</li>
+                            </ul>
+                        `
+                    },
+                    'series-c-funding': {
+                        title: 'Cartify Raises $50M in Series C Funding',
+                        filename: 'Cartify-Series-C-Funding.pdf',
+                        content: `
+                            <h2>Cartify Raises $50M in Series C Funding to Expand Across Southeast Asia</h2>
+                            <p><strong>FOR IMMEDIATE RELEASE</strong></p>
+                            <p><strong>Bangalore, India - June 15, 2023</strong> - Cartify, India's leading e-commerce platform, today announced it has raised $50 million in Series C funding led by Sequoia Capital India with participation from existing investors.</p>
+                            <p>The funding will accelerate Cartify's expansion into Southeast Asian markets, beginning with Indonesia and Vietnam in Q4 2023. The company plans to invest heavily in logistics infrastructure, local seller onboarding, and market-specific product development.</p>
+                            <p>"This investment validates our vision of creating a truly borderless shopping experience," said Rahul Sharma, CEO and Founder of Cartify. "Southeast Asia represents a massive opportunity with its rapidly growing digital economy and young, tech-savvy population."</p>
+                            <p>Cartify has experienced explosive growth over the past year, with user base increasing by 150% and gross merchandise value (GMV) growing by 200% year-over-year. The platform now hosts over 85,000 sellers offering 12 million products across 150 categories.</p>
+                            <p>The Series C round brings Cartify's total funding to $85 million. Previous investors include Accel Partners and Blume Ventures.</p>
+                            <h3>About Cartify</h3>
+                            <p>Cartify is India's fastest-growing e-commerce platform, connecting millions of buyers and sellers. Founded in 2018, the company's mission is to make online shopping accessible, affordable, and enjoyable for everyone.</p>
+                            <p><strong>Media Contact:</strong><br>
+                            Sarah Johnson<br>
+                            Head of Communications<br>
+                            press@Cartify.com<br>
+                            +91 9876543210</p>
+                        `
+                    },
+                    'sustainable-packaging': {
+                        title: 'Cartify Introduces Sustainable Packaging Initiative',
+                        filename: 'Cartify-Sustainable-Packaging.pdf',
+                        content: `
+                            <h2>Cartify Launches Eco-Friendly Packaging Initiative, Reducing Plastic Waste by 75%</h2>
+                            <p><strong>FOR IMMEDIATE RELEASE</strong></p>
+                            <p><strong>Bangalore, India - April 22, 2023</strong> - Cartify, India's leading e-commerce platform, announced today a comprehensive sustainable packaging initiative that will reduce plastic waste from its operations by 75%.</p>
+                            <p>The new packaging system replaces plastic bubble wrap and air pillows with biodegradable paper padding and mushroom-based packaging materials. All cardboard boxes are now made from 100% recycled content and are fully recyclable.</p>
+                            <p>"As one of India's largest e-commerce platforms, we have a responsibility to minimize our environmental impact," said Priya Patel, Chief Operating Officer at Cartify. "Our sustainable packaging initiative is a significant step toward our goal of becoming a carbon-neutral company by 2025."</p>
+                            <p>The initiative has already been piloted in five cities, resulting in a 75% reduction in plastic usage and positive feedback from customers. The company plans to roll out the new packaging nationwide by the end of Q2 2023.</p>
+                            <p>In addition to the packaging changes, Cartify is introducing a "Green Delivery" option that allows customers to choose slower shipping in exchange for carbon-neutral delivery. All Green Delivery shipments will be carbon offset through investments in renewable energy projects.</p>
+                            <p>"Sustainability is not just good for the planet—it's good for business," said Patel. "Our research shows that 68% of Indian consumers prefer to shop with brands that demonstrate environmental responsibility."</p>
+                            <p>The packaging initiative is part of Cartify's broader sustainability strategy, which also includes energy-efficient warehouses, electric delivery vehicles, and partnerships with environmental organizations.</p>
+                            <p><strong>Media Contact:</strong><br>
+                            Sarah Johnson<br>
+                            Head of Communications<br>
+                            press@Cartify.com<br>
+                            +91 9876543210</p>
+                        `
+                    },
+                    'cto-appointment': {
+                        title: 'Cartify Appoints New Chief Technology Officer',
+                        filename: 'Cartify-CTO-Appointment.pdf',
+                        content: `
+                            <h2>Cartify Appoints Former Amazon Executive as Chief Technology Officer</h2>
+                            <p><strong>FOR IMMEDIATE RELEASE</strong></p>
+                            <p><strong>Bangalore, India - March 5, 2023</strong> - Cartify, India's leading e-commerce platform, today announced the appointment of Arun Kumar as its new Chief Technology Officer. Kumar joins Cartify from Amazon, where he served as Director of Engineering for the company's India operations.</p>
+                            <p>In his new role, Kumar will lead Cartify's technology strategy and innovation, focusing on scaling the platform to support rapid growth and expanding into new markets. He will oversee all engineering teams and be responsible for the development of Cartify's technology infrastructure.</p>
+                            <p>"Arun brings a wealth of experience in building and scaling technology platforms for e-commerce," said Rahul Sharma, CEO and Founder of Cartify. "His expertise will be invaluable as we continue to innovate and expand our services across India and into new international markets."</p>
+                            <p>During his eight years at Amazon, Kumar led teams that developed several key features for Amazon.in, including the platform's recommendation engine, search functionality, and mobile app. Prior to Amazon, he held engineering roles at Microsoft and Flipkart.</p>
+                            <p>"I'm excited to join Cartify at this pivotal moment in the company's growth," said Kumar. "The team has built an impressive platform, and I look forward to helping scale the technology to serve millions more customers across India and beyond."</p>
+                            <p>Kumar holds a Bachelor's degree in Computer Science from IIT Delhi and an MBA from the Indian School of Business.</p>
+                            <p><strong>Media Contact:</strong><br>
+                            Sarah Johnson<br>
+                            Head of Communications<br>
+                            press@Cartify.com<br>
+                            +91 9876543210</p>
+                        `
+                    },
+                    'q4-sales': {
+                        title: 'Cartify Reports Record Q4 Sales',
+                        filename: 'Cartify-Q4-Sales.pdf',
+                        content: `
+                            <h2>Cartify Reports Record Q4 Sales with 125% Year-Over-Year Growth</h2>
+                            <p><strong>FOR IMMEDIATE RELEASE</strong></p>
+                            <p><strong>Bangalore, India - January 18, 2023</strong> - Cartify, India's leading e-commerce platform, today announced record sales for the fourth quarter of 2022, with gross merchandise value (GMV) growing 125% year-over-year.</p>
+                            <p>The strong performance was driven by increased holiday shopping, expansion into new cities, and the success of Cartify's "Great Indian Shopping Festival" which ran throughout December. The company reported particularly strong growth in categories including electronics, fashion, and home goods.</p>
+                            <p>"Our record Q4 results demonstrate the strength of our platform and the growing preference for online shopping among Indian consumers," said Rahul Sharma, CEO and Founder of Cartify. "We've worked hard to build a trusted platform that offers great value, and these results show that our approach is resonating with customers."</p>
+                            <p>Key highlights from Q4 2022 include:</p>
+                            <ul>
+                                <li>125% year-over-year GMV growth</li>
+                                <li>2.5 million new customers added during the quarter</li>
+                                <li>65% of orders came from outside India's top 10 metropolitan areas</li>
+                                <li>Mobile app accounted for 85% of total orders</li>
+                                <li>Same-day delivery service expanded to 15 additional cities</li>
+                            </ul>
+                            <p>The company also reported that its seller base grew to over 85,000 during the quarter, with small and medium-sized businesses accounting for 75% of new sellers.</p>
+                            <p>"Our focus on empowering small businesses is paying off," said Priya Patel, Chief Operating Officer. "We're seeing tremendous growth from sellers in tier 2 and 3 cities who are using our platform to reach customers across India."</p>
+                            <p>Looking ahead to 2023, Cartify plans to continue its expansion across India and begin preparations for international expansion. The company also plans to invest in new technology features, including enhanced AI recommendations and voice shopping capabilities.</p>
+                            <p><strong>Media Contact:</strong><br>
+                            Sarah Johnson<br>
+                            Head of Communications<br>
+                            press@Cartify.com<br>
+                            +91 9876543210</p>
+                        `
+                    }
+                };
+                
+                const pdfData = pdfContents[pdfType];
+                if (pdfData) {
+                    
+                    const blob = new Blob([`
+                        <!DOCTYPE html>
+                        <html>
+                            <head>
+                                <title>${pdfData.title}</title>
+                                <style>
+                                    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 40px; max-width: 800px; margin: 0 auto; }
+                                    h1, h2, h3 { color: #4a00e0; }
+                                    ul { margin-left: 20px; }
+                                    .header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #4a00e0; padding-bottom: 20px; }
+                                </style>
+                            </head>
+                            <body>
+                                <div class="header">
+                                    <h1>${pdfData.title}</h1>
+                                    <p><strong>Cartify Press Release</strong></p>
+                                </div>
+                                ${pdfData.content}
+                            </body>
+                        </html>
+                    `], { type: 'text/html' });
+                    
+                   
+                    const url = URL.createObjectURL(blob);
+                    
+                    
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = pdfData.filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    
+                    
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    }, 100);
+                } else {
+                    alert('PDF content is being prepared. Please check back later.');
+                }
+            }
+            
+            function showArticle(articleId) {
+                const articles = {
+                    'tech-news': {
+                        title: 'How Cartify is Revolutionizing E-Commerce in India',
+                        source: 'Tech News',
+                        date: 'August 10, 2023',
+                        content: `
+                            <h2>How Cartify is Revolutionizing E-Commerce in India</h2>
+                            <p><em>By Tech News Staff | August 10, 2023</em></p>
+                            <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=400&q=80" alt="E-commerce revolution">
+                            <p>In a market dominated by giants like Amazon and Flipkart, homegrown startup Cartify is carving out its own path to success with an innovative approach that's resonating with Indian consumers.</p>
+                            <h3>The Local Advantage</h3>
+                            <p>While international players often struggle to understand the nuances of the Indian market, Cartify has built its platform from the ground up with Indian consumers in mind. From cash-on-delivery options that cater to the country's preference for cash transactions to multi-language support covering 12 Indian languages, the platform feels distinctly local.</p>
+                            <p>"We understand that India is not one market but hundreds of micro-markets, each with its own preferences and shopping behaviors," says Rahul Sharma, CEO and Founder of Cartify. "Our hyperlocal approach allows us to serve each of these markets effectively."</p>
+                            <h3>Empowering Small Businesses</h3>
+                            <p>One of Cartify's key differentiators is its focus on small and medium-sized businesses. While other platforms often prioritize large retailers, Cartify has developed tools specifically for small sellers, including simplified onboarding, zero commission for the first three months, and dedicated seller support.</p>
+                            <p>This strategy has paid off. The platform now hosts over 85,000 sellers, 70% of whom are small businesses that previously had no online presence. For many of these sellers, Cartify has become their primary sales channel, accounting for 60-80% of their revenue.</p>
+                            <h3>Technology Innovation</h3>
+                            <p>Cartify's technology stack is built for India's unique challenges. Their lightweight mobile app consumes 40% less data than competing apps, a crucial advantage in a country where many users are on limited data plans.</p>
+                            <p>The company's AI-powered recommendation engine has achieved a 35% higher click-through rate than industry averages by accounting for regional preferences, seasonal trends, and local festivals.</p>
+                            <p>"Our algorithms understand that someone shopping during Diwali in North India has different needs than someone shopping during Pongal in Tamil Nadu," explains Arun Kumar, Chief Technology Officer.</p>
+                            <h3>The Road Ahead</h3>
+                            <p>With $50 million in fresh funding and plans to expand across Southeast Asia, Cartify is poised for its next phase of growth. The company is betting that its India-tested approach will resonate in other emerging markets facing similar challenges.</p>
+                            <p>As Sharma puts it: "We've cracked the code for e-commerce in complex, diverse markets. Now we're ready to take that solution global."</p>
+                        `
+                    },
+                    'business-today': {
+                        title: 'Cartify: The Startup That\'s Challenging Amazon and Flipkart',
+                        source: 'Business Today',
+                        date: 'July 22, 2023',
+                        content: `
+                            <h2>Cartify: The Startup That's Challenging Amazon and Flipkart</h2>
+                            <p><em>By Business Today Staff | July 22, 2023</em></p>
+                            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=400&q=80" alt="Business competition">
+                            <p>In the fiercely competitive Indian e-commerce space, where Amazon and Walmart-owned Flipkart control over 80% of the market, a new challenger is rapidly gaining ground. Cartify, founded just five years ago, has grown to become the third-largest e-commerce platform in India and shows no signs of slowing down.</p>
+                            <h3>Defying the Odds</h3>
+                            <p>When Rahul Sharma started Cartify in 2018, skeptics said it was impossible to compete with the deep pockets of Amazon and Flipkart. Five years and 15 million users later, those skeptics have been proven wrong.</p>
+                            <p>"We knew we couldn't outspend the giants, so we had to outsmart them," says Sharma. "We focused on areas they were neglecting—smaller cities, regional language support, and personalized customer service."</p>
+                            <h3>Tier 2 and 3 Strategy</h3>
+                            <p>While Amazon and Flipkart concentrated on metro cities, Cartify built its business in India's tier 2 and 3 cities. Today, 65% of its orders come from outside the top 10 metropolitan areas.</p>
+                            <p>The company's "Cartify Saathi" program, which partners with local store owners to help customers place orders and handle returns, has been particularly successful in smaller towns where internet literacy remains a challenge.</p>
+                            <h3>Financial Performance</h3>
+                            <p>Cartify's unique approach is delivering results. The company reported 125% year-over-year growth in Q4 2022, far outpacing the industry average of 25%. Its gross merchandise value (GMV) has grown from $50 million in 2020 to over $500 million in 2022.</p>
+                            <p>Despite its rapid growth, the company claims to have a lower customer acquisition cost than its larger rivals, thanks to word-of-mouth marketing and high customer satisfaction rates.</p>
+                            <h3>Investor Confidence</h3>
+                            <p>Investors are taking notice. Cartify's recent $50 million Series C round was oversubscribed, with Sequoia Capital India leading the investment.</p>
+                            <p>"Cartify has demonstrated that there's still room for innovation in e-commerce," says Sequoia partner Rajesh Jha. "Their focus on underserved markets and customer experience has created a sustainable competitive advantage."</p>
+                            <h3>Future Plans</h3>
+                            <p>With fresh funding in hand, Cartify is preparing for international expansion, starting with Southeast Asia. The company believes its experience in India's complex market positions it well for other emerging economies.</p>
+                            <p>"The playbook we've developed in India is highly transferable to other price-sensitive, mobile-first markets," says Sharma. "We're excited to take our model global."</p>
+                        `
+                    },
+                    'digital-trends': {
+                        title: 'Cartify\'s AI-Powered Recommendations Are Changing How We Shop Online',
+                        source: 'Digital Trends',
+                        date: 'June 5, 2023',
+                        content: `
+                            <h2>Cartify's AI-Powered Recommendations Are Changing How We Shop Online</h2>
+                            <p><em>By Digital Trends Staff | June 5, 2023</em></p>
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=400&q=80" alt="AI Technology">
+                            <p>In the crowded world of e-commerce, product discovery remains one of the biggest challenges. How do you help customers find what they want when you offer millions of products? Cartify believes it has found the answer with its sophisticated AI-powered recommendation engine.</p>
+                            <h3>Beyond Basic Recommendations</h3>
+                            <p>While most e-commerce platforms use collaborative filtering (showing you what similar customers bought), Cartify's system goes several steps further. It analyzes browsing behavior, purchase history, time of day, location, and even local trends to create highly personalized recommendations.</p>
+                            <p>"Our system understands that a customer shopping for a smartphone in the morning might be researching, while someone browsing at night is more likely to make a purchase," explains Arun Kumar, Chief Technology Officer at Cartify. "We adjust our recommendations accordingly."</p>
+                            <h3>Contextual Understanding</h3>
+                            <p>What sets Cartify's system apart is its ability to understand context. If you're shopping for ingredients for a specific recipe, the system will recognize the pattern and suggest complementary items. If you're buying gifts during festival season, it will recommend products appropriate for the occasion.</p>
+                            <p>The system also accounts for regional preferences. Someone in Kerala might see different recommendations for "spices" than someone in Punjab, reflecting local culinary traditions.</p>
+                            <h3>Visual Search</h3>
+                            <p>Cartify has also integrated visual search technology that allows users to upload photos of products they like and find similar items on the platform. This feature has been particularly popular for fashion and home decor, where customers often struggle to describe what they're looking for.</p>
+                            <p>"Visual search has increased conversion rates by 28% in categories where it's available," says Kumar. "It's especially valuable for customers who aren't sure how to describe what they want."</p>
+                            <h3>Results and Impact</h3>
+                            <p>The sophisticated recommendation system has delivered impressive results. Cartify reports that 35% of all purchases now come through recommendation pathways, and customers who engage with recommendations have a 45% higher average order value.</p>
+                            <p>The system has also benefited sellers, particularly small businesses that might otherwise struggle to get visibility. By understanding customer preferences at a granular level, Cartify can surface relevant products from lesser-known sellers.</p>
+                            <h3>Future Developments</h3>
+                            <p>Looking ahead, Cartify is experimenting with voice-based shopping recommendations and augmented reality features that would allow customers to visualize products in their homes before purchasing.</p>
+                            <p>"We're just scratching the surface of what's possible with AI in e-commerce," says Kumar. "The future is about creating truly seamless, intuitive shopping experiences that feel less like searching and more like discovery."</p>
+                        `
+                    }
+                };
+                
+                const article = articles[articleId];
+                if (article) {
+                    document.getElementById('article-content').innerHTML = `
+                        <h2 class="modal-title">${article.title}</h2>
+                        <p><strong>Source:</strong> ${article.source} | <strong>Date:</strong> ${article.date}</p>
+                        <div class="article-content">
+                            ${article.content}
+                        </div>
+                    `;
+                    articleModal.style.display = 'flex';
+                } else {
+                    alert('Article is being prepared. Please check back later.');
+                }
+            }
+            
+            function downloadAsset(assetType) {
+                const assetNames = {
+                    'logo-color-png': 'Cartify-logo-color.png',
+                    'logo-color-svg': 'Cartify-logo-color.svg',
+                    'logo-white-png': 'Cartify-logo-white.png',
+                    'logo-white-svg': 'Cartify-logo-white.svg',
+                    'logo-black-png': 'Cartify-logo-black.png',
+                    'logo-black-svg': 'Cartify-logo-black.svg',
+                    'app-icon-png': 'Cartify-app-icon.png',
+                    'app-icon-svg': 'Cartify-app-icon.svg',
+                    'brand-guidelines': 'Cartify-brand-guidelines.pdf',
+                    'product-images': 'Cartify-product-images.zip'
+                };
+                
+                const fileName = assetNames[assetType];
+                if (fileName) {
+                  
+                    alert(`Downloading ${fileName}`);
+                    
+                    
+                    const content = `This is a placeholder for ${fileName}. In a real implementation, this would be the actual file.`;
+                    const blob = new Blob([content], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = fileName;
+                    document.body.appendChild(a);
+                    a.click();
+                    
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    }, 100);
+                } else {
+                    alert('Asset download is being prepared. Please check back later.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
