@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartify - Deals & Offers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 15px 5%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-icons i {
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .header-icons i:hover {
+            color: #ffd700;
+        }
+
+       
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 30px;
+            padding: 5px 15px;
+            width: 300px;
+        }
+
+        .search-container input {
+            border: none;
+            outline: none;
+            padding: 8px;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .search-container i {
+            color: #8e2de2;
+        }
+
+        
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff5252;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            max-width: 90%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: #4a00e0;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4a00e0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: #8e2de2;
+        }
+
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-title i {
+            color: #8e2de2;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(25deg);
+        }
+
+        .hero-banner h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-banner p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .countdown-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            min-width: 70px;
+        }
+
+        .countdown-number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .countdown-label {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .btn {
+            background: white;
+            color: #ff7e5f;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn:hover {
+            background: #ffd700;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .deal-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .deal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff5252;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 3;
+        }
+
+        .deal-img {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .deal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .deal-card:hover .deal-img img {
+            transform: scale(1.05);
+        }
+
+        .deal-content {
+            padding: 20px;
+        }
+
+        .deal-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        .deal-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4a00e0;
+        }
+
+        .original-price {
+            font-size: 16px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .deal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .items-left {
+            font-size: 12px;
+            color: #ff5252;
+            font-weight: 500;
+        }
+
+        .deal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-buy {
+            background: #4a00e0;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+            transition: background 0.3s ease;
+        }
+
+        .btn-buy:hover {
+            background: #8e2de2;
+        }
+
+        .btn-cart {
+            background: #ff7e5f;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+            transition: background 0.3s ease;
+        }
+
+        .btn-cart:hover {
+            background: #feb47b;
+        }
+
+        
+        .special-offers {
+            margin-bottom: 40px;
+        }
+
+        .offers-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .view-all {
+            color: #8e2de2;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .offers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .offer-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .offer-img {
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+        }
+
+        .offer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .offer-content {
+            padding: 15px;
+            flex: 1;
+        }
+
+        .offer-content h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .offer-content p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .offer-code {
+            background: #f3f3f3;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #8e2de2;
+            display: inline-block;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .offer-code:hover {
+            background: #e6e6e6;
+        }
+
+        .offer-expiry {
+            font-size: 12px;
+            color: #ff5252;
+            margin-top: 5px;
+        }
+
+        .checkout-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        .checkout-content {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .checkout-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .step.active .step-number {
+            background: #4a00e0;
+            color: white;
+        }
+
+        .step-label {
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .checkout-body {
+            padding: 20px;
+        }
+
+        .checkout-section {
+            display: none;
+        }
+
+        .checkout-section.active {
+            display: block;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .checkout-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-prev {
+            background: #ddd;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-next {
+            background: #4a00e0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+       
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+            padding-left: 15px;
+        }
+
+        .cart-item-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: #4a00e0;
+            font-weight: bold;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .cart-item-quantity {
+            margin: 0 10px;
+        }
+
+        .remove-item {
+            color: #ff5252;
+            cursor: pointer;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 12px;
+            background: #4a00e0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+    
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 5% 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .search-container {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .deals-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            
+            .offers-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .deals-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 24px;
+            }
+            
+            .hero-banner h2 {
+                font-size: 24px;
+            }
+            
+            .hero-banner p {
+                font-size: 16px;
+            }
+            
+            .offer-card {
+                flex-direction: column;
+            }
+            
+            .offer-img {
+                width: 100%;
+                height: 150px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cartify</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="Home.Html">Home</a></li>
+                    <li><a href="categories.Html">Categories</a></li>
+                    <li><a href="Deals&Offer.Html" class="active">Deals</a></li>
+                    <li><a href="About us.Html">About</a></li>
+                    <li><a href="Contact Us.Html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search for products...">
+            </div>
+            
+            <div class="header-icons">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <i class="fas fa-user" id="login-btn"></i>
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login to Cartify</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button class="login-btn">Login</button>
+            <p style="text-align: center; margin-top: 15px;">Don't have an account? <a href="#" style="color: #4a00e0;">Sign up</a></p>
+        </div>
+    </div>
+
+   
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items">
+            
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span>$0.00</span>
+            </div>
+            <button class="btn-checkout">Proceed to Checkout</button>
+        </div>
+    </div>
+
+   
+    <div class="checkout-modal" id="checkout-modal">
+        <div class="checkout-content">
+            <div class="checkout-header">
+                <h2>Checkout</h2>
+                <button class="close-checkout">&times;</button>
+            </div>
+            <div class="checkout-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Shipping</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Payment</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+            <div class="checkout-body">
+                <div class="checkout-section active" id="shipping-section">
+                    <h3>Shipping Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" placeholder="First Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" placeholder="Street Address">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" placeholder="City">
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" id="state" placeholder="State">
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">ZIP Code</label>
+                            <input type="text" id="zip" placeholder="ZIP Code">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" id="phone" placeholder="Phone Number">
+                    </div>
+                </div>
+                <div class="checkout-section" id="payment-section">
+                    <h3>Payment Information</h3>
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="text" id="expiry" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-name">Name on Card</label>
+                        <input type="text" id="card-name" placeholder="Name on Card">
+                    </div>
+                </div>
+                <div class="checkout-section" id="confirmation-section">
+                    <h3>Order Confirmation</h3>
+                    <p>Thank you for your order! Your order has been placed successfully.</p>
+                    <div class="order-summary">
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-footer">
+                <button class="btn-prev">Previous</button>
+                <button class="btn-next">Next</button>
+            </div>
+        </div>
+    </div>
+
+ 
+    <div class="container">
+        <h1 class="page-title">
+            <i class="fas fa-tag"></i>
+            Deals & Offers
+        </h1>
+        
+        
+        <div class="hero-banner">
+            <h2>MEGA SALE: Up to 70% OFF!</h2>
+            <p>Hurry up! These offers end soon. Don't miss out on our biggest sale of the year.</p>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">02</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">12</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">45</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">30</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            
+            <button class="btn" id="shop-now-btn">SHOP NOW</button>
+        </div>
+        
+        
+        <div class="featured-deals" id="featured-deals">
+            <div class="offers-header">
+                <h2 class="section-title">Featured Deals</h2>
+                <a href="#" class="view-all">View All <i class="fas fa-chevron-right"></i></a>
+            </div>
+            
+            <div class="deals-grid">
+                
+                <div class="deal-card" data-id="1">
+                    <div class="discount-badge">55% OFF</div>
+                    <div class="deal-img">
+                        <img src="data:image/jpeg;base64,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" alt="Wireless Headphones">
+                    </div>
+                    <div class="deal-content">
+                        <h3>Wireless Noise-Canceling Headphones</h3>
+                        <div class="deal-price">
+                            <span class="current-price">$89.99</span>
+                            <span class="original-price">$199.99</span>
+                        </div>
+                        <div class="deal-footer">
+                            <span class="items-left">Only 15 left!</span>
+                        </div>
+                        <div class="deal-actions">
+                            <button class="btn-buy">Buy Now</button>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+        
+                <div class="deal-card" data-id="2">
+                    <div class="discount-badge">40% OFF</div>
+                    <div class="deal-img">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Smart Watch">
+                    </div>
+                    <div class="deal-content">
+                        <h3>Smart Watch Series 5</h3>
+                        <div class="deal-price">
+                            <span class="current-price">$119.99</span>
+                            <span class="original-price">$199.99</span>
+                        </div>
+                        <div class="deal-footer">
+                            <span class="items-left">23 left</span>
+                        </div>
+                        <div class="deal-actions">
+                            <button class="btn-buy">Buy Now</button>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+              
+                <div class="deal-card" data-id="3">
+                    <div class="discount-badge">60% OFF</div>
+                    <div class="deal-img">
+                        <img src="https://www.jiomart.com/images/product/original/rvye2onr0b/noymi-true-wireless-bluetooth-5-1-in-ear-earbuds-with-mic-30-hours-playtime-bluetooth-earphones-with-13mm-drivers-ipx4-rating-and-fast-charging-white-product-images-orvye2onr0b-p596907967-0-202309260935.jpg?im=Resize=(420,420)" alt="Bluetooth Earbuds">
+                    </div>
+                    <div class="deal-content">
+                        <h3>Wireless Bluetooth Earbuds</h3>
+                        <div class="deal-price">
+                            <span class="current-price">$39.99</span>
+                            <span class="original-price">$99.99</span>
+                        </div>
+                        <div class="deal-footer">
+                            <span class="items-left">42 left</span>
+                        </div>
+                        <div class="deal-actions">
+                            <button class="btn-buy">Buy Now</button>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="deal-card" data-id="4">
+                    <div class="discount-badge">30% OFF</div>
+                    <div class="deal-img">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Running Shoes">
+                    </div>
+                    <div class="deal-content">
+                        <h3>Professional Running Shoes</h3>
+                        <div class="deal-price">
+                            <span class="current-price">$69.99</span>
+                            <span class="original-price">$99.99</span>
+                        </div>
+                        <div class="deal-footer">
+                            <span class="items-left">12 left</span>
+                        </div>
+                        <div class="deal-actions">
+                            <button class="btn-buy">Buy Now</button>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deal-card" data-id="5">
+                    <div class="discount-badge">50% OFF</div>
+                    <div class="deal-img">
+                        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Camera">
+                    </div>
+                    <div class="deal-content">
+                        <h3>Digital Camera 24MP</h3>
+                        <div class="deal-price">
+                            <span class="current-price">$299.99</span>
+                            <span class="original-price">$599.99</span>
+                        </div>
+                        <div class="deal-footer">
+                            <span class="items-left">8 left</span>
+                        </div>
+                        <div class="deal-actions">
+                            <button class="btn-buy">Buy Now</button>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+               
+                <div class="deal-card" data-id="6">
+                    <div class="discount-badge">35% OFF</div>
+                    <div class="deal-img">
+                        <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Laptop">
+                    </div>
+                    <div class="deal-content">
+                        <h3>Gaming Laptop 16GB RAM</h3>
+                        <div class="deal-price">
+                            <span class="current-price">$899.99</span>
+                            <span class="original-price">$1399.99</span>
+                        </div>
+                        <div class="deal-footer">
+                            <span class="items-left">5 left</span>
+                        </div>
+                        <div class="deal-actions">
+                            <button class="btn-buy">Buy Now</button>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+            
+                <div class="deal-card" data-id="7">
+                    <div class="discount-badge">45% OFF</div>
+                    <div class="deal-img">
+                        <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Sneakers">
+                    </div>
+                    <div class="deal-content">
+                        <h3>Premium Sports Sneakers</h3>
+                        <div class="deal-price">
+                            <span class="current-price">$54.99</span>
+                            <span class="original-price">$99.99</span>
+                        </div>
+                        <div class="deal-footer">
+                            <span class="items-left">20 left</span>
+                        </div>
+                        <div class="deal-actions">
+                            <button class="btn-buy">Buy Now</button>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+               
+                <div class="deal-card" data-id="8">
+                    <div class="discount-badge">60% OFF</div>
+                    <div class="deal-img">
+                        <img src="https://images-cdn.ubuy.co.in/63529405ac46a675c17873c0-80l-4-colors-extra-large-capacity-travel.jpg" alt="Backpack">
+                    </div>
+                    <div class="deal-content">
+                        <h3>Waterproof Travel Backpack</h3>
+                        <div class="deal-price">
+                            <span class="current-price">$39.99</span>
+                            <span class="original-price">$99.99</span>
+                        </div>
+                        <div class="deal-footer">
+                            <span class="items-left">30 left</span>
+                        </div>
+                        <div class="deal-actions">
+                            <button class="btn-buy">Buy Now</button>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="special-offers">
+            <div class="offers-header">
+                <h2 class="section-title">Special Offers</h2>
+                <a href="#" class="view-all" id="view-all-offers">View All <i class="fas fa-chevron-right"></i></a>
+            </div>
+            
+            <div class="offers-container">
+                
+                <div class="offer-card">
+                    <div class="offer-img">
+                        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Free Shipping">
+                    </div>
+                    <div class="offer-content">
+                        <h3>Free Shipping on Orders Over $50</h3>
+                        <p>No code needed. Free standard shipping on all orders over $50.</p>
+                        <span class="offer-code">AUTO APPLIED</span>
+                        <div class="offer-expiry">Expires: 12/31/2025</div>
+                    </div>
+                </div>
+                
+                
+                <div class="offer-card">
+                    <div class="offer-img">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Student Discount">
+                    </div>
+                    <div class="offer-content">
+                        <h3>Extra 15% Off for Students</h3>
+                        <p>Verify your student status and get an extra 15% off your order.</p>
+                        <span class="offer-code" onclick="copyToClipboard('STUDENT15')">STUDENT15</span>
+                        <div class="offer-expiry">Expires: 06/30/2023</div>
+                    </div>
+                </div>
+                
+                
+                <div class="offer-card">
+                    <div class="offer-img">
+                        <img src="https://images.unsplash.com/photo-1533906966484-a9c978a3f090?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="First Order">
+                    </div>
+                    <div class="offer-content">
+                        <h3>20% Off Your First Order</h3>
+                        <p>New to Cartify? Get 20% off your first order when you sign up.</p>
+                        <span class="offer-code" onclick="copyToClipboard('WELCOME20')">WELCOME20</span>
+                        <div class="offer-expiry">No expiration</div>
+                    </div>
+                </div>
+
+                
+                <div class="offer-card">
+                    <div class="offer-img">
+                        <img src="https://img.freepik.com/premium-psd/summer-sale-facebook-cover-template-with-colorful-beach-elements_47987-23114.jpg" alt="Seasonal Sale">
+                    </div>
+                    <div class="offer-content">
+                        <h3>Seasonal Sale - Extra 10% Off</h3>
+                        <p>Get an additional 10% off on all seasonal items.</p>
+                        <span class="offer-code" onclick="copyToClipboard('SEASON10')">SEASON10</span>
+                        <div class="offer-expiry">Expires: 07/15/2025</div>
+                    </div>
+                </div>
+
+                
+                <div class="offer-card">
+                    <div class="offer-img">
+                        <img src="https://www.shutterstock.com/image-vector/flash-sale-promotion-banner-25-260nw-2159885029.jpg" alt="Flash Sale">
+                    </div>
+                    <div class="offer-content">
+                        <h3>Flash Sale - 25% Off Electronics</h3>
+                        <p>Limited time offer on all electronics. Hurry while stocks last!</p>
+                        <span class="offer-code" onclick="copyToClipboard('FLASH25')">FLASH25</span>
+                        <div class="offer-expiry">Expires: 06/20/2025</div>
+                    </div>
+                </div>
+
+                
+                <div class="offer-card">
+                    <div class="offer-img">
+                        <img src="https://vasanticosmetics.com/cdn/shop/articles/Refer-a-friend-10-off-blog_eafffb58-fc3a-4619-913c-a20635981058.gif?v=1603384874" alt="Referral">
+                    </div>
+                    <div class="offer-content">
+                        <h3>Refer a Friend - $10 Off</h3>
+                        <p>Refer a friend and both get $10 off your next purchase.</p>
+                        <span class="offer-code" onclick="copyToClipboard('FRIEND10')">FRIEND10</span>
+                        <div class="offer-expiry">No expiration</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="special-offers" id="all-offers" style="display: none;">
+            <div class="offers-header">
+                <h2 class="section-title">All Special Offers</h2>
+                <a href="#" class="view-all" id="back-to-offers">Back to Top <i class="fas fa-chevron-up"></i></a>
+            </div>
+            
+            <div class="offers-container" id="all-offers-container">
+                
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Cartify</h3>
+                <ul>
+                    <li><a href="About us.Html">About Us</a></li>
+                    <li><a href="carrer.Html">Careers</a></li>
+                    <li><a href="press.Html">Press</a></li>
+                    <li><a href="Blog.Html">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="Contact Us.Html">Contact Us</a></li>
+                    <li><a href="FAQ.Html">Help & FAQ</a></li>
+                    <li><a href="Return&Exchange.Html">Returns & Exchanges</a></li>
+                    <li><a href="Shipping.Html">Shipping Information</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Terms & Policies</h3>
+                <ul>
+                    <li><a href="Terms.Html">Terms of Service</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="Cookies.Html">Cookies</a></li>
+                    <li><a href="Accessibility.Html">Accessibility</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2015 Cartify. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        
+        const products = {
+            1: {
+                id: 1,
+                name: "Wireless Noise-Canceling Headphones",
+                price: 89.99,
+                originalPrice: 199.99,
+                image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                discount: 55,
+                stock: 15
+            },
+            2: {
+                id: 2,
+                name: "Smart Watch Series 5",
+                price: 119.99,
+                originalPrice: 199.99,
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                discount: 40,
+                stock: 23
+            },
+            3: {
+                id: 3,
+                name: "Wireless Bluetooth Earbuds",
+                price: 39.99,
+                originalPrice: 99.99,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                discount: 60,
+                stock: 42
+            },
+            4: {
+                id: 4,
+                name: "Professional Running Shoes",
+                price: 69.99,
+                originalPrice: 99.99,
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                discount: 30,
+                stock: 12
+            },
+            5: {
+                id: 5,
+                name: "Digital Camera 24MP",
+                price: 299.99,
+                originalPrice: 599.99,
+                image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                discount: 50,
+                stock: 8
+            },
+            6: {
+                id: 6,
+                name: "Gaming Laptop 16GB RAM",
+                price: 899.99,
+                originalPrice: 1399.99,
+                image: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                discount: 35,
+                stock: 5
+            },
+            7: {
+                id: 7,
+                name: "Premium Sports Sneakers",
+                price: 54.99,
+                originalPrice: 99.99,
+                image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                discount: 45,
+                stock: 20
+            },
+            8: {
+                id: 8,
+                name: "Waterproof Travel Backpack",
+                price: 39.99,
+                originalPrice: 99.99,
+                image: "https://images.unsplash.com/photo-1504274066651-8d31a536b11a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                discount: 60,
+                stock: 30
+            }
+        };
+
+        let cart = [];
+        let currentStep = 1;
+
+        
+        const loginBtn = document.getElementById('login-btn');
+        const loginModal = document.getElementById('login-modal');
+        const closeModal = document.querySelector('.close-modal');
+        const cartIcon = document.querySelector('.cart-icon');
+        const cartSidebar = document.querySelector('.cart-sidebar');
+        const closeCart = document.querySelector('.close-cart');
+        const cartCount = document.querySelector('.cart-count');
+        const cartItems = document.querySelector('.cart-items');
+        const cartTotal = document.querySelector('.cart-total span:last-child');
+        const checkoutBtn = document.querySelector('.btn-checkout');
+        const checkoutModal = document.getElementById('checkout-modal');
+        const closeCheckout = document.querySelector('.close-checkout');
+        const shopNowBtn = document.getElementById('shop-now-btn');
+        const featuredDeals = document.getElementById('featured-deals');
+        const viewAllOffers = document.getElementById('view-all-offers');
+        const allOffers = document.getElementById('all-offers');
+        const backToOffers = document.getElementById('back-to-offers');
+        const allOffersContainer = document.getElementById('all-offers-container');
+        const checkoutSections = document.querySelectorAll('.checkout-section');
+        const steps = document.querySelectorAll('.step');
+        const btnPrev = document.querySelector('.btn-prev');
+        const btnNext = document.querySelector('.btn-next');
+
+  
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        
+        cartIcon.addEventListener('click', () => {
+            cartSidebar.classList.add('active');
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartSidebar.classList.remove('active');
+        });
+
+        
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            cartSidebar.classList.remove('active');
+            checkoutModal.style.display = 'flex';
+            updateCheckoutSummary();
+        });
+
+        closeCheckout.addEventListener('click', () => {
+            checkoutModal.style.display = 'none';
+            resetCheckout();
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === checkoutModal) {
+                checkoutModal.style.display = 'none';
+                resetCheckout();
+            }
+        });
+
+        
+        shopNowBtn.addEventListener('click', () => {
+            featuredDeals.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        
+        viewAllOffers.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.special-offers').style.display = 'none';
+            allOffers.style.display = 'block';
+            loadAllOffers();
+            allOffers.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        backToOffers.addEventListener('click', (e) => {
+            e.preventDefault();
+            allOffers.style.display = 'none';
+            document.querySelector('.special-offers').style.display = 'block';
+            document.querySelector('.special-offers').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        
+        btnNext.addEventListener('click', () => {
+            if (currentStep < 3) {
+                currentStep++;
+                updateCheckoutSteps();
+            } else {
+                
+                alert('Order placed successfully! Thank you for your purchase.');
+                checkoutModal.style.display = 'none';
+                cart = [];
+                updateCart();
+                resetCheckout();
+            }
+        });
+
+        btnPrev.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateCheckoutSteps();
+            }
+        });
+
+        function updateCheckoutSteps() {
+            checkoutSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(`${getStepName(currentStep)}-section`).classList.add('active');
+            
+            steps.forEach(step => {
+                step.classList.remove('active');
+                if (parseInt(step.dataset.step) === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+            
+            btnPrev.style.display = currentStep === 1 ? 'none' : 'block';
+            btnNext.textContent = currentStep === 3 ? 'Place Order' : 'Next';
+        }
+
+        function getStepName(step) {
+            switch(step) {
+                case 1: return 'shipping';
+                case 2: return 'payment';
+                case 3: return 'confirmation';
+                default: return 'shipping';
+            }
+        }
+
+        function resetCheckout() {
+            currentStep = 1;
+            updateCheckoutSteps();
+        }
+
+        function updateCheckoutSummary() {
+            const orderSummary = document.querySelector('.order-summary');
+            let summaryHTML = '<h4>Order Summary</h4><ul>';
+            
+            cart.forEach(item => {
+                summaryHTML += `<li>${item.name} - $${item.price} x ${item.quantity}</li>`;
+            });
+            
+            summaryHTML += `</ul><p><strong>Total: $${calculateTotal()}</strong></p>`;
+            orderSummary.innerHTML = summaryHTML;
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const buyNowButtons = document.querySelectorAll('.btn-buy');
+            const addToCartButtons = document.querySelectorAll('.btn-cart');
+            
+            buyNowButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const productId = this.closest('.deal-card').dataset.id;
+                    addToCart(productId, 1);
+                    cartSidebar.classList.add('active');
+                });
+            });
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const productId = this.closest('.deal-card').dataset.id;
+                    addToCart(productId, 1);
+                    updateCart();
+                    showAddedToCartMessage(products[productId].name);
+                });
+            });
+            
+            const dealCards = document.querySelectorAll('.deal-card');
+            dealCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const productId = this.dataset.id;
+                    
+                    alert(`Viewing details for: ${products[productId].name}`);
+                });
+            });
+        });
+
+        function addToCart(productId, quantity) {
+            const product = products[productId];
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: quantity
+                });
+            }
+            
+            updateCart();
+        }
+
+        function updateCart() {
+           
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty</p>';
+                cartTotal.textContent = '$0.00';
+                return;
+            }
+            
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-img">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">$${item.price}</div>
+                        <div class="cart-item-actions">
+                            <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                            <span class="cart-item-quantity">${item.quantity}</span>
+                            <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                            <span class="remove-item" data-id="${item.id}">Remove</span>
+                        </div>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            
+            
+            cartTotal.textContent = `$${calculateTotal().toFixed(2)}`;
+            
+            
+            document.querySelectorAll('.quantity-btn.plus').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.dataset.id;
+                    addToCart(productId, 1);
+                });
+            });
+            
+            document.querySelectorAll('.quantity-btn.minus').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.dataset.id;
+                    const item = cart.find(item => item.id === productId);
+                    if (item) {
+                        if (item.quantity > 1) {
+                            item.quantity--;
+                        } else {
+                            cart = cart.filter(cartItem => cartItem.id !== productId);
+                        }
+                        updateCart();
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.dataset.id;
+                    cart = cart.filter(item => item.id !== productId);
+                    updateCart();
+                });
+            });
+        }
+
+        function calculateTotal() {
+            return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        }
+
+        function showAddedToCartMessage(productName) {
+            
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #4a00e0;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                z-index: 1000;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            `;
+            notification.textContent = `${productName} added to cart!`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 3000);
+        }
+
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert(`Coupon code "${text}" copied to clipboard!`);
+            });
+        }
+
+       
+        function loadAllOffers() {
+            const offers = [
+                {
+                    title: "Free Shipping on Orders Over $50",
+                    description: "No code needed. Free standard shipping on all orders over $50.",
+                    code: "AUTO APPLIED",
+                    expiry: "12/31/2023",
+                    image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    title: "Extra 15% Off for Students",
+                    description: "Verify your student status and get an extra 15% off your order.",
+                    code: "STUDENT15",
+                    expiry: "06/30/2023",
+                    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    title: "20% Off Your First Order",
+                    description: "New to Cartify? Get 20% off your first order when you sign up.",
+                    code: "WELCOME20",
+                    expiry: "No expiration",
+                    image: "https://images.unsplash.com/photo-1533906966484-a9c978a3f090?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    title: "Seasonal Sale - Extra 10% Off",
+                    description: "Get an additional 10% off on all seasonal items.",
+                    code: "SEASON10",
+                    expiry: "07/15/2025",
+                    image: "https://images.unsplash.com/photo-1556742044-3f2b0ee9b9a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    title: "Flash Sale - 25% Off Electronics",
+                    description: "Limited time offer on all electronics. Hurry while stocks last!",
+                    code: "FLASH25",
+                    expiry: "06/20/2025",
+                    image: "https://images.unsplash.com/photo-1556742044-3f2b0ee9b9a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    title: "Refer a Friend - $10 Off",
+                    description: "Refer a friend and both get $10 off your next purchase.",
+                    code: "FRIEND10",
+                    expiry: "No expiration",
+                    image: "https://images.unsplash.com/photo-1556742044-3f2b0ee9b9a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    title: "Weekend Special - 30% Off Home Decor",
+                    description: "Enjoy 30% off on all home decor items this weekend.",
+                    code: "WEEKEND30",
+                    expiry: "06/18/2025",
+                    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    title: "Clearance Sale - Up to 70% Off",
+                    description: "Massive discounts on clearance items. Limited quantities available.",
+                    code: "CLEARANCE70",
+                    expiry: "07/01/2025",
+                    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+                }
+            ];
+            
+            allOffersContainer.innerHTML = '';
+            
+            offers.forEach(offer => {
+                const offerCard = document.createElement('div');
+                offerCard.className = 'offer-card';
+                offerCard.innerHTML = `
+                    <div class="offer-img">
+                        <img src="${offer.image}" alt="${offer.title}">
+                    </div>
+                    <div class="offer-content">
+                        <h3>${offer.title}</h3>
+                        <p>${offer.description}</p>
+                        <span class="offer-code" onclick="copyToClipboard('${offer.code}')">${offer.code}</span>
+                        <div class="offer-expiry">Expires: ${offer.expiry}</div>
+                    </div>
+                `;
+                allOffersContainer.appendChild(offerCard);
+            });
+        }
+
+       
+        function updateCountdown() {
+            const days = document.getElementById('days');
+            const hours = document.getElementById('hours');
+            const minutes = document.getElementById('minutes');
+            const seconds = document.getElementById('seconds');
+            
+            let daysVal = parseInt(days.textContent);
+            let hoursVal = parseInt(hours.textContent);
+            let minutesVal = parseInt(minutes.textContent);
+            let secondsVal = parseInt(seconds.textContent);
+            
+            secondsVal--;
+            
+            if (secondsVal < 0) {
+                secondsVal = 59;
+                minutesVal--;
+                
+                if (minutesVal < 0) {
+                    minutesVal = 59;
+                    hoursVal--;
+                    
+                    if (hoursVal < 0) {
+                        hoursVal = 23;
+                        daysVal--;
+                        
+                        if (daysVal < 0) {
+                          
+                            daysVal = 0;
+                            hoursVal = 0;
+                            minutesVal = 0;
+                            secondsVal = 0;
+                        }
+                    }
+                }
+            }
+            
+            days.textContent = daysVal.toString().padStart(2, '0');
+            hours.textContent = hoursVal.toString().padStart(2, '0');
+            minutes.textContent = minutesVal.toString().padStart(2, '0');
+            seconds.textContent = secondsVal.toString().padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
