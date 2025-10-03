@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Size Guide | Cartify</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .size-guide-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            background: var(--light);
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .tab:hover {
+            background: rgba(52, 152, 219, 0.1);
+        }
+        
+        .tab.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 25px;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .size-table th, .size-table td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+        }
+        
+        .size-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .size-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .size-table tr:hover {
+            background-color: #e9f7fe;
+        }
+        
+        .highlight {
+            background-color: #ffeaa7 !important;
+            font-weight: bold;
+        }
+        
+        .measurement-guide {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .measurement-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .step {
+            flex: 0 0 48%;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .fit-selector {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .fit-option {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .fit-option:hover {
+            border-color: var(--primary);
+        }
+        
+        .fit-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .fit-option h4 {
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .calculator {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #d5f5e3;
+            display: none;
+        }
+        
+        .sizing-tips {
+            background: #fef9e7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .tips-list {
+            margin-left: 20px;
+        }
+        
+        .tips-list li {
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .measurement-steps {
+                flex-direction: column;
+            }
+            
+            .step {
+                flex: 0 0 100%;
+            }
+            
+            .fit-selector {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cartify Size Guide</h1>
+            <p class="subtitle">Find your perfect fit with our comprehensive sizing guide</p>
+        </header>
+        
+        <div class="size-guide-container">
+            <div class="tabs">
+                <div class="tab active" data-tab="women">Women's Sizes</div>
+                <div class="tab" data-tab="men">Men's Sizes</div>
+                <div class="tab" data-tab="kids">Kids' Sizes</div>
+                <div class="tab" data-tab="measure">How to Measure</div>
+            </div>
+            
+            <div class="tab-content active" id="women">
+                <h2>Women's Clothing Size Guide</h2>
+                <p>Select your preferred size system and find your perfect fit:</p>
+                
+                <div class="fit-selector">
+                    <div class="fit-option selected" data-fit="regular">
+                        <h4>Regular Fit</h4>
+                        <p>Standard cut for comfort</p>
+                    </div>
+                    <div class="fit-option" data-fit="slim">
+                        <h4>Slim Fit</h4>
+                        <p>Closer to the body</p>
+                    </div>
+                    <div class="fit-option" data-fit="relaxed">
+                        <h4>Relaxed Fit</h4>
+                        <p>Loose and comfortable</p>
+                    </div>
+                </div>
+                
+                <table class="size-table">
+                    <thead>
+                        <tr>
+                            <th>Size</th>
+                            <th>US</th>
+                            <th>UK</th>
+                            <th>EU</th>
+                            <th>Bust (in)</th>
+                            <th>Waist (in)</th>
+                            <th>Hips (in)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>XS</td>
+                            <td>2</td>
+                            <td>6</td>
+                            <td>34</td>
+                            <td>32-33</td>
+                            <td>24-25</td>
+                            <td>34-35</td>
+                        </tr>
+                        <tr>
+                            <td>S</td>
+                            <td>4-6</td>
+                            <td>8-10</td>
+                            <td>36-38</td>
+                            <td>34-35</td>
+                            <td>26-27</td>
+                            <td>36-37</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td>M</td>
+                            <td>8-10</td>
+                            <td>12-14</td>
+                            <td>40-42</td>
+                            <td>36-37</td>
+                            <td>28-29</td>
+                            <td>38-39</td>
+                        </tr>
+                        <tr>
+                            <td>L</td>
+                            <td>12-14</td>
+                            <td>16-18</td>
+                            <td>44-46</td>
+                            <td>38-40</td>
+                            <td>30-32</td>
+                            <td>40-42</td>
+                        </tr>
+                        <tr>
+                            <td>XL</td>
+                            <td>16-18</td>
+                            <td>20-22</td>
+                            <td>48-50</td>
+                            <td>42-44</td>
+                            <td>34-36</td>
+                            <td>44-46</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="tab-content" id="men">
+                <h2>Men's Clothing Size Guide</h2>
+                <p>Select your preferred size system and find your perfect fit:</p>
+                
+                <div class="fit-selector">
+                    <div class="fit-option selected" data-fit="regular">
+                        <h4>Regular Fit</h4>
+                        <p>Standard cut for comfort</p>
+                    </div>
+                    <div class="fit-option" data-fit="slim">
+                        <h4>Slim Fit</h4>
+                        <p>Closer to the body</p>
+                    </div>
+                    <div class="fit-option" data-fit="relaxed">
+                        <h4>Relaxed Fit</h4>
+                        <p>Loose and comfortable</p>
+                    </div>
+                </div>
+                
+                <table class="size-table">
+                    <thead>
+                        <tr>
+                            <th>Size</th>
+                            <th>US</th>
+                            <th>UK</th>
+                            <th>EU</th>
+                            <th>Chest (in)</th>
+                            <th>Waist (in)</th>
+                            <th>Inside Leg (in)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>S</td>
+                            <td>34-36</td>
+                            <td>34-36</td>
+                            <td>44-46</td>
+                            <td>34-36</td>
+                            <td>28-30</td>
+                            <td>30</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td>M</td>
+                            <td>38-40</td>
+                            <td>38-40</td>
+                            <td>48-50</td>
+                            <td>38-40</td>
+                            <td>32-34</td>
+                            <td>31</td>
+                        </tr>
+                        <tr>
+                            <td>L</td>
+                            <td>42-44</td>
+                            <td>42-44</td>
+                            <td>52-54</td>
+                            <td>42-44</td>
+                            <td>36-38</td>
+                            <td>32</td>
+                        </tr>
+                        <tr>
+                            <td>XL</td>
+                            <td>46-48</td>
+                            <td>46-48</td>
+                            <td>56-58</td>
+                            <td>46-48</td>
+                            <td>40-42</td>
+                            <td>32</td>
+                        </tr>
+                        <tr>
+                            <td>XXL</td>
+                            <td>50-52</td>
+                            <td>50-52</td>
+                            <td>60-62</td>
+                            <td>50-52</td>
+                            <td>44-46</td>
+                            <td>33</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="tab-content" id="kids">
+                <h2>Kids' Clothing Size Guide</h2>
+                <p>Select age range to see appropriate sizes:</p>
+                
+                <div class="form-group">
+                    <label for="age-range">Age Range:</label>
+                    <select id="age-range">
+                        <option value="toddler">Toddler (2-4 years)</option>
+                        <option value="little">Little Kids (5-7 years)</option>
+                        <option value="big">Big Kids (8-12 years)</option>
+                    </select>
+                </div>
+                
+                <table class="size-table">
+                    <thead>
+                        <tr>
+                            <th>Age</th>
+                            <th>Height (in)</th>
+                            <th>Weight (lbs)</th>
+                            <th>Chest (in)</th>
+                            <th>Waist (in)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2-3Y</td>
+                            <td>34-38</td>
+                            <td>28-32</td>
+                            <td>21</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td>4-5Y</td>
+                            <td>39-42</td>
+                            <td>33-39</td>
+                            <td>23</td>
+                            <td>21</td>
+                        </tr>
+                        <tr>
+                            <td>6-7Y</td>
+                            <td>43-48</td>
+                            <td>40-49</td>
+                            <td>25</td>
+                            <td>22</td>
+                        </tr>
+                        <tr>
+                            <td>8-9Y</td>
+                            <td>49-52</td>
+                            <td>50-59</td>
+                            <td>26</td>
+                            <td>23</td>
+                        </tr>
+                        <tr>
+                            <td>10-11Y</td>
+                            <td>53-55</td>
+                            <td>60-70</td>
+                            <td>28</td>
+                            <td>24</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="tab-content" id="measure">
+                <h2>How to Measure Yourself</h2>
+                <p>For the most accurate sizing, take these measurements while wearing form-fitting clothing.</p>
+                
+                <div class="measurement-steps">
+                    <div class="step">
+                        <h4>Chest/Bust</h4>
+                        <p>Measure around the fullest part of your chest, keeping the tape measure horizontal.</p>
+                    </div>
+                    <div class="step">
+                        <h4>Waist</h4>
+                        <p>Measure around the narrowest part of your natural waist, usually just above the belly button.</p>
+                    </div>
+                    <div class="step">
+                        <h4>Hips</h4>
+                        <p>Measure around the fullest part of your hips, about 8 inches below your waist.</p>
+                    </div>
+                    <div class="step">
+                        <h4>Inseam</h4>
+                        <p>Measure from the crotch to the bottom of your ankle along the inside of your leg.</p>
+                    </div>
+                </div>
+                
+                <div class="calculator">
+                    <h3>Size Calculator</h3>
+                    <p>Enter your measurements to find your recommended size:</p>
+                    
+                    <div class="form-group">
+                        <label for="gender">I'm shopping for:</label>
+                        <select id="gender">
+                            <option value="women">Women's Clothing</option>
+                            <option value="men">Men's Clothing</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bust">Bust/Chest (inches):</label>
+                        <input type="number" id="bust" min="20" max="60">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="waist">Waist (inches):</label>
+                        <input type="number" id="waist" min="20" max="60">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hips">Hips (inches):</label>
+                        <input type="number" id="hips" min="20" max="60">
+                    </div>
+                    
+                    <button id="calculate-btn">Calculate My Size</button>
+                    
+                    <div class="result" id="size-result">
+                        <h4>Your Recommended Size: <span id="recommended-size"></span></h4>
+                        <p>Based on your measurements, we recommend this size for most Cartify items.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sizing-tips">
+            <h3>Sizing Tips & Notes</h3>
+            <ul class="tips-list">
+                <li>All measurements are in inches</li>
+                <li>If you're between sizes, we recommend sizing up for a looser fit or down for a tighter fit</li>
+                <li>Different brands may have slight variations in sizing</li>
+                <li>Check individual product pages for specific size recommendations as fit may vary by style</li>
+                <li>For assistance, contact our customer service team</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>Cartify Size Guide v1.0 | © 2015 Cartify. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.tab;
+                    
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === target) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            
+            const fitOptions = document.querySelectorAll('.fit-option');
+            
+            fitOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    fitOptions.forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+                    
+                });
+            });
+            
+            
+            const calculateBtn = document.getElementById('calculate-btn');
+            
+            calculateBtn.addEventListener('click', () => {
+                const bust = parseInt(document.getElementById('bust').value);
+                const waist = parseInt(document.getElementById('waist').value);
+                const hips = parseInt(document.getElementById('hips').value);
+                const gender = document.getElementById('gender').value;
+                
+                if (!bust || !waist || !hips) {
+                    alert('Please enter all measurements');
+                    return;
+                }
+                
+                let size = '';
+                
+                if (gender === 'women') {
+                    if (bust <= 34 && waist <= 26 && hips <= 36) {
+                        size = 'XS';
+                    } else if (bust <= 36 && waist <= 28 && hips <= 38) {
+                        size = 'S';
+                    } else if (bust <= 38 && waist <= 30 && hips <= 40) {
+                        size = 'M';
+                    } else if (bust <= 41 && waist <= 33 && hips <= 43) {
+                        size = 'L';
+                    } else {
+                        size = 'XL';
+                    }
+                } else {
+                    if (bust <= 38 && waist <= 32) {
+                        size = 'S';
+                    } else if (bust <= 41 && waist <= 35) {
+                        size = 'M';
+                    } else if (bust <= 44 && waist <= 38) {
+                        size = 'L';
+                    } else if (bust <= 47 && waist <= 41) {
+                        size = 'XL';
+                    } else {
+                        size = 'XXL';
+                    }
+                }
+                
+                document.getElementById('recommended-size').textContent = size;
+                document.getElementById('size-result').style.display = 'block';
+            });
+            
+            
+            const ageRange = document.getElementById('age-range');
+            
+            ageRange.addEventListener('change', () => {
+               
+                console.log('Age range changed to: ' + ageRange.value);
+            });
+        });
+    </script>
+</body>
+</html>
+
