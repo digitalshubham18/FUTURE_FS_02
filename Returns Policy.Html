@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Policy - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a6cf7;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #4a6cf7;
+        }
+        
+        .nav-icon {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-icon a {
+            margin-left: 20px;
+            color: #333;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .nav-icon a:hover {
+            color: #4a6cf7;
+        }
+        
+        
+        .hero {
+            background: linear-gradient(to right, #4a6cf7, #6a8eff);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        
+        .section {
+            padding: 60px 0;
+        }
+        
+        .section-light {
+            background-color: #fff;
+        }
+        
+        .section-dark {
+            background-color: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        
+        .policy-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .policy-section {
+            margin-bottom: 40px;
+        }
+        
+        .policy-section h3 {
+            font-size: 24px;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .policy-section p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .policy-section ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .policy-section li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .highlight-box {
+            background-color: #f0f5ff;
+            border-left: 4px solid #4a6cf7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .highlight-box h4 {
+            color: #4a6cf7;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f0f5ff;
+            color: #4a6cf7;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        .badge-success {
+            background-color: #e6f7ee;
+            color: #00a65a;
+        }
+        
+        .badge-warning {
+            background-color: #fef5e6;
+            color: #f39c12;
+        }
+        
+        .badge-danger {
+            background-color: #fde9e9;
+            color: #e74c3c;
+        }
+        
+        .step-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #4a6cf7;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .step-content h4 {
+            display: inline-block;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+       
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: #f9f9f9;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 300px;
+        }
+        
+        
+        .cta-section {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(to right, #4a6cf7, #6a8eff);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .cta-section h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: #4a6cf7;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        
+        footer {
+            background-color: #1f2b48;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: #4a6cf7;
+        }
+        
+        .footer-column p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #4a6cf7;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #2d3e5b;
+            color: #ccc;
+        }
+        
+       
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 15px;
+            }
+            
+            .nav-icon {
+                margin-top: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section {
+                padding: 40px 0;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-shopping-cart"></i>
+                    Cartify
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Product.Html">Products</a></li>
+                        <li><a href="categories.Html">Categories</a></li>
+                        <li><a href="Deals&Offer.Html">Deals</a></li>
+                        <li><a href="About us.Html">About Us</a></li>
+                        <li><a href="#" style="color: #4a6cf7;">Return Policy</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-icon">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Return & Refund Policy</h1>
+            <p>We want you to be completely satisfied with your Cartify purchase</p>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Return Policy</h2>
+                <p>Learn about our hassle-free return and refund process</p>
+            </div>
+            
+            <div class="policy-content">
+                <div class="policy-section">
+                    <h3>30-Day Return Window</h3>
+                    <p>We offer a 30-day return policy for most items in their original condition. If you're not satisfied with your purchase, you can return it for a full refund or exchange.</p>
+                    
+                    <div class="highlight-box">
+                        <h4>Important Note</h4>
+                        <p>Some items have different return policies or may not be eligible for return. Please check the product page for specific return information.</p>
+                    </div>
+                </div>
+                
+                <div class="policy-section">
+                    <h3>Return Eligibility</h3>
+                    <p>To be eligible for a return, your item must be:</p>
+                    <ul>
+                        <li>In the original packaging</li>
+                        <li>Unused and in the same condition as received</li>
+                        <li>Accompanied by the original receipt or proof of purchase</li>
+                        <li>Returned within 30 days of delivery</li>
+                    </ul>
+                    
+                    <h4>Non-Returnable Items</h4>
+                    <p>The following items cannot be returned:</p>
+                    <ul>
+                        <li>Gift cards</li>
+                        <li>Downloadable software products</li>
+                        <li>Personal care items</li>
+                        <li>Personalized products</li>
+                        <li>Perishable goods</li>
+                    </ul>
+                </div>
+                
+                <div class="policy-section">
+                    <h3>Return Process</h3>
+                    
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Initiate Return</h4>
+                            <p>Log in to your account and go to "Order History" to initiate a return request. Alternatively, contact our customer service team.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Pack Your Item</h4>
+                            <p>Securely pack the item in its original packaging including all accessories, manuals, and documentation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Ship Your Return</h4>
+                            <p>Use the provided return label to ship the item back to us. We recommend using a trackable shipping service.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Receive Refund</h4>
+                            <p>Once we receive and inspect your return, we will process your refund within 5-7 business days.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="policy-section">
+                    <h3>Refund Methods</h3>
+                    <table>
+                        <tr>
+                            <th>Payment Method</th>
+                            <th>Refund Method</th>
+                            <th>Processing Time</th>
+                        </tr>
+                        <tr>
+                            <td>Credit/Debit Card</td>
+                            <td>Original payment method</td>
+                            <td><span class="badge badge-success">5-7 business days</span></td>
+                        </tr>
+                        <tr>
+                            <td>PayPal</td>
+                            <td>PayPal account</td>
+                            <td><span class="badge badge-success">3-5 business days</span></td>
+                        </tr>
+                        <tr>
+                            <td>Bank Transfer</td>
+                            <td>Bank account</td>
+                            <td><span class="badge badge-warning">7-10 business days</span></td>
+                        </tr>
+                        <tr>
+                            <td>Cartify Gift Card</td>
+                            <td>Gift card balance</td>
+                            <td><span class="badge badge-success">24 hours</span></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="policy-section">
+                    <h3>Exchanges</h3>
+                    <p>We replace items if they are defective or damaged. If you need to exchange an item for the same product, contact us at <a href="mailto:support@Cartify.com">support@Cartify.com</a> with your order number and details about the product you would like to exchange.</p>
+                    
+                    <div class="highlight-box">
+                        <h4>Quick Exchanges</h4>
+                        <p>For faster exchanges, we recommend placing a new order and returning the original item for a refund once the replacement arrives.</p>
+                    </div>
+                </div>
+                
+                <div class="policy-section">
+                    <h3>Frequently Asked Questions</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            How long does it take to process a refund?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Once we receive your return, refunds are processed within 5-7 business days. The time it takes for the refund to appear in your account depends on your payment method and financial institution.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            What if my item is damaged or defective?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>If you receive a damaged or defective product, please contact us within 7 days of delivery. We will arrange for a free return and send a replacement at no additional cost.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Do I have to pay for return shipping?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We provide free return shipping for defective or damaged items and for returns that are our error. For other returns, the customer is responsible for return shipping costs.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Can I return sale items?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, sale items can be returned within 30 days of delivery, provided they meet our return conditions. Some clearance items may be marked as final sale and cannot be returned.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-section">
+                    <h3>Need Help With a Return?</h3>
+                    <p>Our customer service team is here to assist you</p>
+                    <a href="#" class="btn">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify</h3>
+                    <p>Your one-stop destination for all your shopping needs. Quality products, competitive prices, and exceptional service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Product.Html">Products</a></li>
+                        <li><a href="categories.Html">Categories</a></li>
+                        <li><a href="Deals&Offer.Html">Deals & Offers</a></li>
+                        <li><a href="About us.Html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="Contact Us.Html">Contact Us</a></li>
+                        <li><a href="FAQ.Html">FAQs</a></li>
+                        <li><a href="Return&Refund.Html">Returns & Refunds</a></li>
+                        <li><a href="Shipping.Html">Shipping Policy</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Commerce St, City, Country</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> support@Cartify.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2015 Cartify. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+       
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('active');
+                
+                const icon = question.querySelector('i');
+                if (answer.classList.contains('active')) {
+                    icon.className = 'fas fa-chevron-up';
+                } else {
+                    icon.className = 'fas fa-chevron-down';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
