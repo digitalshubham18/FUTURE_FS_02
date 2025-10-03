@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 40px 0;
+            color: #4a00e0;
+            font-size: 36px;
+        }
+        
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .search-bar input:focus {
+            border-color: #8e2de2;
+            outline: none;
+        }
+        
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            padding: 12px 25px;
+            background-color: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            border-color: #8e2de2;
+        }
+        
+        .faq-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .faq-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-section h2 {
+            color: #4a00e0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            padding: 10px 0;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+        
+        .faq-answer {
+            color: #666;
+            padding: 10px 0;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .contact-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+        
+        .contact-section h2 {
+            color: #4a00e0;
+            margin-bottom: 20px;
+        }
+        
+        .contact-section p {
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            padding: 12px 25px;
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-btn i {
+            margin-right: 10px;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(142, 45, 226, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+        
+        /* AI Assistant Styles */
+        .ai-assistant {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .ai-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .ai-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ai-chat-container {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .ai-chat-container.active {
+            display: flex;
+        }
+        
+        .ai-chat-header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .ai-chat-header h3 {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .ai-chat-header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .ai-chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background: #4a00e0;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .ai-message {
+            align-self: flex-start;
+            background: #f0f0f0;
+            color: #333;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .ai-typing {
+            align-self: flex-start;
+            background: #f0f0f0;
+            color: #333;
+            border-bottom-left-radius: 5px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #8e2de2;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+        
+        .ai-chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .ai-chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+        
+        .ai-chat-input button {
+            background: #4a00e0;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .suggested-questions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .suggested-question {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .suggested-question:hover {
+            background: #e9ecef;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .faq-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .ai-chat-container {
+                width: 300px;
+                height: 450px;
+            }
+            
+            .ai-assistant {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-shopping-bag"></i>
+                Cartify
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Home.Html">Home</a></li>
+                    <li><a href="Product.Html">Products</a></li>
+                    <li><a href="categories.Html">Categories</a></li>
+                    <li><a href="FAQ.Html">FAQ</a></li>
+                    <li><a href="Contact Us.Html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Frequently Asked Questions</h1>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search for questions...">
+            <button><i class="fas fa-search"></i> Search</button>
+        </div>
+        
+        <div class="faq-categories">
+            <button class="category-btn active">All Questions</button>
+            <button class="category-btn">Shipping</button>
+            <button class="category-btn">Returns</button>
+            <button class="category-btn">Payments</button>
+            <button class="category-btn">Account</button>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-section">
+                <h2>Orders & Shipping</h2>
+                
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        How long does shipping take?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Standard shipping typically takes 3-5 business days within the continental US. Express shipping options are available at checkout for 1-2 business day delivery.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you ship internationally?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we ship to over 50 countries worldwide. International shipping times vary by destination but typically take 7-14 business days. Additional customs fees may apply.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How can I track my order?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Once your order ships, you'll receive a confirmation email with a tracking number. You can also track your order by logging into your account and visiting the Order History section.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What are your shipping rates?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We offer free standard shipping on all orders over $50. For orders under $50, standard shipping is $4.99. Express shipping options start at $9.99.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2>Returns & Exchanges</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is your return policy?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We offer a 30-day return policy for most items in original condition with tags attached. Some items like clearance products and intimate apparel may have different return conditions.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I return an item?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        You can initiate a return through your account dashboard or by contacting customer service. We'll provide a prepaid return label and instructions for returning your item.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does it take to process a refund?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Once we receive your returned item, refunds are processed within 3-5 business days. The time it takes for the refund to appear in your account depends on your payment method and financial institution.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you offer exchanges?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we offer exchanges for size and color if available. You can request an exchange through the returns process in your account or by contacting customer service.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2>Payments & Pricing</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What payment methods do you accept?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We accept all major credit cards (Visa, MasterCard, American Express, Discover), PayPal, Apple Pay, Google Pay, and Cartify Gift Cards.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is my payment information secure?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we use industry-standard SSL encryption to protect your payment information. We do not store your full credit card details on our servers.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Why was I charged more than the listed price?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        If you're seeing a different amount on your statement than the listed price, it could be due to sales tax (which varies by location) or international transaction fees from your bank for orders outside the US.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you offer price matching?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We offer price matching within 7 days of purchase if you find the same item at a lower price on our website or at an authorized retailer. Contact our customer service team for assistance.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-section">
+            <h2>Still have questions?</h2>
+            <p>Can't find the answer you're looking for? Please reach out to our friendly customer support team.</p>
+            <div class="contact-buttons">
+                <button class="contact-btn">
+                    <i class="fas fa-envelope"></i> Email Support
+                </button>
+                <button class="contact-btn">
+                    <i class="fas fa-phone"></i> Call Us: (800) 555-SHOP
+                </button>
+                <button class="contact-btn" id="openAiChat">
+                    <i class="fas fa-robot"></i> Cartify AI Assistant
+                </button>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="ai-assistant">
+        <button class="ai-toggle" id="aiToggle">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="ai-chat-container" id="aiChatContainer">
+            <div class="ai-chat-header">
+                <h3><i class="fas fa-robot"></i> Cartify AI Assistant</h3>
+                <button id="closeAiChat"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="ai-chat-messages" id="aiChatMessages">
+                <div class="message ai-message">
+                    Hello! I'm the Cartify AI Assistant. How can I help you today?
+                </div>
+                <div class="suggested-questions">
+                    <div class="suggested-question" data-question="What is your return policy?">What is your return policy?</div>
+                    <div class="suggested-question" data-question="How long does shipping take?">How long does shipping take?</div>
+                    <div class="suggested-question" data-question="Do you offer international shipping?">Do you offer international shipping?</div>
+                </div>
+            </div>
+            <div class="ai-chat-input">
+                <input type="text" id="aiChatInput" placeholder="Type your question here...">
+                <button id="sendAiMessage"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2015 Cartify. All rights reserved.</p>
+        <p>Privacy Policy | Terms of Service | Refund Policy</p>
+    </footer>
+
+    <script>
+       
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+        
+        
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                
+                
+                alert(`Showing FAQs for: ${button.textContent}`);
+            });
+        });
+        
+        
+        const searchInput = document.querySelector('.search-bar input');
+        const searchButton = document.querySelector('.search-bar button');
+        
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        function performSearch() {
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm) {
+                alert(`Searching for: ${searchTerm}`);
+            }
+        }
+        
+       
+        const aiToggle = document.getElementById('aiToggle');
+        const aiChatContainer = document.getElementById('aiChatContainer');
+        const closeAiChat = document.getElementById('closeAiChat');
+        const aiChatMessages = document.getElementById('aiChatMessages');
+        const aiChatInput = document.getElementById('aiChatInput');
+        const sendAiMessage = document.getElementById('sendAiMessage');
+        const openAiChat = document.getElementById('openAiChat');
+        
+       
+        aiToggle.addEventListener('click', () => {
+            aiChatContainer.classList.toggle('active');
+        });
+        
+        
+        closeAiChat.addEventListener('click', () => {
+            aiChatContainer.classList.remove('active');
+        });
+        
+        
+        openAiChat.addEventListener('click', () => {
+            aiChatContainer.classList.add('active');
+        });
+        
+       
+        function sendMessage() {
+            const message = aiChatInput.value.trim();
+            if (message) {
+                
+                addMessage(message, 'user');
+                aiChatInput.value = '';
+               
+                showTypingIndicator();
+                
+                
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    const aiResponse = generateAIResponse(message);
+                    addMessage(aiResponse, 'ai');
+                }, 1500);
+            }
+        }
+        
+        
+        sendAiMessage.addEventListener('click', sendMessage);
+        
+        
+        aiChatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(sender === 'user' ? 'user-message' : 'ai-message');
+            messageDiv.textContent = text;
+            aiChatMessages.appendChild(messageDiv);
+            aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+        }
+        
+        
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('ai-typing');
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            `;
+            aiChatMessages.appendChild(typingDiv);
+            aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+        }
+        
+       
+        function removeTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+        
+        
+        function generateAIResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+          
+            if (lowerMessage.includes('shipping') || lowerMessage.includes('delivery')) {
+                if (lowerMessage.includes('time') || lowerMessage.includes('long')) {
+                    return "Standard shipping takes 3-5 business days. Express shipping is available for 1-2 business day delivery.";
+                } else if (lowerMessage.includes('international')) {
+                    return "Yes, we ship to over 50 countries. International shipping typically takes 7-14 business days.";
+                } else if (lowerMessage.includes('cost') || lowerMessage.includes('price')) {
+                    return "We offer free standard shipping on orders over $50. For orders under $50, shipping is $4.99.";
+                } else {
+                    return "Our shipping options include standard (3-5 days) and express (1-2 days). We ship internationally to over 50 countries.";
+                }
+            } else if (lowerMessage.includes('return') || lowerMessage.includes('refund')) {
+                if (lowerMessage.includes('policy')) {
+                    return "We have a 30-day return policy for most items in original condition. Some items may have different return conditions.";
+                } else if (lowerMessage.includes('how') || lowerMessage.includes('process')) {
+                    return "You can initiate a return through your account dashboard. We'll provide a prepaid return label.";
+                } else if (lowerMessage.includes('time') || lowerMessage.includes('long')) {
+                    return "Refunds are processed within 3-5 business days after we receive your returned item.";
+                } else {
+                    return "We offer a 30-day return policy. You can start the return process from your account dashboard.";
+                }
+            } else if (lowerMessage.includes('payment') || lowerMessage.includes('pay')) {
+                if (lowerMessage.includes('method') || lowerMessage.includes('accept')) {
+                    return "We accept credit cards (Visa, MasterCard, Amex, Discover), PayPal, Apple Pay, Google Pay, and Cartify Gift Cards.";
+                } else if (lowerMessage.includes('secure') || lowerMessage.includes('safe')) {
+                    return "Yes, we use SSL encryption to protect your payment information. We don't store full credit card details.";
+                } else {
+                    return "We accept various payment methods including credit cards, PayPal, and digital wallets. All payments are secure.";
+                }
+            } else if (lowerMessage.includes('track') || lowerMessage.includes('order status')) {
+                return "You can track your order using the tracking number in your confirmation email or through your account's order history.";
+            } else if (lowerMessage.includes('exchange') || lowerMessage.includes('size')) {
+                return "Yes, we offer exchanges for size and color if available. You can request an exchange during the return process.";
+            } else if (lowerMessage.includes('price match') || lowerMessage.includes('matching')) {
+                return "We offer price matching within 7 days of purchase if you find the same item at a lower price from an authorized retailer.";
+            } else if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+                return "Hello! I'm here to help with any questions about Cartify. What can I assist you with today?";
+            } else if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
+                return "You're welcome! Is there anything else I can help you with?";
+            } else {
+                return "I'm not sure I understand. Could you please rephrase your question? I can help with shipping, returns, payments, and more.";
+            }
+        }
+        
+       
+        document.querySelectorAll('.suggested-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const questionText = question.getAttribute('data-question');
+                aiChatInput.value = questionText;
+                sendMessage();
+            });
+        });
+    </script>
+</body>
+</html>
+
