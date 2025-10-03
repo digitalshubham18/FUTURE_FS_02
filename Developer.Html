@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartify Developer Portal</title>
+    <style>
+        :root {
+            --primary: #3a86ff;
+            --primary-dark: #2667cc;
+            --secondary: #8338ec;
+            --accent: #ff006e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #38b000;
+            --warning: #ff9e00;
+            --danger: #d00000;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        body.modal-open {
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            border-radius: 3px;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--border-radius);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #e0005e;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            margin: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #dee2e6;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(rgba(58, 134, 255, 0.05), rgba(131, 56, 236, 0.05));
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--gray);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        main {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: var(--dark);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .api-docs {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 4rem;
+        }
+        
+        .api-tabs {
+            display: flex;
+            background: var(--light);
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .api-tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .api-tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+            background: white;
+        }
+        
+        .api-content {
+            padding: 2rem;
+            display: none;
+        }
+        
+        .api-content.active {
+            display: block;
+        }
+        
+        .endpoint {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .method {
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .get { background: #e7f4e4; color: var(--success); }
+        .post { background: #e3f2fd; color: var(--primary); }
+        .put { background: #fff3e0; color: var(--warning); }
+        .delete { background: #ffebee; color: var(--danger); }
+        
+        .path {
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+        
+        .description {
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+        
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .params-table th, .params-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .params-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .sdks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .sdk-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .sdk-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .sdk-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .sdk-card h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .testing-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 4rem;
+        }
+        
+        .testing-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            font-family: monospace;
+            resize: vertical;
+        }
+        
+        .response-area {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            min-height: 200px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        
+        .auth-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 4rem;
+        }
+        
+        .auth-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .auth-step {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .status-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 4rem;
+        }
+        
+        .status-indicators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .status-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            background: var(--light);
+        }
+        
+        .status-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .status-online { color: var(--success); }
+        .status-offline { color: var(--danger); }
+        .status-warning { color: var(--warning); }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .auth-step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                align-self: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🛒</span>
+                    <span>Cartify Dev</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="active">Home</a></li>
+                        <li><a href="#docs">Documentation</a></li>
+                        <li><a href="#sdks">SDKs</a></li>
+                        <li><a href="#testing">API Testing</a></li>
+                        <li><a href="#auth">Authentication</a></li>
+                        <li><a href="#status">Status</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline" id="sign-in-btn">Sign In</a>
+                    <a href="#" class="btn btn-primary" id="get-api-key-btn">Get API Key</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Cartify Developer Portal</h1>
+            <p>Build powerful e-commerce applications with Cartify's comprehensive API. Access product data, manage orders, process payments, and create seamless shopping experiences.</p>
+            <div class="hero-buttons">
+                <a href="#docs" class="btn btn-primary">Get Started</a>
+                <a href="#sdks" class="btn btn-outline">View SDKs</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <section>
+            <h2 class="section-title">Why Cartify API?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🔌</div>
+                    <h3>RESTful API</h3>
+                    <p>Clean, consistent REST API design following industry best practices for easy integration.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Comprehensive Documentation</h3>
+                    <p>Detailed documentation with examples for all endpoints, parameters, and responses.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Secure Authentication</h3>
+                    <p>OAuth 2.0 and API key authentication options to keep your data secure.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>High Performance</h3>
+                    <p>Low-latency responses with 99.9% uptime guarantee for reliable operations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Global Infrastructure</h3>
+                    <p>Multiple data centers worldwide ensuring fast access from any location.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Developer Tools</h3>
+                    <p>SDKs, testing tools, and webhooks to streamline your development process.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="docs">
+            <h2 class="section-title">API Documentation</h2>
+            <div class="api-docs">
+                <div class="api-tabs">
+                    <div class="api-tab active" data-tab="products">Products</div>
+                    <div class="api-tab" data-tab="orders">Orders</div>
+                    <div class="api-tab" data-tab="customers">Customers</div>
+                    <div class="api-tab" data-tab="payments">Payments</div>
+                </div>
+                
+                <div class="api-content active" id="products-content">
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <span class="path">/api/v1/products</span>
+                        </div>
+                        <p class="description">Retrieve a list of products with optional filtering, sorting, and pagination.</p>
+                        
+                        <h4>Parameters</h4>
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>page</td>
+                                    <td>integer</td>
+                                    <td>No</td>
+                                    <td>Page number for pagination (default: 1)</td>
+                                </tr>
+                                <tr>
+                                    <td>limit</td>
+                                    <td>integer</td>
+                                    <td>No</td>
+                                    <td>Number of items per page (default: 20, max: 100)</td>
+                                </tr>
+                                <tr>
+                                    <td>category</td>
+                                    <td>string</td>
+                                    <td>No</td>
+                                    <td>Filter by category ID</td>
+                                </tr>
+                                <tr>
+                                    <td>search</td>
+                                    <td>string</td>
+                                    <td>No</td>
+                                    <td>Search term to filter products by name or description</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h4>Example Request</h4>
+                        <pre><code>GET /api/v1/products?page=1&limit=10&category=electronics</code></pre>
+                    </div>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <span class="path">/api/v1/products/{id}</span>
+                        </div>
+                        <p class="description">Retrieve detailed information about a specific product.</p>
+                        
+                        <h4>Parameters</h4>
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Unique identifier of the product</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="api-content" id="orders-content">
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <span class="path">/api/v1/orders</span>
+                        </div>
+                        <p class="description">Retrieve a list of orders with optional filtering by status, date, or customer.</p>
+                        
+                        <h4>Parameters</h4>
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>status</td>
+                                    <td>string</td>
+                                    <td>No</td>
+                                    <td>Filter by order status (pending, confirmed, shipped, delivered, cancelled)</td>
+                                </tr>
+                                <tr>
+                                    <td>customer_id</td>
+                                    <td>string</td>
+                                    <td>No</td>
+                                    <td>Filter by customer ID</td>
+                                </tr>
+                                <tr>
+                                    <td>start_date</td>
+                                    <td>string</td>
+                                    <td>No</td>
+                                    <td>Filter orders from this date (YYYY-MM-DD)</td>
+                                </tr>
+                                <tr>
+                                    <td>end_date</td>
+                                    <td>string</td>
+                                    <td>No</td>
+                                    <td>Filter orders until this date (YYYY-MM-DD)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method post">POST</span>
+                            <span class="path">/api/v1/orders</span>
+                        </div>
+                        <p class="description">Create a new order.</p>
+                        
+                        <h4>Request Body</h4>
+                        <pre><code>{
+  "customer_id": "cust_12345",
+  "items": [
+    {
+      "product_id": "prod_67890",
+      "quantity": 2,
+      "price": 29.99
+    }
+  ],
+  "shipping_address": {
+    "street": "123 Main St",
+    "city": "Anytown",
+    "state": "CA",
+    "zip_code": "12345",
+    "country": "US"
+  }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="api-content" id="customers-content">
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <span class="path">/api/v1/customers</span>
+                        </div>
+                        <p class="description">Retrieve a list of customers with optional filtering and pagination.</p>
+                        
+                        <h4>Parameters</h4>
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>page</td>
+                                    <td>integer</td>
+                                    <td>No</td>
+                                    <td>Page number for pagination (default: 1)</td>
+                                </tr>
+                                <tr>
+                                    <td>limit</td>
+                                    <td>integer</td>
+                                    <td>No</td>
+                                    <td>Number of items per page (default: 20, max: 100)</td>
+                                </tr>
+                                <tr>
+                                    <td>search</td>
+                                    <td>string</td>
+                                    <td>No</td>
+                                    <td>Search term to filter customers by name or email</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method post">POST</span>
+                            <span class="path">/api/v1/customers</span>
+                        </div>
+                        <p class="description">Create a new customer.</p>
+                        
+                        <h4>Request Body</h4>
+                        <pre><code>{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "phone": "+1234567890",
+  "address": {
+    "street": "123 Main St",
+    "city": "Anytown",
+    "state": "CA",
+    "zip_code": "12345",
+    "country": "US"
+  }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="api-content" id="payments-content">
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method post">POST</span>
+                            <span class="path">/api/v1/payments</span>
+                        </div>
+                        <p class="description">Process a payment for an order.</p>
+                        
+                        <h4>Request Body</h4>
+                        <pre><code>{
+  "order_id": "order_12345",
+  "amount": 59.98,
+  "payment_method": "credit_card",
+  "payment_details": {
+    "card_number": "4111111111111111",
+    "expiry_month": "12",
+    "expiry_year": "2025",
+    "cvc": "123"
+  }
+}</code></pre>
+                    </div>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <span class="path">/api/v1/payments/{id}</span>
+                        </div>
+                        <p class="description">Retrieve payment details by payment ID.</p>
+                        
+                        <h4>Parameters</h4>
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Unique identifier of the payment</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sdks">
+            <h2 class="section-title">SDKs & Libraries</h2>
+            <div class="sdks">
+                <div class="sdk-card">
+                    <div class="sdk-icon">⚙️</div>
+                    <h3>JavaScript</h3>
+                    <p>Official SDK for Node.js and browser environments</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Download</a>
+                </div>
+                <div class="sdk-card">
+                    <div class="sdk-icon">🐍</div>
+                    <h3>Python</h3>
+                    <p>Comprehensive Python library for Cartify API</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Download</a>
+                </div>
+                <div class="sdk-card">
+                    <div class="sdk-icon">☕</div>
+                    <h3>Java</h3>
+                    <p>Java client library for enterprise applications</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Download</a>
+                </div>
+                <div class="sdk-card">
+                    <div class="sdk-icon">🔷</div>
+                    <h3>.NET</h3>
+                    <p>C# library for .NET Framework and .NET Core</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="testing">
+            <h2 class="section-title">API Testing</h2>
+            <div class="testing-section">
+                <div class="testing-form">
+                    <div class="form-group">
+                        <label for="api-endpoint">API Endpoint</label>
+                        <select id="api-endpoint">
+                            <option value="/api/v1/products">GET /api/v1/products</option>
+                            <option value="/api/v1/products/{id}">GET /api/v1/products/{id}</option>
+                            <option value="/api/v1/orders">GET /api/v1/orders</option>
+                            <option value="/api/v1/orders">POST /api/v1/orders</option>
+                            <option value="/api/v1/customers">GET /api/v1/customers</option>
+                            <option value="/api/v1/customers">POST /api/v1/customers</option>
+                            <option value="/api/v1/payments">POST /api/v1/payments</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="request-body">Request Body (for POST/PUT requests)</label>
+                        <textarea id="request-body" placeholder='{"key": "value"}'></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="api-key">API Key</label>
+                        <input type="text" id="api-key" placeholder="Enter your API key">
+                    </div>
+                    
+                    <button class="btn btn-primary" id="send-request">Send Request</button>
+                    
+                    <div class="form-group">
+                        <label for="response">Response</label>
+                        <div class="response-area" id="response">
+                            Response will appear here after making a request.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="auth">
+            <h2 class="section-title">Authentication</h2>
+            <div class="auth-section">
+                <p>Cartify API uses API keys or OAuth 2.0 for authentication. API keys are passed in the request header, while OAuth 2.0 uses bearer tokens.</p>
+                
+                <div class="auth-steps">
+                    <div class="auth-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Get Your API Key</h3>
+                            <p>Sign up for a developer account and generate your API key from the dashboard.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="auth-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Include API Key in Requests</h3>
+                            <p>Add your API key to the request header: <code>Authorization: Bearer YOUR_API_KEY</code></p>
+                        </div>
+                    </div>
+                    
+                    <div class="auth-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Make Authenticated Requests</h3>
+                            <p>Your requests will now be authenticated and you can access the API endpoints.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>OAuth 2.0 Flow</h3>
+                <p>For more advanced applications, you can use OAuth 2.0 for authentication. This involves:</p>
+                <ol>
+                    <li>Redirecting users to Cartify for authentication</li>
+                    <li>Receiving an authorization code</li>
+                    <li>Exchanging the code for an access token</li>
+                    <li>Using the access token to make API requests</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="status">
+            <h2 class="section-title">System Status</h2>
+            <div class="status-section">
+                <p>Check the current status of Cartify API services. We monitor all systems 24/7 to ensure maximum uptime.</p>
+                
+                <div class="status-indicators">
+                    <div class="status-item">
+                        <div class="status-icon status-online">✅</div>
+                        <h3>API Services</h3>
+                        <p>All Systems Operational</p>
+                        <small>Last checked: Just now</small>
+                    </div>
+                    
+                    <div class="status-item">
+                        <div class="status-icon status-online">✅</div>
+                        <h3>Database</h3>
+                        <p>All Systems Operational</p>
+                        <small>Last checked: 5 minutes ago</small>
+                    </div>
+                    
+                    <div class="status-item">
+                        <div class="status-icon status-warning">⚠️</div>
+                        <h3>Payment Processing</h3>
+                        <p>Partial Outage</p>
+                        <small>Last checked: 10 minutes ago</small>
+                    </div>
+                    
+                    <div class="status-item">
+                        <div class="status-icon status-online">✅</div>
+                        <h3>Authentication</h3>
+                        <p>All Systems Operational</p>
+                        <small>Last checked: Just now</small>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#" class="btn btn-primary" id="report-bug-btn">Report a Bug</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify Dev</h3>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="#docs">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Changelog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#sdks">SDKs</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="Blog.Html">Blog</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="support.Html">Help Center</a></li>
+                        <li><a href="Contact Us.Html">Contact Us</a></li>
+                        <li><a href="#status">Status</a></li>
+                        <li><a href="#" id="footer-report-bug">Report a Bug</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="Terms.Html">Terms of Service</a></li>
+                        <li><a href="Privacy policy.Html">Privacy Policy</a></li>
+                        <li><a href="Cookies.Html">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2015 Cartify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="sign-in-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Sign In</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="sign-in-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem;">Don't have an account? <a href="#" id="switch-to-signup">Sign up</a></p>
+        </div>
+    </div>
+
+    <div class="modal" id="sign-up-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Create Account</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="sign-up-form">
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem;">Already have an account? <a href="#" id="switch-to-signin">Sign in</a></p>
+        </div>
+    </div>
+
+    <div class="modal" id="api-key-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Your API Key</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="generated-api-key">API Key</label>
+                <input type="text" id="generated-api-key" readonly>
+                <button class="btn btn-primary" id="copy-api-key" style="margin-top: 0.5rem; width: 100%;">Copy to Clipboard</button>
+            </div>
+            <div class="form-group">
+                <p><strong>Important:</strong> Keep your API key secure. Do not share it publicly or commit it to version control.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="report-bug-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Report a Bug</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="report-bug-form">
+                <div class="form-group">
+                    <label for="bug-title">Title</label>
+                    <input type="text" id="bug-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="bug-description">Description</label>
+                    <textarea id="bug-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="bug-severity">Severity</label>
+                    <select id="bug-severity">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bug-steps">Steps to Reproduce</label>
+                    <textarea id="bug-steps" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="bug-contact">Contact Email</label>
+                    <input type="email" id="bug-contact" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Bug Report</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.api-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.api-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.api-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.add('active');
+            });
+        });
+        
+        document.getElementById('send-request').addEventListener('click', () => {
+            const endpoint = document.getElementById('api-endpoint').value;
+            const apiKey = document.getElementById('api-key').value;
+            const requestBody = document.getElementById('request-body').value;
+            const responseArea = document.getElementById('response');
+            
+            if (!apiKey) {
+                responseArea.textContent = 'Error: Please enter your API key';
+                return;
+            }
+            
+            responseArea.textContent = 'Sending request...';
+            
+            setTimeout(() => {
+                let mockResponse;
+                
+                if (endpoint === '/api/v1/products') {
+                    mockResponse = {
+                        status: 200,
+                        data: {
+                            products: [
+                                { id: 'prod_1', name: 'Smartphone', price: 599.99, category: 'electronics' },
+                                { id: 'prod_2', name: 'Laptop', price: 1299.99, category: 'electronics' },
+                                { id: 'prod_3', name: 'Headphones', price: 199.99, category: 'electronics' }
+                            ],
+                            pagination: {
+                                page: 1,
+                                limit: 10,
+                                total: 150
+                            }
+                        }
+                    };
+                } else if (endpoint === '/api/v1/orders' && requestBody) {
+                    mockResponse = {
+                        status: 201,
+                        data: {
+                            id: 'order_12345',
+                            status: 'pending',
+                            customer_id: 'cust_12345',
+                            total: 59.98,
+                            created_at: new Date().toISOString()
+                        }
+                    };
+                } else {
+                    mockResponse = {
+                        status: 200,
+                        data: { message: 'Request successful' }
+                    };
+                }
+                
+                responseArea.textContent = JSON.stringify(mockResponse, null, 2);
+            }, 1000);
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        const signInModal = document.getElementById('sign-in-modal');
+        const signUpModal = document.getElementById('sign-up-modal');
+        const apiKeyModal = document.getElementById('api-key-modal');
+        const reportBugModal = document.getElementById('report-bug-modal');
+        
+        // Function to open modal and prevent background scrolling
+        function openModal(modal) {
+            modal.style.display = 'flex';
+            document.body.classList.add('modal-open');
+        }
+        
+        // Function to close modal and restore scrolling
+        function closeModal(modal) {
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }
+        
+        document.getElementById('sign-in-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(signInModal);
+        });
+        
+        document.getElementById('get-api-key-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(signInModal);
+        });
+        
+        document.getElementById('report-bug-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(reportBugModal);
+        });
+        
+        document.getElementById('footer-report-bug').addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(reportBugModal);
+        });
+        
+        document.querySelectorAll('.close-modal').forEach(button => {
+            button.addEventListener('click', function() {
+                const modal = this.closest('.modal');
+                closeModal(modal);
+            });
+        });
+        
+        document.getElementById('switch-to-signup').addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal(signInModal);
+            openModal(signUpModal);
+        });
+        
+        document.getElementById('switch-to-signin').addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal(signUpModal);
+            openModal(signInModal);
+        });
+        
+        document.getElementById('sign-in-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (email && password) {
+                closeModal(signInModal);
+                openModal(apiKeyModal);
+                
+                const generatedApiKey = 'sk_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+                document.getElementById('generated-api-key').value = generatedApiKey;
+            }
+        });
+        
+        document.getElementById('sign-up-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const fullName = document.getElementById('full-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            if (fullName && email && password) {
+                closeModal(signUpModal);
+                openModal(apiKeyModal);
+                
+                const generatedApiKey = 'sk_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+                document.getElementById('generated-api-key').value = generatedApiKey;
+            }
+        });
+        
+        document.getElementById('copy-api-key').addEventListener('click', () => {
+            const apiKeyField = document.getElementById('generated-api-key');
+            apiKeyField.select();
+            document.execCommand('copy');
+            alert('API key copied to clipboard!');
+        });
+        
+        document.getElementById('report-bug-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('bug-title').value;
+            const description = document.getElementById('bug-description').value;
+            const severity = document.getElementById('bug-severity').value;
+            const steps = document.getElementById('bug-steps').value;
+            const contact = document.getElementById('bug-contact').value;
+            
+            if (title && description && steps && contact) {
+                alert('Bug report submitted successfully! We will review it and get back to you soon.');
+                closeModal(reportBugModal);
+                
+                document.getElementById('bug-title').value = '';
+                document.getElementById('bug-description').value = '';
+                document.getElementById('bug-severity').value = 'low';
+                document.getElementById('bug-steps').value = '';
+                document.getElementById('bug-contact').value = '';
+            }
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal(e.target);
+            }
+        });
+        
+       
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const openModal = document.querySelector('.modal[style="display: flex;"]');
+                if (openModal) {
+                    closeModal(openModal);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
