@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Policy - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #8e44ad;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background: #783c94;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #8e44ad;
+            color: #8e44ad;
+        }
+        
+        .btn-outline:hover {
+            background: #8e44ad;
+            color: white;
+        }
+        
+        .section-title {
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #8e44ad;
+            margin-top: 10px;
+        }
+        
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #8e44ad;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #333;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: #8e44ad;
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            margin-left: 20px;
+            color: #333;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .header-icons a:hover {
+            color: #8e44ad;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #8e44ad;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .shipping-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+        }
+        
+        .shipping-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .shipping-hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .shipping-hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .shipping-overview {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .overview-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .overview-card {
+            background: #f8f4fb;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .overview-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .overview-card i {
+            font-size: 40px;
+            color: #8e44ad;
+            margin-bottom: 20px;
+        }
+        
+        .overview-card h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .shipping-options {
+            padding: 80px 0;
+            background: #f8f4fb;
+        }
+        
+        .options-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .options-table th {
+            background: #8e44ad;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .options-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .options-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .options-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .badge-popular {
+            background: #ffeb3b;
+            color: #333;
+        }
+        
+        .badge-fast {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .badge-economy {
+            background: #2196f3;
+            color: white;
+        }
+        
+        .shipping-timeline {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #8e44ad;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-content {
+            width: 45%;
+            padding: 20px;
+            background: #f8f4fb;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            text-align: right;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #8e44ad;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        
+        .shipping-faq {
+            padding: 80px 0;
+            background: #f8f4fb;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .shipping-restrictions {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .restrictions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .restriction-card {
+            background: #f8f4fb;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #8e44ad;
+        }
+        
+        .restriction-card h3 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .restriction-card h3 i {
+            margin-right: 10px;
+            color: #8e44ad;
+        }
+        
+        .international-shipping {
+            padding: 80px 0;
+            background: #f8f4fb;
+        }
+        
+        .country-list {
+            columns: 3;
+            margin-top: 30px;
+        }
+        
+        .country-list ul {
+            list-style: none;
+            margin-bottom: 20px;
+            break-inside: avoid;
+        }
+        
+        .country-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .country-list li:before {
+            content: '✓';
+            color: #4caf50;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .tracking-support {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+        
+        .tracking-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .tracking-option {
+            background: #f8f4fb;
+            padding: 30px;
+            border-radius: 10px;
+            width: 250px;
+            transition: transform 0.3s;
+        }
+        
+        .tracking-option:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tracking-option i {
+            font-size: 40px;
+            color: #8e44ad;
+            margin-bottom: 20px;
+        }
+        
+        .tracking-option h3 {
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background: #222;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: #8e44ad;
+            margin-top: 10px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #8e44ad;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #8e44ad;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .header-icons {
+                margin-top: 15px;
+            }
+            
+            .shipping-hero h1 {
+                font-size: 32px;
+            }
+            
+            .timeline:before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+                text-align: left !important;
+            }
+            
+            .timeline-marker {
+                left: 20px;
+            }
+            
+            .country-list {
+                columns: 2;
+            }
+            
+            .options-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .country-list {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Cart<span>ify</span></a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="Women.Html">Women</a></li>
+                        <li><a href="Mens.Html">Men</a></li>
+                        <li><a href="Accessories.Html">Accessories</a></li>
+                        <li><a href="Brand.Html">Brands</a></li>
+                        <li><a href="#" class="active">Help Center</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i><span class="cart-count">2</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="shipping-hero">
+        <div class="container">
+            <div class="shipping-hero-content">
+                <h1>Shipping Policy</h1>
+                <p>Learn about our shipping options, delivery times, and tracking information</p>
+                <a href="#shipping-options" class="btn">View Shipping Options</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="shipping-overview">
+        <div class="container">
+            <h2 class="section-title">Shipping Overview</h2>
+            <p>At Cartify, we strive to deliver your orders quickly and efficiently. We partner with leading logistics providers to ensure your items reach you in perfect condition and on time.</p>
+            
+            <div class="overview-cards">
+                <div class="overview-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Most orders are processed within 24 hours and delivered in 3-5 business days.</p>
+                </div>
+                
+                <div class="overview-card">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>International Shipping</h3>
+                    <p>We ship to over 50 countries worldwide with customs handling included.</p>
+                </div>
+                
+                <div class="overview-card">
+                    <i class="fas fa-box-open"></i>
+                    <h3>Free Shipping</h3>
+                    <p>Enjoy free standard shipping on orders over $50 within the continental US.</p>
+                </div>
+                
+                <div class="overview-card">
+                    <i class="fas fa-undo-alt"></i>
+                    <h3>Easy Returns</h3>
+                    <p>Not satisfied? We offer hassle-free returns within 30 days of delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="shipping-options" id="shipping-options">
+        <div class="container">
+            <h2 class="section-title">Shipping Options & Costs</h2>
+            <p>Choose the shipping method that works best for you. All options include tracking and insurance.</p>
+            
+            <table class="options-table">
+                <thead>
+                    <tr>
+                        <th>Shipping Method</th>
+                        <th>Delivery Time</th>
+                        <th>Cost</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Standard Shipping</strong>
+                            <span class="badge badge-popular">Most Popular</span>
+                        </td>
+                        <td>5-7 business days</td>
+                        <td>Free on orders over $50<br>$4.99 for orders under $50</td>
+                        <td>Regular orders, no rush</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Express Shipping</strong>
+                            <span class="badge badge-fast">Fast</span>
+                        </td>
+                        <td>2-3 business days</td>
+                        <td>$9.99</td>
+                        <td>Quick delivery needs</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Overnight Shipping</strong>
+                        </td>
+                        <td>1 business day</td>
+                        <td>$19.99</td>
+                        <td>Urgent deliveries</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>International Standard</strong>
+                        </td>
+                        <td>10-15 business days</td>
+                        <td>$14.99</td>
+                        <td>International orders</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>International Express</strong>
+                        </td>
+                        <td>5-7 business days</td>
+                        <td>$24.99</td>
+                        <td>Fast international delivery</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="shipping-timeline">
+        <div class="container">
+            <h2 class="section-title">Order Processing Timeline</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Order Placed</h3>
+                        <p>Your order is received and confirmed. You'll receive an order confirmation email.</p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Order Processing</h3>
+                        <p>We prepare your items for shipment. Most orders are processed within 24 hours.</p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Shipped</h3>
+                        <p>Your order is handed over to our shipping partner. You'll receive a tracking number.</p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>In Transit</h3>
+                        <p>Your package is on its way to you. Use your tracking number to follow its journey.</p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Out for Delivery</h3>
+                        <p>Your package is with the local carrier and will be delivered today.</p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Delivered</h3>
+                        <p>Your order has been delivered. We hope you love your new items!</p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="shipping-faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does shipping take?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Shipping times vary based on your location and the shipping method selected. Standard shipping typically takes 5-7 business days, while express shipping takes 2-3 business days. International orders may take 10-15 business days.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you offer free shipping?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer free standard shipping on all orders over $50 within the continental United States. For orders under $50, standard shipping is $4.99.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I track my order?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Once your order ships, you'll receive a tracking number via email. You can use this number to track your package on our website or the carrier's website.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if I'm not home when my package arrives?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If you're not home, the carrier will typically leave your package in a safe place or attempt delivery again the next business day. For valuable items, a signature may be required.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you ship to PO boxes?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we ship to PO boxes via USPS. Please note that express and overnight shipping options may not be available for PO box addresses.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What should I do if my package is damaged?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If your package arrives damaged, please contact our customer service team within 48 hours of delivery. We'll arrange for a replacement or refund as appropriate.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="shipping-restrictions">
+        <div class="container">
+            <h2 class="section-title">Shipping Restrictions</h2>
+            <p>Some items have special shipping requirements or restrictions. Please review the following information before placing your order.</p>
+            
+            <div class="restrictions-grid">
+                <div class="restriction-card">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Hazardous Materials</h3>
+                    <p>We cannot ship items classified as hazardous materials, including aerosols, flammable liquids, and certain batteries.</p>
+                </div>
+                
+                <div class="restriction-card">
+                    <h3><i class="fas fa-wine-bottle"></i> Alcohol & Tobacco</h3>
+                    <p>We do not ship alcohol, tobacco, or related products due to legal restrictions.</p>
+                </div>
+                
+                <div class="restriction-card">
+                    <h3><i class="fas fa-prescription-bottle"></i> Prescription Medications</h3>
+                    <p>Prescription medications cannot be shipped through our standard logistics channels.</p>
+                </div>
+                
+                <div class="restriction-card">
+                    <h3><i class="fas fa-gem"></i> High-Value Items</h3>
+                    <p>Orders containing jewelry or items valued over $500 may require signature confirmation upon delivery.</p>
+                </div>
+                
+                <div class="restriction-card">
+                    <h3><i class="fas fa-snowflake"></i> Perishable Goods</h3>
+                    <p>We do not currently ship perishable goods such as food items or live plants.</p>
+                </div>
+                
+                <div class="restriction-card">
+                    <h3><i class="fas fa-weight-hanging"></i> Oversized Items</h3>
+                    <p>Oversized items may incur additional shipping fees and longer delivery times.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="international-shipping">
+        <div class="container">
+            <h2 class="section-title">International Shipping</h2>
+            <p>We're proud to ship to customers around the world. Below is a list of countries we currently serve.</p>
+            
+            <div class="country-list">
+                <ul>
+                    <li>India</li>
+                    <li>United States</li>
+                    <li>Canada</li>
+                    <li>United Kingdom</li>
+                    <li>Australia</li>
+                    <li>Germany</li>
+                    <li>France</li>
+                </ul>
+                
+                <ul>
+                    <li>Japan</li>
+                    <li>South Korea</li>
+                    <li>Singapore</li>
+                    <li>United Arab Emirates</li>
+                    <li>Brazil</li>
+                    <li>Mexico</li>
+                </ul>
+                
+                <ul>
+                    <li>Italy</li>
+                    <li>Spain</li>
+                    <li>Netherlands</li>
+                    <li>Sweden</li>
+                    <li>Switzerland</li>
+                    <li>New Zealand</li>
+                </ul>
+            </div>
+            
+            <div style="margin-top: 40px; padding: 20px; background: white; border-radius: 10px;">
+                <h3>Important International Shipping Notes:</h3>
+                <ul style="list-style: disc; margin-left: 20px; margin-top: 15px;">
+                    <li>Customers are responsible for any customs duties, taxes, or fees imposed by their country</li>
+                    <li>Delivery times may vary based on customs processing</li>
+                    <li>Some items may be restricted from shipping to certain countries</li>
+                    <li>All international shipments include tracking</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="tracking-support">
+        <div class="container">
+            <h2 class="section-title">Track Your Order & Support</h2>
+            <p>Need help with your shipment? We're here to assist you.</p>
+            
+            <div class="tracking-options">
+                <div class="tracking-option">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Track Order</h3>
+                    <p>Enter your tracking number to see your package's current location and estimated delivery date.</p>
+                    <a href="Track.Html" class="btn" style="margin-top: 15px;">Track Now</a>
+                </div>
+                
+                <div class="tracking-option">
+                    <i class="fas fa-headset"></i>
+                    <h3>Contact Support</h3>
+                    <p>Our customer service team is available to help with any shipping questions or concerns.</p>
+                    <a href="Contact Us.Html" class="btn" style="margin-top: 15px;">Contact Us</a>
+                </div>
+                
+                <div class="tracking-option">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <h3>Shipping Updates</h3>
+                    <p>Sign up for shipping notifications to receive updates about your order's status.</p>
+                    <a href="#" class="btn" style="margin-top: 15px;">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify</h3>
+                    <p>Your destination for the world's finest fashion brands.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="Home&kitchen.Html">Home</a></li>
+                        <li><a href="Brand.Html">Brands</a></li>
+                        <li><a href="New.Html">New Arrivals</a></li>
+                        <li><a href="Trend.Html">Trending</a></li>
+                        <li><a href="Sale.Html">Sale</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="Contact Us.Html">Contact Us</a></li>
+                        <li><a href="Shipping Policy.Html">Shipping Policy</a></li>
+                        <li><a href="Return&Refund.Html">Returns & Refunds</a></li>
+                        <li><a href="cancellation.Html">Cancellation Policy</a></li>
+                        <li><a href="FAQ.Html">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                    <p>Connect with us for updates</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2015 Cartify. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                   
+                    item.classList.toggle('active');
+                });
+            });
+            
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
