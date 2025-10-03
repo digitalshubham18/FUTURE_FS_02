@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartify - Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 15px 5%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-icons i {
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .header-icons i:hover {
+            color: #ffd700;
+        }
+
+        .blog-header {
+            background: linear-gradient(rgba(74, 0, 224, 0.8), rgba(142, 45, 226, 0.8)), url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+        }
+
+        .blog-header h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .blog-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .blog-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .featured-post {
+            margin-bottom: 40px;
+        }
+
+        .featured-post-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .featured-img {
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .featured-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .featured-post-card:hover .featured-img img {
+            transform: scale(1.05);
+        }
+
+        .featured-content {
+            padding: 30px;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .post-meta i {
+            color: #8e2de2;
+        }
+
+        .featured-content h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .featured-content p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: #8e2de2;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #4a00e0;
+            transform: translateX(5px);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .post-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .post-card:hover .post-img img {
+            transform: scale(1.05);
+        }
+
+        .post-content {
+            padding: 20px;
+        }
+
+        .post-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .post-content p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .widget-title {
+            font-size: 20px;
+            color: #4a00e0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0e6ff;
+        }
+
+        .search-form {
+            display: flex;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+        }
+
+        .search-btn {
+            background: #8e2de2;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+        }
+
+        .categories-list {
+            list-style: none;
+        }
+
+        .categories-list li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .categories-list a {
+            color: #555;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .categories-list a:hover {
+            color: #8e2de2;
+        }
+
+        .recent-post {
+            display: flex;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .recent-post:hover {
+            transform: translateX(5px);
+        }
+
+        .recent-post-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .recent-post-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .recent-post-content h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .recent-post-content span {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: #f0e6ff;
+            color: #8e2de2;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tag:hover {
+            background: #8e2de2;
+            color: white;
+        }
+
+        .newsletter-form {
+            margin-top: 15px;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .subscribe-btn {
+            background: #8e2de2;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .subscribe-btn:hover {
+            background: #4a00e0;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .page-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            border-radius: 50%;
+            background: white;
+            color: #333;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .page-link:hover, .page-link.active {
+            background: #8e2de2;
+            color: white;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 5% 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .blog-post {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .blog-post.active {
+            display: block;
+        }
+
+        .blog-post h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .blog-post img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .blog-post-content {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .blog-post-content p {
+            margin-bottom: 20px;
+        }
+
+        .back-to-blog {
+            display: inline-block;
+            color: #8e2de2;
+            font-weight: 500;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-blog:hover {
+            color: #4a00e0;
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 968px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .blog-header h1 {
+                font-size: 32px;
+            }
+            
+            .featured-img {
+                height: 300px;
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-header {
+                padding: 40px 20px;
+            }
+            
+            .blog-header h1 {
+                font-size: 28px;
+            }
+            
+            .featured-img {
+                height: 250px;
+            }
+            
+            .featured-content {
+                padding: 20px;
+            }
+            
+            .featured-content h2 {
+                font-size: 24px;
+            }
+            
+            .post-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cartify</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="Home.Html">Home</a></li>
+                    <li><a href="categories.Html">Categories</a></li>
+                    <li><a href="Deals&Offer.Html">Deals</a></li>
+                    <li><a href="Blog.Html" class="active">Blog</a></li>
+                    <li><a href="About us.Html">About</a></li>
+                    <li><a href="Contact Us.Html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="blog-header">
+        <h1>Cartify Blog</h1>
+        <p>Discover the latest trends, shopping tips, product reviews, and exclusive deals</p>
+    </div>
+
+    <div class="container">
+        <div class="blog-container">
+            <div class="main-content">
+                <div class="featured-post">
+                    <div class="featured-post-card">
+                        <div class="featured-img">
+                            <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Shopping Trends">
+                        </div>
+                        <div class="featured-content">
+                            <div class="post-meta">
+                                <span><i class="far fa-calendar"></i> June 15, 2023</span>
+                                <span><i class="far fa-user"></i> By Admin</span>
+                                <span><i class="far fa-folder"></i> Shopping Tips</span>
+                            </div>
+                            <h2>Top 10 Shopping Trends to Watch in 2023</h2>
+                            <p>Discover the latest shopping trends that are shaping consumer behavior in 2023. From sustainable shopping to AI-powered personalization, learn what's hot and how to make the most of these trends for your shopping needs.</p>
+                            <a href="#" class="read-more" data-post="featured">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="posts-grid">
+                    <div class="post-card">
+                        <div class="post-img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0vlC-EFq83nlbVqG43PTnl6ytSKYsQEKzyQ&s" alt="Smart Home">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span><i class="far fa-calendar"></i> June 12, 2023</span>
+                            </div>
+                            <h3>How to Build a Smart Home on a Budget</h3>
+                            <p>Transform your living space with these affordable smart home devices that won't break the bank but will significantly upgrade your lifestyle.</p>
+                            <a href="#" class="read-more" data-post="smart-home">Read More</a>
+                        </div>
+                    </div>
+
+                    <div class="post-card">
+                        <div class="post-img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3d0Yye0s1h8rQv6nc7u1T-EEHYjKm0gQlUQ&s" alt="Summer Fashion">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span><i class="far fa-calendar"></i> June 10, 2023</span>
+                            </div>
+                            <h3>Summer Fashion Essentials You Need Now</h3>
+                            <p>Stay cool and stylish this summer with our curated list of must-have fashion items that combine comfort, style, and functionality.</p>
+                            <a href="#" class="read-more" data-post="summer-fashion">Read More</a>
+                        </div>
+                    </div>
+
+                    <div class="post-card">
+                        <div class="post-img">
+                            <img src="data:image/jpeg;base64,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" alt="Tech Gadgets">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span><i class="far fa-calendar"></i> June 8, 2023</span>
+                            </div>
+                            <h3>5 Must-Have Tech Gadgets for Remote Workers</h3>
+                            <p>Boost your productivity and comfort while working from home with these essential tech gadgets designed for remote professionals.</p>
+                            <a href="#" class="read-more" data-post="tech-gadgets">Read More</a>
+                        </div>
+                    </div>
+
+                    <div class="post-card">
+                        <div class="post-img">
+                            <img src="https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2020/5/18/0/RX_HGMAG081_Wade-12.jpg.rend.hgtvcom.616.822.85.suffix/1589800078179.webp" alt="Home Organization">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span><i class="far fa-calendar"></i> June 5, 2023</span>
+                            </div>
+                            <h3>Home Organization Hacks for Small Spaces</h3>
+                            <p>Maximize your living area with these clever organization solutions that will help you declutter and create a more functional home environment.</p>
+                            <a href="#" class="read-more" data-post="home-organization">Read More</a>
+                        </div>
+                    </div>
+
+                    <div class="post-card">
+                        <div class="post-img">
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Healthy Eating">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span><i class="far fa-calendar"></i> June 3, 2023</span>
+                            </div>
+                            <h3>How to Eat Healthy on a Budget</h3>
+                            <p>Discover practical tips and tricks for maintaining a nutritious diet without overspending. Learn how to shop smart for healthy foods.</p>
+                            <a href="#" class="read-more" data-post="healthy-eating">Read More</a>
+                        </div>
+                    </div>
+
+                    <div class="post-card">
+                        <div class="post-img">
+                            <img src="https://media.licdn.com/dms/image/v2/D5612AQHBYeAS5OXEhg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1679238983293?e=2147483647&v=beta&t=cD7UU8L-UkXiCOLPeKFNYpoXXoQGKgA_-k7_ABjVnb0" alt="Sustainable Fashion">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span><i class="far fa-calendar"></i> June 1, 2023</span>
+                            </div>
+                            <h3>The Rise of Sustainable Fashion: What You Need to Know</h3>
+                            <p>Explore the growing movement towards eco-friendly clothing and learn how to make more sustainable fashion choices in your daily life.</p>
+                            <a href="#" class="read-more" data-post="sustainable-fashion">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-post" id="featured-post">
+                    <a href="#" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                    <h2>Top 10 Shopping Trends to Watch in 2023</h2>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> June 15, 2023</span>
+                        <span><i class="far fa-user"></i> By Admin</span>
+                        <span><i class="far fa-folder"></i> Shopping Tips</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Shopping Trends">
+                    <div class="blog-post-content">
+                        <p>The retail landscape is constantly evolving, and 2023 is no exception. As consumer behaviors shift and new technologies emerge, several key trends are shaping how we shop. Here are the top 10 shopping trends to watch this year:</p>
+                        
+                        <p><strong>1. Sustainable Shopping:</strong> Consumers are increasingly prioritizing eco-friendly products and brands with strong environmental credentials. From packaging to production methods, sustainability is no longer a niche concern but a mainstream expectation.</p>
+                        
+                        <p><strong>2. AI-Powered Personalization:</strong> Artificial intelligence is revolutionizing the shopping experience by offering personalized recommendations, customized offers, and tailored shopping journeys based on individual preferences and behaviors.</p>
+                        
+                        <p><strong>3. Social Commerce:</strong> Shopping directly through social media platforms continues to grow, with features like Instagram Shopping and Facebook Marketplace making it easier than ever to purchase products discovered through social feeds.</p>
+                        
+                        <p><strong>4. Voice Shopping:</strong> With the proliferation of smart speakers, voice-assisted shopping is becoming more common, allowing consumers to make purchases through simple voice commands.</p>
+                        
+                        <p><strong>5. Augmented Reality Try-Ons:</strong> AR technology enables virtual try-ons for everything from clothing to furniture, helping consumers make more confident purchasing decisions from the comfort of their homes.</p>
+                        
+                        <p><strong>6. Subscription Services:</strong> From meal kits to beauty products, subscription-based models continue to gain popularity, offering convenience and personalized curation.</p>
+                        
+                        <p><strong>7. Mobile-First Shopping:</strong> With smartphones becoming the primary device for many consumers, retailers are optimizing their experiences specifically for mobile users.</p>
+                        
+                        <p><strong>8. Buy Now, Pay Later:</strong> Flexible payment options are increasingly important, with services like Afterpay and Klarna allowing consumers to spread out payments for larger purchases.</p>
+                        
+                        <p><strong>9. Experiential Retail:</strong> Physical stores are transforming into experience centers, offering interactive elements, workshops, and events that can't be replicated online.</p>
+                        
+                        <p><strong>10. Hyperlocal Delivery:</strong> Same-day and even same-hour delivery services are becoming standard expectations in urban areas, driven by services like DoorDash and Instacart.</p>
+                        
+                        <p>These trends reflect a broader shift toward more personalized, convenient, and values-driven shopping experiences. As technology continues to advance and consumer expectations evolve, retailers who adapt to these trends will be best positioned for success in 2023 and beyond.</p>
+                    </div>
+                </div>
+
+                <div class="blog-post" id="smart-home-post">
+                    <a href="#" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                    <h2>How to Build a Smart Home on a Budget</h2>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> June 12, 2023</span>
+                        <span><i class="far fa-user"></i> By Tech Expert</span>
+                        <span><i class="far fa-folder"></i> Technology</span>
+                    </div>
+                    <img src="data:image/jpeg;base64,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">
+                    <div class="blog-post-content">
+                        <p>Transforming your living space into a smart home doesn't have to break the bank. With strategic planning and the right devices, you can enjoy the convenience of home automation without spending a fortune. Here's how to get started:</p>
+                        
+                        <p><strong>Start with a Smart Speaker:</strong> A smart speaker like Amazon Echo Dot or Google Nest Mini is the perfect entry point. These affordable devices can control other smart devices, play music, answer questions, and more.</p>
+                        
+                        <p><strong>Smart Lighting:</strong> Smart bulbs from brands like TP-Link Kasa or Wyze offer an inexpensive way to automate your lighting. You can schedule lights to turn on/off, control them remotely, and even change colors.</p>
+                        
+                        <p><strong>Smart Plugs:</strong> These devices turn ordinary appliances into smart ones. Plug in lamps, fans, or coffee makers to control them remotely or set schedules.</p>
+                        
+                        <p><strong>Smart Thermostat:</strong> While more expensive than other options, a smart thermostat can save you money on energy bills over time. Look for budget-friendly models that offer basic scheduling features.</p>
+                        
+                        <p><strong>DIY Security:</strong> Instead of expensive security systems, consider affordable cameras from brands like Wyze or Blink that offer motion detection, night vision, and cloud storage options.</p>
+                        
+                        <p>By starting small and gradually expanding your system, you can build a comprehensive smart home ecosystem that fits your budget and meets your needs.</p>
+                    </div>
+                </div>
+
+                <div class="blog-post" id="summer-fashion-post">
+                    <a href="#" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                    <h2>Summer Fashion Essentials You Need Now</h2>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> June 10, 2023</span>
+                        <span><i class="far fa-user"></i> By Fashion Editor</span>
+                        <span><i class="far fa-folder"></i> Fashion</span>
+                    </div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvGmuIUfq3QTh5NYJndb7AOySmm2IvlDLDXg&s">
+                    <div class="blog-post-content">
+                        <p>Summer is here, and it's time to refresh your wardrobe with pieces that are both stylish and practical for the warmer months. Here are the essential fashion items you need to stay cool and chic this season:</p>
+                        
+                        <p><strong>1. Lightweight Dresses:</strong> Flowy maxi dresses, breezy sundresses, and casual shirt dresses are summer staples. Look for natural fabrics like cotton and linen that allow your skin to breathe.</p>
+                        
+                        <p><strong>2. Breathable Tops:</strong> Stock up on airy blouses, classic t-shirts, and stylish tank tops. Opt for light colors that reflect rather than absorb sunlight.</p>
+                        
+                        <p><strong>3. Comfortable Shorts:</strong> From denim cutoffs to tailored Bermuda shorts, having a variety of shorts ensures you're prepared for any summer occasion.</p>
+                        
+                        <p><strong>4. Versatile Sandals:</strong> Invest in quality sandals that can take you from the beach to a casual dinner. Look for supportive footbeds and durable materials.</p>
+                        
+                        <p><strong>5. Wide-Brimmed Hat:</strong> Protect your face from the sun while adding a touch of glamour to any outfit. Straw hats are particularly popular in summer.</p>
+                        
+                        <p><strong>6. Sunglasses:</strong> Essential for eye protection and completing your summer look. Consider polarized lenses for better sun protection.</p>
+                        
+                        <p><strong>7. Lightweight Jacket:</strong> Even in summer, evenings can get cool. A light denim jacket or cardigan is perfect for layering.</p>
+                        
+                        <p><strong>8. Swimwear:</strong> Whether you prefer one-pieces or bikinis, having a couple of swimsuits ready means you're always prepared for spontaneous beach trips or pool parties.</p>
+                        
+                        <p>Remember, summer fashion is all about comfort, breathability, and expressing your personal style. Mix and match these essentials to create outfits that keep you looking and feeling great all season long.</p>
+                    </div>
+                </div>
+
+                <div class="blog-post" id="tech-gadgets-post">
+                    <a href="#" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                    <h2>5 Must-Have Tech Gadgets for Remote Workers</h2>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> June 8, 2023</span>
+                        <span><i class="far fa-user"></i> By Tech Expert</span>
+                        <span><i class="far fa-folder"></i> Technology</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Tech Gadgets">
+                    <div class="blog-post-content">
+                        <p>Working from home has become the new normal for many professionals, and having the right tech gadgets can significantly improve your productivity and comfort. Here are five essential gadgets every remote worker should consider:</p>
+                        
+                        <p><strong>1. Ergonomic Chair:</strong> While not strictly a "tech" gadget, an ergonomic office chair is arguably the most important investment for remote workers. Look for adjustable height, lumbar support, and breathable materials to maintain comfort during long work hours.</p>
+                        
+                        <p><strong>2. Noise-Canceling Headphones:</strong> Whether you're on video calls or need to focus, noise-canceling headphones are a game-changer. Models like the Sony WH-1000XM4 or Bose QuietComfort offer exceptional sound quality and effective noise cancellation.</p>
+                        
+                        <p><strong>3. Webcam with Good Lighting:</strong> The built-in webcam on most laptops doesn't do justice to your professional image. Invest in an external webcam like the Logitech C920s, and consider adding a ring light for better illumination during video calls.</p>
+                        
+                        <p><strong>4. Portable Monitor:</strong> Increase your screen real estate without committing to a permanent setup. Portable monitors like the Asus ZenScreen are lightweight, connect via USB-C, and can dramatically improve your multitasking capabilities.</p>
+                        
+                        <p><strong>5. Smart Desk Organizer:</strong> Keep your workspace tidy with a desk organizer that includes wireless charging, cable management, and storage for your essentials. Some models even include built-in USB hubs for connecting peripherals.</p>
+                        
+                        <p>These gadgets not only enhance your work efficiency but also contribute to a more comfortable and professional remote working environment. Remember to balance tech investments with ergonomic considerations to protect your health during extended work sessions.</p>
+                    </div>
+                </div>
+
+                <div class="blog-post" id="home-organization-post">
+                    <a href="#" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                    <h2>Home Organization Hacks for Small Spaces</h2>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> June 5, 2023</span>
+                        <span><i class="far fa-user"></i> By Home Expert</span>
+                        <span><i class="far fa-folder"></i> Home & Kitchen</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Home Organization">
+                    <div class="blog-post-content">
+                        <p>Living in a small space doesn't mean you have to sacrifice organization or style. With clever strategies and the right products, you can maximize every square foot of your home. Here are our top organization hacks for small spaces:</p>
+                        
+                        <p><strong>1. Vertical Storage Solutions:</strong> When floor space is limited, think vertically. Install floating shelves, use over-the-door organizers, and consider tall bookcases or storage units that draw the eye upward while providing ample storage.</p>
+                        
+                        <p><strong>2. Multi-Functional Furniture:</strong> Invest in furniture that serves multiple purposes. Ottoman with storage, sofa beds, and nesting tables are perfect examples of pieces that save space while adding functionality.</p>
+                        
+                        <p><strong>3. Declutter Regularly:</strong> The golden rule of small-space living is to regularly assess your belongings. Adopt a "one in, one out" policy to prevent accumulation of unnecessary items.</p>
+                        
+                        <p><strong>4. Use Clear Containers:</strong> Transparent storage containers allow you to see what's inside without having to open them, making it easier to find items and maintain organization.</p>
+                        
+                        <p><strong>5. Create Zones:</strong> Even in a studio apartment, you can create distinct areas for different activities. Use rugs, room dividers, or furniture arrangement to define spaces for sleeping, working, and relaxing.</p>
+                        
+                        <p><strong>6. Maximize Closet Space:</strong> Use slimline hangers, add a second hanging rod for shorter items, and install shelf dividers to make the most of your closet's vertical space.</p>
+                        
+                        <p><strong>7. Think Outside the Box:</strong> Look for unconventional storage spaces like under the bed, above cabinets, or on the back of doors. These often-overlooked areas can provide valuable storage real estate.</p>
+                        
+                        <p>Remember, the key to organizing a small space is to be intentional about what you keep and creative about how you store it. With these hacks, you can transform your compact living area into a functional and stylish home.</p>
+                    </div>
+                </div>
+
+                <div class="blog-post" id="healthy-eating-post">
+                    <a href="#" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                    <h2>How to Eat Healthy on a Budget</h2>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> June 3, 2023</span>
+                        <span><i class="far fa-user"></i> By Nutritionist</span>
+                        <span><i class="far fa-folder"></i> Health</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Healthy Eating">
+                    <div class="blog-post-content">
+                        <p>Eating healthy doesn't have to be expensive. With smart shopping strategies and a little planning, you can nourish your body without breaking the bank. Here's how to maintain a nutritious diet on a budget:</p>
+                        
+                        <p><strong>1. Plan Your Meals:</strong> Before heading to the grocery store, plan your meals for the week. This prevents impulse buys and ensures you only purchase what you need.</p>
+                        
+                        <p><strong>2. Buy in Bulk:</strong> Staples like rice, beans, oats, and pasta are often cheaper when purchased in larger quantities. Just make sure you have proper storage containers to keep them fresh.</p>
+                        
+                        <p><strong>3. Embrace Frozen Produce:</strong> Frozen fruits and vegetables are just as nutritious as fresh ones and often cost less. They're perfect for smoothies, soups, and stir-fries.</p>
+                        
+                        <p><strong>4. Cook at Home:</strong> Preparing meals at home is significantly cheaper than eating out. Batch cooking on weekends can save both time and money during the week.</p>
+                        
+                        <p><strong>5. Shop Seasonally:</strong> Fruits and vegetables are cheapest when they're in season. Familiarize yourself with what's in season in your area and plan your meals accordingly.</p>
+                        
+                        <p><strong>6. Don't Overlook Store Brands:</strong> Generic or store-brand products are often identical in quality to name brands but cost significantly less.</p>
+                        
+                        <p><strong>7. Reduce Food Waste:</strong> Use leftovers creatively, repurpose vegetable scraps into stock, and freeze items before they spoil. Wasting food is like throwing money away.</p>
+                        
+                        <p><strong>8. Grow Your Own Herbs:</strong> Even with limited space, you can grow herbs like basil, mint, and parsley in small pots on a windowsill. This saves money and adds fresh flavor to your meals.</p>
+                        
+                        <p>Eating healthy on a budget is about making smart choices, not deprivation. With these strategies, you can enjoy nutritious, delicious meals while keeping your grocery bill manageable.</p>
+                    </div>
+                </div>
+
+                <div class="blog-post" id="sustainable-fashion-post">
+                    <a href="#" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                    <h2>The Rise of Sustainable Fashion: What You Need to Know</h2>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> June 1, 2023</span>
+                        <span><i class="far fa-user"></i> By Fashion Editor</span>
+                        <span><i class="far fa-folder"></i> Fashion</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Sustainable Fashion">
+                    <div class="blog-post-content">
+                        <p>Sustainable fashion is no longer a niche trend but a growing movement that's reshaping the entire industry. As consumers become more conscious of their purchasing decisions, understanding sustainable fashion has never been more important. Here's what you need to know:</p>
+                        
+                        <p><strong>What is Sustainable Fashion?</strong> Sustainable fashion refers to clothing that is designed, manufactured, distributed, and used in ways that are environmentally friendly and ethically responsible. This encompasses everything from the materials used to the working conditions of garment workers.</p>
+                        
+                        <p><strong>Key Principles of Sustainable Fashion:</strong></p>
+                        
+                        <p><strong>1. Ethical Production:</strong> This ensures fair wages, safe working conditions, and reasonable working hours for everyone involved in the supply chain.</p>
+                        
+                        <p><strong>2. Eco-Friendly Materials:</strong> Sustainable fashion prioritizes organic, recycled, or upcycled materials that have a lower environmental impact than conventional fabrics.</p>
+                        
+                        <p><strong>3. Slow Fashion:</strong> Unlike fast fashion's rapid production cycles, slow fashion focuses on quality, timeless pieces that are made to last.</p>
+                        
+                        <p><strong>4. Circular Economy:</strong> This approach aims to eliminate waste by designing products that can be reused, repaired, or recycled at the end of their life cycle.</p>
+                        
+                        <p><strong>How to Support Sustainable Fashion:</strong></p>
+                        
+                        <p><strong>1. Buy Less, Choose Well:</strong> Invest in high-quality pieces that you'll wear for years rather than following every trend.</p>
+                        
+                        <p><strong>2. Support Ethical Brands:</strong> Research brands before purchasing to ensure they align with your values regarding sustainability and ethics.</p>
+                        
+                        <p><strong>3. Secondhand Shopping:</strong> Thrifting, consignment stores, and online resale platforms are excellent ways to reduce fashion waste.</p>
+                        
+                        <p><strong>4. Care for Your Clothes:</strong> Proper maintenance extends the life of your garments. Wash less frequently, use cold water, and air dry when possible.</p>
+                        
+                        <p><strong>5. Repair and Upcycle:</strong> Instead of discarding damaged clothing, learn basic repair skills or transform items into something new.</p>
+                        
+                        <p>The rise of sustainable fashion represents a positive shift toward more conscious consumption. By making informed choices, we can all contribute to a fashion industry that values both people and the planet.</p>
+                    </div>
+                </div>
+
+                <div class="pagination">
+                    <a href="#" class="page-link" data-page="prev"><i class="fas fa-chevron-left"></i></a>
+                    <a href="#" class="page-link active" data-page="1">1</a>
+                    <a href="#" class="page-link" data-page="2">2</a>
+                    <a href="#" class="page-link" data-page="3">3</a>
+                    <a href="#" class="page-link" data-page="4">4</a>
+                    <a href="#" class="page-link" data-page="next"><i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Search</h3>
+                    <form class="search-form">
+                        <input type="text" class="search-input" placeholder="Search...">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Categories</h3>
+                    <ul class="categories-list">
+                        <li><a href="#" data-category="shopping-tips">Shopping Tips <span>(12)</span></a></li>
+                        <li><a href="#" data-category="product-reviews">Product Reviews <span>(8)</span></a></li>
+                        <li><a href="#" data-category="technology">Technology <span>(15)</span></a></li>
+                        <li><a href="#" data-category="fashion">Fashion <span>(9)</span></a></li>
+                        <li><a href="#" data-category="home-kitchen">Home & Kitchen <span>(11)</span></a></li>
+                        <li><a href="#" data-category="deals">Deals & Discounts <span>(6)</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Recent Posts</h3>
+                    <div class="recent-post" data-post="smart-home">
+                        <div class="recent-post-img">
+                            <img src="data:image/jpeg;base64,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" alt="Recent Post">
+                        </div>
+                        <div class="recent-post-content">
+                            <h4>How to Build a Smart Home on a Budget</h4>
+                            <span>June 12, 2023</span>
+                        </div>
+                    </div>
+                    <div class="recent-post" data-post="summer-fashion">
+                        <div class="recent-post-img">
+                            <img src="data:image/jpeg;base64,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" alt="Recent Post">
+                        </div>
+                        <div class="recent-post-content">
+                            <h4>Summer Fashion Essentials You Need Now</h4>
+                            <span>June 10, 2023</span>
+                        </div>
+                    </div>
+                    <div class="recent-post" data-post="tech-gadgets">
+                        <div class="recent-post-img">
+                            <img src="https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" alt="Recent Post">
+                        </div>
+                        <div class="recent-post-content">
+                            <h4>5 Must-Have Tech Gadgets for Remote Workers</h4>
+                            <span>June 8, 2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Tags</h3>
+                    <div class="tags-cloud">
+                        <a href="#" class="tag" data-tag="shopping">Shopping</a>
+                        <a href="#" class="tag" data-tag="tech">Tech</a>
+                        <a href="#" class="tag" data-tag="fashion">Fashion</a>
+                        <a href="#" class="tag" data-tag="home">Home</a>
+                        <a href="#" class="tag" data-tag="deals">Deals</a>
+                        <a href="#" class="tag" data-tag="reviews">Reviews</a>
+                        <a href="#" class="tag" data-tag="tips">Tips</a>
+                        <a href="#" class="tag" data-tag="trends">Trends</a>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Newsletter</h3>
+                    <p>Subscribe to our newsletter to get updates on our latest blog posts and exclusive deals.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address">
+                        <button type="submit" class="subscribe-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Cartify</h3>
+                <ul>
+                    <li><a href="About us.Html">About Us</a></li>
+                    <li><a href="carrer.Html">Careers</a></li>
+                    <li><a href="press.Html">Press</a></li>
+                    <li><a href="Blog.Html">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="Contact Us.Html">Contact Us</a></li>
+                    <li><a href="FAQ.Html">Help & FAQ</a></li>
+                    <li><a href="Return&Exchange.Html">Returns & Exchanges</a></li>
+                    <li><a href="Shipping.Html">Shipping Information</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Terms & Policies</h3>
+                <ul>
+                    <li><a href="Terms.Html">Terms of Service</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="Cookies.Html">Cookies Policy</a></li>
+                    <li><a href="Accessibility.Html">Accessibility</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Cartify. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainContent = document.querySelector('.main-content');
+            const featuredPost = document.querySelector('.featured-post');
+            const postsGrid = document.querySelector('.posts-grid');
+            const pagination = document.querySelector('.pagination');
+            const blogPosts = document.querySelectorAll('.blog-post');
+            const readMoreButtons = document.querySelectorAll('.read-more');
+            const recentPosts = document.querySelectorAll('.recent-post');
+            const tags = document.querySelectorAll('.tag');
+            const categoryLinks = document.querySelectorAll('.categories-list a');
+            const pageLinks = document.querySelectorAll('.page-link');
+            const backToBlogLinks = document.querySelectorAll('.back-to-blog');
+            
+            let currentPage = 1;
+            const postsPerPage = 6;
+            const allPosts = Array.from(document.querySelectorAll('.post-card'));
+            const totalPages = Math.ceil(allPosts.length / postsPerPage);
+            
+            function showPage(page) {
+                currentPage = page;
+                
+                const startIndex = (page - 1) * postsPerPage;
+                const endIndex = startIndex + postsPerPage;
+                
+                allPosts.forEach((post, index) => {
+                    if (index >= startIndex && index < endIndex) {
+                        post.style.display = 'block';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+                
+                pageLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.page == page) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                featuredPost.style.display = page === 1 ? 'block' : 'none';
+                postsGrid.style.display = 'grid';
+                blogPosts.forEach(post => post.classList.remove('active'));
+            }
+            
+            function showBlogPost(postId) {
+                featuredPost.style.display = 'none';
+                postsGrid.style.display = 'none';
+                pagination.style.display = 'none';
+                
+                blogPosts.forEach(post => {
+                    post.classList.remove('active');
+                    if (post.id === postId + '-post') {
+                        post.classList.add('active');
+                    }
+                });
+            }
+            
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const postId = this.dataset.post;
+                    showBlogPost(postId);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+            
+            recentPosts.forEach(post => {
+                post.addEventListener('click', function() {
+                    const postId = this.dataset.post;
+                    showBlogPost(postId);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+            
+            tags.forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tagName = this.dataset.tag;
+                    alert(`Filtering posts by tag: ${tagName}`);
+                });
+            });
+            
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const category = this.dataset.category;
+                    alert(`Filtering posts by category: ${category}`);
+                });
+            });
+            
+            pageLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.dataset.page;
+                    
+                    if (page === 'prev' && currentPage > 1) {
+                        showPage(currentPage - 1);
+                    } else if (page === 'next' && currentPage < totalPages) {
+                        showPage(currentPage + 1);
+                    } else if (page >= 1 && page <= totalPages) {
+                        showPage(parseInt(page));
+                    }
+                    
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+            
+            backToBlogLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    featuredPost.style.display = 'block';
+                    postsGrid.style.display = 'grid';
+                    pagination.style.display = 'flex';
+                    blogPosts.forEach(post => post.classList.remove('active'));
+                    showPage(currentPage);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+            
+            const newsletterForm = document.querySelector('.newsletter-form');
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('.newsletter-input').value;
+                if (email) {
+                    alert('Thank you for subscribing to our newsletter!');
+                    this.reset();
+                }
+            });
+            
+            const searchForm = document.querySelector('.search-form');
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const query = this.querySelector('.search-input').value;
+                if (query) {
+                    alert(`Searching for: ${query}`);
+                    this.reset();
+                }
+            });
+            
+            showPage(1);
+        });
+    </script>
+</body>
+</html>
