@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Center | Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(to right, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 15px 0;
+            background-color: #e9ecef;
+        }
+        
+        .breadcrumb-content {
+            display: flex;
+            list-style: none;
+        }
+        
+        .breadcrumb-content li {
+            margin-right: 10px;
+        }
+        
+        .breadcrumb-content li:after {
+            content: ">";
+            margin-left: 10px;
+            color: #6c757d;
+        }
+        
+        .breadcrumb-content li:last-child:after {
+            content: "";
+        }
+        
+        .breadcrumb-content a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .breadcrumb-content span {
+            color: #6c757d;
+        }
+        
+        /* Security Overview */
+        .security-overview {
+            padding: 60px 0;
+        }
+        
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .overview-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .overview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .overview-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .overview-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        /* Security Tips */
+        .security-tips {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+        
+        .security-tips h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .tip {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .tip h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tip-icon {
+            margin-right: 10px;
+            color: #2c3e50;
+        }
+        
+        /* Privacy Section */
+        .privacy {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+        
+        .privacy h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .privacy-item {
+            margin-bottom: 20px;
+        }
+        
+        .privacy-item h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        /* Security Tools */
+        .security-tools {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+        
+        .security-tools h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .tool {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tool-icon {
+            font-size: 2rem;
+            color: #3498db;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .tool-content {
+            flex-grow: 1;
+        }
+        
+        .tool-content h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #3498db;
+            color: #3498db;
+        }
+        
+        .btn-outline:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+        
+        .faq h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            color: #6c757d;
+            padding-top: 10px;
+            display: none;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #34495e;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: #3498db;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .security-tips, .privacy, .security-tools, .faq {
+                padding: 20px;
+            }
+            
+            .tool {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .tool-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Cartify Security</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Account</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-content">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Account</a></li>
+                <li><span>Security Center</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Cartify Security Center</h1>
+            <p>Protecting your account and personal information is our top priority. Learn how to stay secure while shopping with us.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container security-overview">
+        <!-- Security Overview -->
+        <div class="overview-grid">
+            <div class="overview-card">
+                <div class="overview-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Account Protection</h3>
+                <p>Secure your account with advanced protection features and best practices.</p>
+                <a href="#account-security" class="btn">Learn More</a>
+            </div>
+            
+            <div class="overview-card">
+                <div class="overview-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3>Privacy Controls</h3>
+                <p>Manage your privacy settings and control how your data is used.</p>
+                <a href="#privacy" class="btn">Learn More</a>
+            </div>
+            
+            <div class="overview-card">
+                <div class="overview-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3>Safe Payments</h3>
+                <p>Shop with confidence using our secure payment processing system.</p>
+                <a href="#payments" class="btn">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Security Tips -->
+        <div class="security-tips" id="account-security">
+            <h2>Account Security Tips</h2>
+            
+            <div class="tip">
+                <h3><i class="fas fa-key tip-icon"></i> Use Strong Passwords</h3>
+                <p>Create unique, complex passwords for your Cartify account. Use a combination of uppercase and lowercase letters, numbers, and special characters. Avoid using easily guessable information like birthdays or common words.</p>
+            </div>
+            
+            <div class="tip">
+                <h3><i class="fas fa-mobile-alt tip-icon"></i> Enable Two-Factor Authentication</h3>
+                <p>Add an extra layer of security to your account by enabling two-factor authentication. This requires both your password and a verification code sent to your phone when signing in from new devices.</p>
+                <a href="#" class="btn">Enable 2FA</a>
+            </div>
+            
+            <div class="tip">
+                <h3><i class="fas fa-exclamation-triangle tip-icon"></i> Watch for Phishing Attempts</h3>
+                <p>Be cautious of emails or messages claiming to be from Cartify that ask for personal information. We will never ask for your password or payment details via email. Always check the sender's address and look for signs of suspicious activity.</p>
+            </div>
+            
+            <div class="tip">
+                <h3><i class="fas fa-history tip-icon"></i> Regularly Review Account Activity</h3>
+                <p>Periodically check your account activity and order history for any unfamiliar actions. Report any suspicious activity to our security team immediately.</p>
+                <a href="#" class="btn">View Activity</a>
+            </div>
+        </div>
+
+        <!-- Privacy Section -->
+        <div class="privacy" id="privacy">
+            <h2>Privacy & Data Protection</h2>
+            
+            <div class="privacy-item">
+                <h3>How We Protect Your Data</h3>
+                <p>At Cartify, we use industry-standard encryption technologies to protect your personal information during transmission and storage. Our security practices are regularly audited to ensure compliance with the highest standards.</p>
+            </div>
+            
+            <div class="privacy-item">
+                <h3>Data Collection & Usage</h3>
+                <p>We only collect information necessary to process your orders and improve your shopping experience. You can control how your data is used through your privacy settings. We never sell your personal information to third parties.</p>
+            </div>
+            
+            <div class="privacy-item">
+                <h3>Your Privacy Rights</h3>
+                <p>You have the right to access, correct, or delete your personal information at any time. You can also object to or restrict certain processing of your data. For more information, visit our Privacy Policy page.</p>
+                <a href="#" class="btn">Privacy Policy</a>
+            </div>
+        </div>
+
+        <!-- Security Tools -->
+        <div class="security-tools" id="payments">
+            <h2>Security Tools & Features</h2>
+            
+            <div class="tool">
+                <div class="tool-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Account Security Checkup</h3>
+                    <p>Run a comprehensive security check on your account to identify potential vulnerabilities and receive personalized recommendations for enhancing your security.</p>
+                    <a href="#" class="btn">Run Security Checkup</a>
+                </div>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Security Alerts</h3>
+                    <p>Set up notifications for important security events such as login attempts from new devices, password changes, or unusual account activity.</p>
+                    <a href="#" class="btn">Manage Alerts</a>
+                </div>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Secure Connection</h3>
+                    <p>All transactions on Cartify are protected with SSL encryption, ensuring that your personal and payment information remains confidential.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq">
+            <h2>Security Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What should I do if I suspect unauthorized access to my account?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>If you suspect unauthorized access to your account, immediately change your password and enable two-factor authentication if you haven't already. Review your recent account activity and contact our security team for assistance. We also recommend checking your payment methods for any unauthorized transactions.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How can I recognize phishing emails pretending to be from Cartify?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Legitimate Cartify emails will always come from an @Cartify.com domain. Be wary of emails that create a sense of urgency, contain spelling or grammatical errors, or ask for sensitive information like passwords or payment details. When in doubt, navigate directly to Cartify.com instead of clicking links in emails.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is it safe to use public Wi-Fi when shopping on Cartify?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>While our website uses encryption to protect your data, we recommend avoiding making purchases on public Wi-Fi networks. If you must use public Wi-Fi, consider using a VPN for an added layer of security. For sensitive transactions, use a trusted private network.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How does Cartify protect my payment information?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We use tokenization and encryption to secure your payment information. Your full credit card details are never stored on our servers. For added security, we comply with PCI DSS standards and regularly undergo security audits to ensure your payment data remains protected.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Cartify Security</h3>
+                    <p>Your security is our priority. We're committed to protecting your information and providing a safe shopping experience.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Account Security</a></li>
+                        <li><a href="Privacy policy.Html">Privacy Policy</a></li>
+                        <li><a href="Terms.Html">Terms of Service</a></li>
+                        <li><a href="Shoppingtips.Html">Safe Shopping Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Support</h3>
+                    <ul>
+                        <li><a href="#">Report a Security Issue</a></li>
+                        <li><a href="#">Contact Security Team</a></li>
+                        <li><a href="Security.Html">Security Updates</a></li>
+                        <li><a href="FAQ.Html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> Security Hotline: 1-800-SECURE</li>
+                        <li><i class="fas fa-envelope"></i> security@Cartify.com</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Security Monitoring</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Cartify. All rights reserved. Terms of Service | Privacy Policy | Security Policy</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    answer.style.display = 'block';
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('password');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', function() {
+                    const strengthIndicator = document.getElementById('password-strength');
+                    const password = this.value;
+                    let strength = 0;
+                    
+                    if (password.length >= 8) strength++;
+                    if (/[A-Z]/.test(password)) strength++;
+                    if (/[0-9]/.test(password)) strength++;
+                    if (/[^A-Za-z0-9]/.test(password)) strength++;
+                    
+                    const strengthText = ['Very Weak', 'Weak', 'Medium', 'Strong', 'Very Strong'];
+                    const strengthColors = ['#e74c3c', '#e67e22', '#f1c40f', '#2ecc71', '#27ae60'];
+                    
+                    if (password.length > 0) {
+                        strengthIndicator.textContent = `Strength: ${strengthText[strength]}`;
+                        strengthIndicator.style.color = strengthColors[strength];
+                    } else {
+                        strengthIndicator.textContent = '';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
