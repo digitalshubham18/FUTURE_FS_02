@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids & Babies Fashion - Cartify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #36D1DC;
+            --light: #F8F9FF;
+            --dark: #2D2B55;
+            --gray: #E6E9FF;
+            --border: #D1D5FF;
+            --text-light: #6B7280;
+            --success: #10B981;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 4px 20px rgba(108, 99, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            color: var(--dark);
+            margin-left: 15px;
+            font-size: 18px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .header-icons a:hover {
+            color: var(--primary);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #6C63FF 0%, #36D1DC 100%);
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+            border-radius: 0 0 30px 30px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -50px;
+        }
+        
+        .hero:after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            bottom: -75px;
+            left: -50px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .categories {
+            margin: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .category-img {
+            height: 180px;
+            background: linear-gradient(135deg, var(--light) 0%, var(--gray) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-img:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(54, 209, 220, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .category-card:hover .category-img:after {
+            opacity: 1;
+        }
+        
+        .category-img i {
+            font-size: 70px;
+            color: var(--primary);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .category-info {
+            padding: 25px 20px;
+        }
+        
+        .category-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .products {
+            margin: 60px 0;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .product-img {
+            height: 220px;
+            background: linear-gradient(135deg, var(--light) 0%, var(--gray) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .product-info p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .add-to-cart, .buy-now {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            font-size: 0.9rem;
+        }
+        
+        .add-to-cart {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .add-to-cart:hover {
+            background: #5a52e0;
+        }
+        
+        .buy-now {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .buy-now:hover {
+            background: #ff4d6d;
+        }
+        
+        .age-groups {
+            margin: 80px 0;
+            background: linear-gradient(135deg, #FF9A9E 0%, #FAD0C4 100%);
+            padding: 60px 0;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .age-groups:before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            top: -100px;
+            right: -50px;
+        }
+        
+        .age-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .age-tab {
+            padding: 12px 25px;
+            background: white;
+            border: none;
+            border-radius: 30px;
+            margin: 0 10px 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .age-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .features {
+            margin: 80px 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 40px 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            border: 1px solid var(--border);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+        
+        .category-products {
+            margin: 80px 0;
+        }
+        
+        .category-section {
+            margin-bottom: 80px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary);
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .checkout-steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .step.active .step-number {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .step.completed .step-number {
+            background: var(--success);
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 14px;
+        }
+        
+        .checkout-section {
+            display: none;
+        }
+        
+        .checkout-section.active {
+            display: block;
+        }
+        
+        .cart-modal {
+            width: 90%;
+            max-width: 800px;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-right: 15px;
+            background: var(--gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            background: #f5f5f5;
+            border: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            border: none;
+            text-align: center;
+            outline: none;
+        }
+        
+        .remove-item {
+            color: var(--secondary);
+            cursor: pointer;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .remove-item:hover {
+            color: #ff4d6d;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1100;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .notification.active {
+            display: flex;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a2e 100%);
+            padding: 60px 0 20px;
+            margin-top: 80px;
+            color: white;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul li a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .header-icons {
+                margin-top: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .age-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .age-tab {
+                margin: 5px;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .form-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-shopping-cart"></i>
+                    Cartify
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="#" id="new-arrivals-link">New Arrivals</a></li>
+                        <li><a href="kids.Html" style="color: var(--primary);">Kids & Babies</a></li>
+                        <li><a href="Brand.Html">Brands</a></li>
+                        <li><a href="#">Sale</a></li>
+                    </ul>
+                </nav>
+                <div class="header-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#" id="cart-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Kids & Babies Fashion</h1>
+            <p>Discover adorable and comfortable clothing for your little ones. From newborn essentials to trendy kids' outfits, we have everything you need!</p>
+            <a href="#" class="btn" id="shop-new-arrivals">Shop New Arrivals</a>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card" data-category="baby">
+                    <div class="category-img">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>Baby Clothing</h3>
+                        <p>0-24 months</p>
+                    </div>
+                </div>
+                <div class="category-card" data-category="tops">
+                    <div class="category-img">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>Tops & T-Shirts</h3>
+                        <p>For all ages</p>
+                    </div>
+                </div>
+                <div class="category-card" data-category="outerwear">
+                    <div class="category-img">
+                        <i class="fas fa-vest"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>Outerwear</h3>
+                        <p>Jackets & Coats</p>
+                    </div>
+                </div>
+                <div class="category-card" data-category="accessories">
+                    <div class="category-img">
+                        <i class="fas fa-socks"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>Accessories</h3>
+                        <p>Hats, socks & more</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-products">
+        <div class="container">
+            <div class="category-section" id="baby-clothing">
+                <h2 class="section-title">Baby Clothing (0-24 months)</h2>
+                <div class="product-grid" id="baby-products">
+                </div>
+            </div>
+            
+            <div class="category-section" id="tops-tshirts">
+                <h2 class="section-title">Tops & T-Shirts</h2>
+                <div class="product-grid" id="tops-products">
+                </div>
+            </div>
+            
+            <div class="category-section" id="outerwear">
+                <h2 class="section-title">Outerwear</h2>
+                <div class="product-grid" id="outerwear-products">
+                </div>
+            </div>
+            
+            <div class="category-section" id="accessories">
+                <h2 class="section-title">Accessories</h2>
+                <div class="product-grid" id="accessories-products">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="age-groups">
+        <div class="container">
+            <h2 class="section-title">Shop by Age</h2>
+            <div class="age-tabs">
+                <button class="age-tab active" data-age="newborn">Newborn (0-3M)</button>
+                <button class="age-tab" data-age="baby">Baby (3-24M)</button>
+                <button class="age-tab" data-age="toddler">Toddler (2-4Y)</button>
+                <button class="age-tab" data-age="kids">Kids (5-12Y)</button>
+            </div>
+            <div class="product-grid" id="age-products-grid">
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Eco-Friendly Materials</h3>
+                    <p>Our clothing is made from organic and sustainable materials that are gentle on skin and the environment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Free Shipping</h3>
+                    <p>Enjoy free shipping on all orders over $50. Fast delivery to your doorstep.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Easy Returns</h3>
+                    <p>Not satisfied? Return within 30 days for a full refund or exchange.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Quality Guarantee</h3>
+                    <p>We stand behind the quality of our products with a 100% satisfaction guarantee.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cartify</h3>
+                    <p>Your one-stop destination for kids and baby fashion. Quality, comfort, and style for your little ones.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="Home.Html">Home</a></li>
+                        <li><a href="#" id="new-arrivals-footer">New Arrivals</a></li>
+                        <li><a href="kids.Html">Kids & Babies</a></li>
+                        <li><a href="#">Sale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="Contact Us.Html">Contact Us</a></li>
+                        <li><a href="Shipping.Html">Shipping & Returns</a></li>
+                        <li><a href="#baby-clothing">Size Guide</a></li>
+                        <li><a href="FAQ.Html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get special offers, free giveaways, and new product alerts.</p>
+                    <form>
+                        <input type="email" placeholder="Your email" style="padding: 10px; width: 100%; margin: 10px 0; border-radius: 5px; border: 1px solid #ddd;">
+                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2015 Cartify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="cart-modal">
+        <div class="modal-content cart-modal">
+            <span class="modal-close" id="cart-close">&times;</span>
+            <h2 class="modal-title">Your Shopping Cart</h2>
+            <div id="cart-items">
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <div class="form-buttons">
+                <button class="btn btn-secondary" id="continue-shopping">Continue Shopping</button>
+                <button class="btn btn-primary" id="proceed-checkout">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content">
+            <span class="modal-close" id="checkout-close">&times;</span>
+            <h2 class="modal-title">Checkout</h2>
+            
+            <div class="checkout-steps">
+                <div class="step active" id="step-shipping">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Shipping</div>
+                </div>
+                <div class="step" id="step-payment">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Payment</div>
+                </div>
+                <div class="step" id="step-confirmation">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+            
+            <div class="checkout-section active" id="shipping-section">
+                <div class="form-group">
+                    <label for="shipping-name">Full Name</label>
+                    <input type="text" id="shipping-name" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="shipping-address">Address</label>
+                    <textarea id="shipping-address" placeholder="Enter your complete address"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="shipping-city">City</label>
+                    <input type="text" id="shipping-city" placeholder="Enter your city">
+                </div>
+                <div class="form-group">
+                    <label for="shipping-pincode">Zip Code</label>
+                    <input type="text" id="shipping-pincode" placeholder="Enter your zip code">
+                </div>
+                <div class="form-group">
+                    <label for="shipping-phone">Phone Number</label>
+                    <input type="tel" id="shipping-phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-buttons">
+                    <button class="btn btn-secondary" id="cancel-checkout">Cancel</button>
+                    <button class="btn btn-primary" id="next-payment">Next: Payment</button>
+                </div>
+            </div>
+            
+            <div class="checkout-section" id="payment-section">
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <div>
+                        <input type="radio" id="payment-card" name="payment" value="card" checked>
+                        <label for="payment-card">Credit/Debit Card</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="payment-paypal" name="payment" value="paypal">
+                        <label for="payment-paypal">PayPal</label>
+                    </div>
+                </div>
+                
+                <div id="card-details">
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="Enter card number">
+                    </div>
+                    <div class="form-group">
+                        <label for="card-name">Name on Card</label>
+                        <input type="text" id="card-name" placeholder="Enter name on card">
+                    </div>
+                    <div style="display: flex; gap: 15px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="card-expiry">Expiry Date</label>
+                            <input type="text" id="card-expiry" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="card-cvv">CVV</label>
+                            <input type="text" id="card-cvv" placeholder="CVV">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-buttons">
+                    <button class="btn btn-secondary" id="back-shipping">Back</button>
+                    <button class="btn btn-primary" id="next-confirmation">Next: Confirmation</button>
+                </div>
+            </div>
+            
+            <div class="checkout-section" id="confirmation-section">
+                <div style="text-align: center; padding: 20px;">
+                    <i class="fas fa-check-circle" style="font-size: 60px; color: var(--success); margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 10px;">Order Placed Successfully!</h3>
+                    <p>Thank you for your purchase. Your order will be delivered within 3-5 business days.</p>
+                    <p style="margin-top: 20px; font-weight: 600;">Order ID: #SK2023<span id="order-id"></span></p>
+                </div>
+                <div class="form-buttons">
+                    <button class="btn btn-primary" id="continue-shopping-confirm">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-text">Product added to cart!</span>
+    </div>
+
+    <script>
+        const products = {
+            baby: [
+                { id: 1, name: "Organic Cotton Bodysuits (5-Pack)", price: 24.99, originalPrice: 29.99, category: "baby", age: "newborn", description: "Soft and comfortable for everyday wear", badge: "New" },
+                { id: 2, name: "Baby Sleep Gowns", price: 19.99, originalPrice: 24.99, category: "baby", age: "newborn", description: "Easy diaper changes with enclosed feet" },
+                { id: 3, name: "Baby Romper Set", price: 22.99, originalPrice: 27.99, category: "baby", age: "baby", description: "Adorable romper with matching hat" },
+                { id: 4, name: "Baby Footed Pajamas", price: 18.99, originalPrice: 22.99, category: "baby", age: "baby", description: "Keep your baby warm and cozy" },
+                { id: 5, name: "Baby Kimono Shirts (3-Pack)", price: 21.99, originalPrice: 26.99, category: "baby", age: "newborn", description: "Gentle on baby's sensitive skin" },
+                { id: 6, name: "Baby Swaddle Blankets", price: 16.99, originalPrice: 19.99, category: "baby", age: "newborn", description: "Soft muslin swaddles for comfort" },
+                { id: 7, name: "Baby Hooded Towel", price: 14.99, originalPrice: 17.99, category: "baby", age: "baby", description: "Absorbent and gentle after bath" },
+                { id: 8, name: "Baby Bibs (6-Pack)", price: 12.99, originalPrice: 15.99, category: "baby", age: "baby", description: "Waterproof backing for easy cleanup" },
+                { id: 9, name: "Baby Mittens & Booties Set", price: 9.99, originalPrice: 12.99, category: "baby", age: "newborn", description: "Protect delicate hands and feet" },
+                { id: 10, name: "Baby Hat & Socks Set", price: 11.99, originalPrice: 14.99, category: "baby", age: "newborn", description: "Keep your baby warm and stylish" }
+            ],
+            tops: [
+                { id: 11, name: "Organic Cotton T-Shirt", price: 19.99, originalPrice: 24.99, category: "tops", age: "kids", description: "Soft and comfortable for everyday wear", badge: "New" },
+                { id: 12, name: "Kids Graphic Tee", price: 16.99, originalPrice: 19.99, category: "tops", age: "kids", description: "Fun designs for active kids" },
+                { id: 13, name: "Long Sleeve Shirt", price: 22.99, originalPrice: 27.99, category: "tops", age: "toddler", description: "Perfect for cooler weather" },
+                { id: 14, name: "Polo Shirt", price: 24.99, originalPrice: 29.99, category: "tops", age: "kids", description: "Classic style for special occasions" },
+                { id: 15, name: "Hooded Sweatshirt", price: 29.99, originalPrice: 34.99, category: "tops", age: "kids", description: "Warm and comfortable for play" },
+                { id: 16, name: "Tank Top (3-Pack)", price: 18.99, originalPrice: 22.99, category: "tops", age: "toddler", description: "Perfect for warm summer days" },
+                { id: 17, name: "Character T-Shirt", price: 17.99, originalPrice: 21.99, category: "tops", age: "kids", description: "Featuring favorite characters" },
+                { id: 18, name: "Thermal Shirt", price: 26.99, originalPrice: 31.99, category: "tops", age: "kids", description: "Extra warmth for winter" },
+                { id: 19, name: "Rash Guard", price: 23.99, originalPrice: 28.99, category: "tops", age: "toddler", description: "UV protection for swimming" },
+                { id: 20, name: "Dress Shirt", price: 27.99, originalPrice: 32.99, category: "tops", age: "kids", description: "Formal wear for special events" }
+            ],
+            outerwear: [
+                { id: 21, name: "Winter Jacket", price: 45.99, originalPrice: 59.99, category: "outerwear", age: "kids", description: "Keep your little one warm and cozy", badge: "Sale" },
+                { id: 22, name: "Denim Jacket", price: 34.99, originalPrice: 39.99, category: "outerwear", age: "kids", description: "Classic style for everyday wear" },
+                { id: 23, name: "Raincoat", price: 29.99, originalPrice: 34.99, category: "outerwear", age: "toddler", description: "Waterproof for rainy days" },
+                { id: 24, name: "Puffer Vest", price: 32.99, originalPrice: 39.99, category: "outerwear", age: "kids", description: "Lightweight warmth for active play" },
+                { id: 25, name: "Fleece Jacket", price: 28.99, originalPrice: 34.99, category: "outerwear", age: "toddler", description: "Soft and cozy for chilly days" },
+                { id: 26, name: "Windbreaker", price: 26.99, originalPrice: 31.99, category: "outerwear", age: "kids", description: "Light protection from wind" },
+                { id: 27, name: "Hooded Sweater", price: 31.99, originalPrice: 38.99, category: "outerwear", age: "kids", description: "Warm and stylish for fall" },
+                { id: 28, name: "Bomber Jacket", price: 39.99, originalPrice: 46.99, category: "outerwear", age: "kids", description: "Trendy style for fashion-forward kids" },
+                { id: 29, name: "Parka with Fur Hood", price: 49.99, originalPrice: 59.99, category: "outerwear", age: "kids", description: "Maximum warmth for winter" },
+                { id: 30, name: "Lightweight Cardigan", price: 24.99, originalPrice: 29.99, category: "outerwear", age: "toddler", description: "Perfect for layering" }
+            ],
+            accessories: [
+                { id: 31, name: "Comfy Sneakers", price: 29.99, originalPrice: 34.99, category: "accessories", age: "kids", description: "Perfect for active kids" },
+                { id: 32, name: "Baby Booties", price: 12.99, originalPrice: 15.99, category: "accessories", age: "baby", description: "Soft soles for early walkers" },
+                { id: 33, name: "Sun Hat", price: 14.99, originalPrice: 17.99, category: "accessories", age: "toddler", description: "UV protection for sunny days" },
+                { id: 34, name: "Winter Hat & Mittens Set", price: 16.99, originalPrice: 19.99, category: "accessories", age: "kids", description: "Keep warm in cold weather" },
+                { id: 35, name: "Kids Backpack", price: 24.99, originalPrice: 29.99, category: "accessories", age: "kids", description: "Perfect for school or day trips" },
+                { id: 36, name: "Socks (6-Pack)", price: 11.99, originalPrice: 14.99, category: "accessories", age: "baby", description: "Soft and comfortable" },
+                { id: 37, name: "Hair Accessories Set", price: 9.99, originalPrice: 12.99, category: "accessories", age: "kids", description: "Clips, bands, and more" },
+                { id: 38, name: "Kids Watch", price: 19.99, originalPrice: 24.99, category: "accessories", age: "kids", description: "Fun designs to tell time" },
+                { id: 39, name: "Sunglasses", price: 12.99, originalPrice: 15.99, category: "accessories", age: "toddler", description: "UV protection for little eyes" },
+                { id: 40, name: "Belt", price: 8.99, originalPrice: 10.99, category: "accessories", age: "kids", description: "Adjustable for perfect fit" }
+            ]
+        };
+
+        let cart = [];
+
+        const cartIcon = document.getElementById('cart-icon');
+        const cartCount = document.getElementById('cart-count');
+        const cartModal = document.getElementById('cart-modal');
+        const checkoutModal = document.getElementById('checkout-modal');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
+        const babyProducts = document.getElementById('baby-products');
+        const topsProducts = document.getElementById('tops-products');
+        const outerwearProducts = document.getElementById('outerwear-products');
+        const accessoriesProducts = document.getElementById('accessories-products');
+        const ageProductsGrid = document.getElementById('age-products-grid');
+        const shopNewArrivals = document.getElementById('shop-new-arrivals');
+        const newArrivalsLink = document.getElementById('new-arrivals-link');
+        const newArrivalsFooter = document.getElementById('new-arrivals-footer');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCategoryProducts();
+            renderAgeProducts('newborn');
+            setupEventListeners();
+            updateCartCount();
+        });
+
+        function renderCategoryProducts() {
+            products.baby.forEach(product => {
+                const productCard = createProductCard(product);
+                babyProducts.appendChild(productCard);
+            });
+            
+            products.tops.forEach(product => {
+                const productCard = createProductCard(product);
+                topsProducts.appendChild(productCard);
+            });
+            
+            products.outerwear.forEach(product => {
+                const productCard = createProductCard(product);
+                outerwearProducts.appendChild(productCard);
+            });
+            
+            products.accessories.forEach(product => {
+                const productCard = createProductCard(product);
+                accessoriesProducts.appendChild(productCard);
+            });
+        }
+
+        function renderAgeProducts(age) {
+            ageProductsGrid.innerHTML = '';
+            
+            const ageProducts = [];
+            for (const category in products) {
+                ageProducts.push(...products[category].filter(p => p.age === age));
+            }
+            
+            if (ageProducts.length === 0) {
+                ageProductsGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; padding: 40px;">No products found for this age group.</p>';
+                return;
+            }
+            
+            ageProducts.forEach(product => {
+                const productCard = createProductCard(product);
+                ageProductsGrid.appendChild(productCard);
+            });
+        }
+
+        function createProductCard(product) {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            
+            const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+            
+            productCard.innerHTML = `
+                <div class="product-img">
+                    ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                    <i class="fas fa-tshirt" style="font-size: 80px; color: #6C63FF;"></i>
+                </div>
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <div class="product-price">
+                        <div>
+                            <span class="price">$${product.price.toFixed(2)}</span>
+                            ${product.originalPrice > product.price ? `<span class="old-price">$${product.originalPrice.toFixed(2)}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                        <button class="buy-now" data-id="${product.id}">Buy Now</button>
+                    </div>
+                </div>
+            `;
+            
+            productCard.querySelector('.add-to-cart').addEventListener('click', function() {
+                addToCart(product.id);
+            });
+            
+            productCard.querySelector('.buy-now').addEventListener('click', function() {
+                addToCart(product.id);
+                openCheckout();
+            });
+            
+            return productCard;
+        }
+
+        function setupEventListeners() {
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    document.getElementById(`${category}-clothing`).scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            document.querySelectorAll('.age-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.age-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const age = this.getAttribute('data-age');
+                    renderAgeProducts(age);
+                });
+            });
+            
+            cartIcon.addEventListener('click', openCart);
+            
+            document.getElementById('cart-close').addEventListener('click', () => {
+                cartModal.classList.remove('active');
+            });
+            
+            document.getElementById('checkout-close').addEventListener('click', () => {
+                checkoutModal.classList.remove('active');
+            });
+            
+            document.getElementById('continue-shopping').addEventListener('click', () => {
+                cartModal.classList.remove('active');
+            });
+            
+            document.getElementById('continue-shopping-confirm').addEventListener('click', () => {
+                checkoutModal.classList.remove('active');
+            });
+            
+            document.getElementById('proceed-checkout').addEventListener('click', openCheckout);
+            
+            document.getElementById('next-payment').addEventListener('click', nextToPayment);
+            
+            document.getElementById('back-shipping').addEventListener('click', backToShipping);
+            
+            document.getElementById('next-confirmation').addEventListener('click', nextToConfirmation);
+            
+            document.getElementById('cancel-checkout').addEventListener('click', () => {
+                checkoutModal.classList.remove('active');
+            });
+            
+            shopNewArrivals.addEventListener('click', function(e) {
+                e.preventDefault();
+                showNewArrivals();
+            });
+            
+            newArrivalsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showNewArrivals();
+            });
+            
+            newArrivalsFooter.addEventListener('click', function(e) {
+                e.preventDefault();
+                showNewArrivals();
+            });
+        }
+
+        function showNewArrivals() {
+            const newArrivals = [];
+            for (const category in products) {
+                newArrivals.push(...products[category].filter(p => p.badge === "New"));
+            }
+            
+            babyProducts.innerHTML = '';
+            topsProducts.innerHTML = '';
+            outerwearProducts.innerHTML = '';
+            accessoriesProducts.innerHTML = '';
+            
+            products.baby.filter(p => p.badge === "New").forEach(product => {
+                const productCard = createProductCard(product);
+                babyProducts.appendChild(productCard);
+            });
+            
+            products.tops.filter(p => p.badge === "New").forEach(product => {
+                const productCard = createProductCard(product);
+                topsProducts.appendChild(productCard);
+            });
+            
+            products.outerwear.filter(p => p.badge === "New").forEach(product => {
+                const productCard = createProductCard(product);
+                outerwearProducts.appendChild(productCard);
+            });
+            
+            products.accessories.filter(p => p.badge === "New").forEach(product => {
+                const productCard = createProductCard(product);
+                accessoriesProducts.appendChild(productCard);
+            });
+            
+            document.getElementById('baby-clothing').scrollIntoView({ behavior: 'smooth' });
+            
+            showNotification('Showing new arrivals');
+        }
+
+        function addToCart(productId) {
+            let product = null;
+            for (const category in products) {
+                product = products[category].find(p => p.id === productId);
+                if (product) break;
+            }
+
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1
+                });
+            }
+
+            updateCartCount();
+            showNotification('Product added to cart!');
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        function openCart() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; padding: 20px;">Your cart is empty</p>';
+                document.getElementById('proceed-checkout').disabled = true;
+            } else {
+                document.getElementById('proceed-checkout').disabled = false;
+                
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div class="cart-item-image">
+                            <i class="fas fa-tshirt" style="font-size: 40px; color: #6C63FF;"></i>
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                                <input type="text" class="quantity-input" value="${item.quantity}" readonly>
+                                <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                            </div>
+                            <div class="remove-item" data-id="${item.id}">Remove</div>
+                        </div>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+
+                cartItems.querySelectorAll('.quantity-btn.plus').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const productId = parseInt(this.getAttribute('data-id'));
+                        updateCartItemQuantity(productId, 1);
+                    });
+                });
+
+                cartItems.querySelectorAll('.quantity-btn.minus').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const productId = parseInt(this.getAttribute('data-id'));
+                        updateCartItemQuantity(productId, -1);
+                    });
+                });
+
+                cartItems.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const productId = parseInt(this.getAttribute('data-id'));
+                        removeCartItem(productId);
+                    });
+                });
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('cart-total-price').textContent = `$${total.toFixed(2)}`;
+
+            cartModal.classList.add('active');
+        }
+
+        function updateCartItemQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeCartItem(productId);
+                } else {
+                    updateCartCount();
+                    openCart();
+                }
+            }
+        }
+
+        function removeCartItem(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartCount();
+            openCart();
+        }
+
+        function openCheckout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty');
+                return;
+            }
+
+            cartModal.classList.remove('active');
+            checkoutModal.classList.add('active');
+            resetCheckoutSteps();
+        }
+
+        function resetCheckoutSteps() {
+            document.getElementById('step-shipping').classList.add('active');
+            document.getElementById('step-payment').classList.remove('active', 'completed');
+            document.getElementById('step-confirmation').classList.remove('active', 'completed');
+            
+            document.getElementById('shipping-section').classList.add('active');
+            document.getElementById('payment-section').classList.remove('active');
+            document.getElementById('confirmation-section').classList.remove('active');
+        }
+
+        function nextToPayment() {
+            const name = document.getElementById('shipping-name').value;
+            const address = document.getElementById('shipping-address').value;
+            const city = document.getElementById('shipping-city').value;
+            const pincode = document.getElementById('shipping-pincode').value;
+            const phone = document.getElementById('shipping-phone').value;
+
+            if (!name || !address || !city || !pincode || !phone) {
+                showNotification('Please fill in all shipping details');
+                return;
+            }
+
+            document.getElementById('step-shipping').classList.remove('active');
+            document.getElementById('step-shipping').classList.add('completed');
+            document.getElementById('step-payment').classList.add('active');
+            
+            document.getElementById('shipping-section').classList.remove('active');
+            document.getElementById('payment-section').classList.add('active');
+        }
+
+        function backToShipping() {
+            document.getElementById('step-shipping').classList.add('active');
+            document.getElementById('step-payment').classList.remove('active');
+            document.getElementById('step-shipping').classList.remove('completed');
+            
+            document.getElementById('shipping-section').classList.add('active');
+            document.getElementById('payment-section').classList.remove('active');
+        }
+
+        function nextToConfirmation() {
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            
+            if (paymentMethod === 'card') {
+                const cardNumber = document.getElementById('card-number').value;
+                const cardName = document.getElementById('card-name').value;
+                const cardExpiry = document.getElementById('card-expiry').value;
+                const cardCvv = document.getElementById('card-cvv').value;
+
+                if (!cardNumber || !cardName || !cardExpiry || !cardCvv) {
+                    showNotification('Please fill in all card details');
+                    return;
+                }
+            }
+
+            document.getElementById('step-payment').classList.remove('active');
+            document.getElementById('step-payment').classList.add('completed');
+            document.getElementById('step-confirmation').classList.add('active');
+            
+            document.getElementById('payment-section').classList.remove('active');
+            document.getElementById('confirmation-section').classList.add('active');
+
+            document.getElementById('order-id').textContent = Math.floor(1000 + Math.random() * 9000);
+
+            cart = [];
+            updateCartCount();
+        }
+
+        function showNotification(message) {
+            notificationText.textContent = message;
+            notification.classList.add('active');
+            
+            setTimeout(() => {
+                notification.classList.remove('active');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
+
